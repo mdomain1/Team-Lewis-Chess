@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TeamLewisChessController">
+   <children>
+      <ImageView fitHeight="663.0" fitWidth="653.0" layoutX="25.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="25.0">
+         <image>
+            <Image url="@images/chess%20board.png" />
+         </image>
+      </ImageView>
+      <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="New Game" />
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Rectangle fx:id="A8_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="23.0" layoutY="47.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="A7_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="23.0" layoutY="123.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="A6_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="77.0" layoutX="23.0" layoutY="199.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="A5_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="23.0" layoutY="276.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="A4_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="77.0" layoutX="23.0" layoutY="352.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="A3_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="23.0" layoutY="429.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="A2_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="23.0" layoutY="505.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="A1_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="23.0" layoutY="581.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="B8_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="99.0" layoutY="47.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="B7_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="99.0" layoutY="123.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="B6_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="77.0" layoutX="99.0" layoutY="199.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="B5_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="99.0" layoutY="276.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="B4_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="77.0" layoutX="99.0" layoutY="352.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="B3_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="99.0" layoutY="429.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="B2_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="99.0" layoutY="505.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="B1_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="99.0" layoutY="581.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="C8_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="175.0" layoutY="47.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="C7_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="175.0" layoutY="123.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="C6_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="77.0" layoutX="175.0" layoutY="199.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="C5_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="175.0" layoutY="276.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="C4_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="77.0" layoutX="175.0" layoutY="352.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="C3_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="175.0" layoutY="429.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="C2_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="175.0" layoutY="505.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="C1_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="175.0" layoutY="581.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="D8_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="251.0" layoutY="47.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="77.0" />
+      <Rectangle fx:id="D7_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="251.0" layoutY="123.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="77.0" />
+      <Rectangle fx:id="D6_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="77.0" layoutX="251.0" layoutY="199.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="77.0" />
+      <Rectangle fx:id="D5_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="251.0" layoutY="276.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="77.0" />
+      <Rectangle fx:id="D4_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="77.0" layoutX="251.0" layoutY="352.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="77.0" />
+      <Rectangle fx:id="D3_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="251.0" layoutY="429.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="77.0" />
+      <Rectangle fx:id="D2_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="251.0" layoutY="505.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="77.0" />
+      <Rectangle fx:id="D1_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="251.0" layoutY="581.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="77.0" />
+      <Rectangle fx:id="E8_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="328.0" layoutY="47.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="E7_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="328.0" layoutY="123.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="E6_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="77.0" layoutX="328.0" layoutY="199.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="E5_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="328.0" layoutY="276.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="E4_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="77.0" layoutX="328.0" layoutY="352.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="E3_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="328.0" layoutY="429.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="E2_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="328.0" layoutY="505.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="E1_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="328.0" layoutY="581.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="F8_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="404.0" layoutY="47.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="F7_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="404.0" layoutY="123.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="F6_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="77.0" layoutX="404.0" layoutY="199.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="F5_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="404.0" layoutY="276.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="F4_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="77.0" layoutX="404.0" layoutY="352.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="F3_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="404.0" layoutY="429.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="F2_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="404.0" layoutY="505.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="F1_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="404.0" layoutY="581.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="G8_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="480.0" layoutY="47.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="77.0" />
+      <Rectangle fx:id="G7_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="480.0" layoutY="123.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="77.0" />
+      <Rectangle fx:id="G6_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="77.0" layoutX="480.0" layoutY="199.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="77.0" />
+      <Rectangle fx:id="G5_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="480.0" layoutY="276.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="77.0" />
+      <Rectangle fx:id="G4_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="77.0" layoutX="480.0" layoutY="352.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="77.0" />
+      <Rectangle fx:id="G3_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="480.0" layoutY="429.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="77.0" />
+      <Rectangle fx:id="G2_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="480.0" layoutY="505.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="77.0" />
+      <Rectangle fx:id="G1_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="480.0" layoutY="581.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="77.0" />
+      <Rectangle fx:id="H8_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="557.0" layoutY="47.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="H7_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="557.0" layoutY="123.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="H6_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="77.0" layoutX="557.0" layoutY="199.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="H5_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="557.0" layoutY="276.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="H4_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="77.0" layoutX="557.0" layoutY="352.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="H3_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="557.0" layoutY="429.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="H2_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="557.0" layoutY="505.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <Rectangle fx:id="H1_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="557.0" layoutY="581.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
+      <ImageView fx:id="A8_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="23.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="A7_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="23.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="A6_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="23.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="A5_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="23.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="A4_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="23.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="A3_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="23.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="A2_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="23.0" layoutY="505.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="A1_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="23.0" layoutY="581.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="B8_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="99.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="B7_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="99.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="B6_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="99.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="B5_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="99.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="B4_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="99.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="B3_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="99.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="B2_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="99.0" layoutY="505.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="B1_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="99.0" layoutY="581.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="C8_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="175.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="C7_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="175.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="C6_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="175.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="C5_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="175.0" layoutY="277.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="C4_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="175.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="C3_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="175.0" layoutY="430.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="C2_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="175.0" layoutY="506.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="C1_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="175.0" layoutY="582.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="D8_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="252.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="D7_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="252.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="D6_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="252.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="D5_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="252.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="D4_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="252.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="D3_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="252.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="D2_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="252.0" layoutY="505.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="D1_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="252.0" layoutY="581.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="E8_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="328.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="E7_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="328.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="E6_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="328.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="E5_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="328.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="E4_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="328.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="E3_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="328.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="E2_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="328.0" layoutY="505.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="E1_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="328.0" layoutY="581.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="F8_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="404.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="F7_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="404.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="F6_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="404.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="F5_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="404.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="F4_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="404.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="F3_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="404.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="F2_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="404.0" layoutY="505.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="F1_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="404.0" layoutY="581.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="G8_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="481.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="G7_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="481.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="G6_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="481.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="G5_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="481.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="G4_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="481.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="G3_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="481.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="G2_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="481.0" layoutY="505.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="G1_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="481.0" layoutY="581.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="H8_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="557.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="H7_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="557.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="H6_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="557.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="H5_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="557.0" layoutY="276.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="H4_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="557.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="H3_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="557.0" layoutY="429.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="H2_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="557.0" layoutY="505.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="H1_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="557.0" layoutY="581.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>
