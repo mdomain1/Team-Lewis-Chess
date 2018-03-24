@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
@@ -146,20 +147,24 @@ public class TeamLewisChessController {
     @FXML private ImageView H1_ImageView;
     
     Game oneGame = new Game();
-
-    @FXML
-    void A1_ImageViewClicked(MouseEvent event) {
+    
+    @FXML void A1_ImageViewClicked(MouseEvent event) {
         oneGame.determineAndExeLogicAction();
     }
 
     @FXML
     void A2_ImageViewClicked(MouseEvent event) {
-
+        
+       
     }
 
     @FXML
     void A3_ImageViewClicked(MouseEvent event) {
-
+        //Not working. I think its close though. It 
+        Image movedPawn;
+        movedPawn = new Image("white pawn.png");
+        A3_ImageView.setImage(movedPawn);
+        
     }
 
     @FXML
