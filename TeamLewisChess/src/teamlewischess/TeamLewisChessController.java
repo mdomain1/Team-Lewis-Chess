@@ -160,10 +160,11 @@ public class TeamLewisChessController {
 
     @FXML
     void A3_ImageViewClicked(MouseEvent event) {
-        //Not working. I think its close though. It 
+        //It works!!!!
         Image movedPawn;
-        movedPawn = new Image("white pawn.png");
+        movedPawn = new Image("/teamlewischess/images/white pawn.png");
         A3_ImageView.setImage(movedPawn);
+        A2_ImageView.setImage(null);
         
     }
 
