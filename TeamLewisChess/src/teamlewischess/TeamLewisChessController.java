@@ -147,339 +147,325 @@ public class TeamLewisChessController {
     @FXML private ImageView H1_ImageView;
     
     Game oneGame = new Game();
+    static private int squareClicked;
+    static private int squareMovedTo;
+    static private int imageToUpdateSquareMovedTo;
+    static private int specialSquareToWipe;
+    static private int specialSquareMovedTo;
+    static private int imageToUpdateSpecialSquareMovedTo;
+    static private boolean highlightSquareClicked;
     
     @FXML void A1_ImageViewClicked(MouseEvent event) {
+        //Testing / to be updated / for demonstration:
         oneGame.determineAndExeLogicAction();
     }
 
-    @FXML
-    void A2_ImageViewClicked(MouseEvent event) {
-        
+    @FXML void A2_ImageViewClicked(MouseEvent event) {
        
     }
 
-    @FXML
-    void A3_ImageViewClicked(MouseEvent event) {
+    @FXML void A3_ImageViewClicked(MouseEvent event) {
         //It works!!!!
         Image movedPawn;
         movedPawn = new Image("/teamlewischess/images/white pawn.png");
         A3_ImageView.setImage(movedPawn);
         A2_ImageView.setImage(null);
+    }
+
+    @FXML void A4_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void A5_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void A6_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void A7_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void A8_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void B1_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void B2_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void B3_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void B4_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void B5_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void B6_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void B7_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void B8_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void C1_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void C2_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void C3_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void C4_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void C5_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void C6_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void C7_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void D1_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void D2_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void D3_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void D4_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void D5_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void D6_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void D7_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void D8_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void E1_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void E2_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void E3_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void E4_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void E5_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void E6_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void E7_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void E8_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void F1_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void F2_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void F3_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void F4_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void F5_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void F6_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void F7_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void F8_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void G1_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void G2_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void G3_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void G4_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void G5_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void G6_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void G7_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void G8_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void H1_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void H2_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void H3_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void H4_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void H5_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void H6_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void H7_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void H8_ImageViewClicked(MouseEvent event) {
+
+    }
+
+    @FXML void NewGameMenuItemClicked(ActionEvent event) {
+        
+    }
+    
+    @FXML void CloseMenuItemClicked(ActionEvent event) {
+        System.exit(0);
+    }
+    
+    private void updateSquareImages()
+    {
+        
+    }
+    
+    private void updateHighlightValue()
+    {
+        
+    }
+    
+    static public void resetSquareAndImageVar()
+    {
+        
+    }
+    
+    static public int getSquareClicked()
+    {
+        return squareClicked;
+    }
+        
+    static public void setSquareMovedTo(int fSquare)
+    {
+        
+    }
+        
+    static public void setImageToUpdateSquareMovedTo(int fImage)
+    {
+        
+    }
+            
+    static public void setSpecialSquareToWipe(int fSquare)
+    {
+        
+    }
+    
+    static public void setImageToUpdateSpecialSquareMovedTo(int fImage)
+    {
+        
+    }
+        
+    static public void setHighlightSquareClicked(boolean fHighlight)
+    {
         
     }
 
-    @FXML
-    void A4_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void A5_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void A6_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void A7_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void A8_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void B1_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void B2_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void B3_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void B4_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void B5_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void B6_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void B7_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void B8_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void C1_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void C2_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void C3_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void C4_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void C5_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void C6_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void C7_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void D1_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void D2_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void D3_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void D4_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void D5_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void D6_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void D7_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void D8_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void E1_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void E2_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void E3_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void E4_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void E5_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void E6_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void E7_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void E8_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void F1_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void F2_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void F3_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void F4_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void F5_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void F6_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void F7_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void F8_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void G1_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void G2_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void G3_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void G4_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void G5_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void G6_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void G7_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void G8_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void H1_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void H2_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void H3_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void H4_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void H5_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void H6_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void H7_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void H8_ImageViewClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void NewGameMenuItemClicked(ActionEvent event) {
-
-    }
-    
-    @FXML
-    void CloseMenuItemClicked(ActionEvent event) {
-        System.exit(0);
-    }
-
-    @FXML
-    void initialize() {
+    @FXML void initialize() {
         assert A8_Rectangle != null : "fx:id=\"A8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
         assert A7_Rectangle != null : "fx:id=\"A7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
         assert A6_Rectangle != null : "fx:id=\"A6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
@@ -608,6 +594,5 @@ public class TeamLewisChessController {
         assert H3_ImageView != null : "fx:id=\"H3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
         assert H2_ImageView != null : "fx:id=\"H2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
         assert H1_ImageView != null : "fx:id=\"H1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-
     }
 }

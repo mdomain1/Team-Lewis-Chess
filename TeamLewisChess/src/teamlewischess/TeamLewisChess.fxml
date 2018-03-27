@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="teamlewischess.TeamLewisChessController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="teamlewischess.TeamLewisChessController">
    <children>
       <ImageView fitHeight="663.0" fitWidth="653.0" layoutX="25.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="25.0">
          <image>
@@ -100,7 +100,7 @@
       <ImageView fx:id="A6_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="23.0" layoutY="200.0" onMouseClicked="#A6_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="A5_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="23.0" layoutY="276.0" onMouseClicked="#A5_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="A4_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="23.0" layoutY="353.0" onMouseClicked="#A4_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="A3_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="23.0" layoutY="423.0" onMouseClicked="#A3_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="A3_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="23.0" layoutY="429.0" onMouseClicked="#A3_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="A2_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="23.0" layoutY="505.0" onMouseClicked="#A2_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/white%20pawn.png" />
