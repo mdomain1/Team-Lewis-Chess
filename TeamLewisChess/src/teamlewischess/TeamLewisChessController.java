@@ -3,15 +3,22 @@ package teamlewischess;
 // TeamLewisChessController.java
 // Controller that handles Rectangle and ImageView events, as well as the File menu events.
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 
-public class TeamLewisChessController {
+public class TeamLewisChessController implements Initializable{
 
     @FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -146,23 +153,274 @@ public class TeamLewisChessController {
     @FXML private ImageView H2_ImageView;
     @FXML private ImageView H1_ImageView;
     
+    @FXML private Pane A8_Pane;
+    @FXML private Pane A7_Pane;
+    @FXML private Pane A6_Pane;
+    @FXML private Pane A5_Pane;
+    @FXML private Pane A4_Pane;
+    @FXML private Pane A3_Pane;
+    @FXML private Pane A2_Pane;
+    @FXML private Pane A1_Pane;
+    @FXML private Pane B8_Pane;
+    @FXML private Pane B7_Pane;
+    @FXML private Pane B6_Pane;
+    @FXML private Pane B5_Pane;
+    @FXML private Pane B4_Pane;
+    @FXML private Pane B3_Pane;
+    @FXML private Pane B2_Pane;
+    @FXML private Pane B1_Pane;
+    @FXML private Pane C8_Pane;
+    @FXML private Pane C7_Pane;
+    @FXML private Pane C6_Pane;
+    @FXML private Pane C5_Pane;
+    @FXML private Pane C4_Pane;
+    @FXML private Pane C3_Pane;
+    @FXML private Pane C2_Pane;
+    @FXML private Pane C1_Pane;
+    @FXML private Pane D8_Pane;
+    @FXML private Pane D7_Pane;
+    @FXML private Pane D6_Pane;
+    @FXML private Pane D5_Pane;
+    @FXML private Pane D4_Pane;
+    @FXML private Pane D3_Pane;
+    @FXML private Pane D2_Pane;
+    @FXML private Pane D1_Pane;
+    @FXML private Pane E8_Pane;
+    @FXML private Pane E7_Pane;
+    @FXML private Pane E6_Pane;
+    @FXML private Pane E5_Pane;
+    @FXML private Pane E4_Pane;
+    @FXML private Pane E3_Pane;
+    @FXML private Pane E2_Pane;
+    @FXML private Pane E1_Pane;
+    @FXML private Pane F8_Pane;
+    @FXML private Pane F7_Pane;
+    @FXML private Pane F6_Pane;
+    @FXML private Pane F5_Pane;
+    @FXML private Pane F4_Pane;
+    @FXML private Pane F3_Pane;
+    @FXML private Pane F2_Pane;
+    @FXML private Pane F1_Pane;
+    @FXML private Pane G8_Pane;
+    @FXML private Pane G7_Pane;
+    @FXML private Pane G6_Pane;
+    @FXML private Pane G5_Pane;
+    @FXML private Pane G4_Pane;
+    @FXML private Pane G3_Pane;
+    @FXML private Pane G2_Pane;
+    @FXML private Pane G1_Pane;
+    @FXML private Pane H8_Pane;
+    @FXML private Pane H7_Pane;
+    @FXML private Pane H6_Pane;
+    @FXML private Pane H5_Pane;
+    @FXML private Pane H4_Pane;
+    @FXML private Pane H3_Pane;
+    @FXML private Pane H2_Pane;
+    @FXML private Pane H1_Pane;
+    
+    @FXML private Image A8_Image;
+    @FXML private Image A7_Image;
+    @FXML private Image A6_Image;
+    @FXML private Image A5_Image;
+    @FXML private Image A4_Image;
+    @FXML private Image A3_Image;
+    @FXML private Image A2_Image;
+    @FXML private Image A1_Image;
+    @FXML private Image B8_Image;
+    @FXML private Image B7_Image;
+    @FXML private Image B6_Image;
+    @FXML private Image B5_Image;
+    @FXML private Image B4_Image;
+    @FXML private Image B3_Image;
+    @FXML private Image B2_Image;
+    @FXML private Image B1_Image;
+    @FXML private Image C8_Image;
+    @FXML private Image C7_Image;
+    @FXML private Image C6_Image;
+    @FXML private Image C5_Image;
+    @FXML private Image C4_Image;
+    @FXML private Image C3_Image;
+    @FXML private Image C2_Image;
+    @FXML private Image C1_Image;
+    @FXML private Image D8_Image;
+    @FXML private Image D7_Image;
+    @FXML private Image D6_Image;
+    @FXML private Image D5_Image;
+    @FXML private Image D4_Image;
+    @FXML private Image D3_Image;
+    @FXML private Image D2_Image;
+    @FXML private Image D1_Image;
+    @FXML private Image E8_Image;
+    @FXML private Image E7_Image;
+    @FXML private Image E6_Image;
+    @FXML private Image E5_Image;
+    @FXML private Image E4_Image;
+    @FXML private Image E3_Image;
+    @FXML private Image E2_Image;
+    @FXML private Image E1_Image;
+    @FXML private Image F8_Image;
+    @FXML private Image F7_Image;
+    @FXML private Image F6_Image;
+    @FXML private Image F5_Image;
+    @FXML private Image F4_Image;
+    @FXML private Image F3_Image;
+    @FXML private Image F2_Image;
+    @FXML private Image F1_Image;
+    @FXML private Image G8_Image;
+    @FXML private Image G7_Image;
+    @FXML private Image G6_Image;
+    @FXML private Image G5_Image;
+    @FXML private Image G4_Image;
+    @FXML private Image G3_Image;
+    @FXML private Image G2_Image;
+    @FXML private Image G1_Image;
+    @FXML private Image H8_Image;
+    @FXML private Image H7_Image;
+    @FXML private Image H6_Image;
+    @FXML private Image H5_Image;
+    @FXML private Image H4_Image;
+    @FXML private Image H3_Image;
+    @FXML private Image H2_Image;
+    @FXML private Image H1_Image;
+    
+    List<Pane> paneList = new ArrayList<>();
+    List<Image> imgList= new ArrayList<>();
+    List<ImageView> iviews = new ArrayList<>();
+    List<String> imageNames = new ArrayList<>();
+    
+    String imgPrefix = "resources/images/";
+    String imgName = "";
+    String pieceAbbrev = "";
+    String colorAbbrev = "";
+    String colorTop = "B";
+    String colorBottom = "W";   // ""
+    final int NUM_SQUARE_SIDE = 8;
+    private static Node pick1 = null;
+    private static Node pick2 = null;
+    private static Pane mMove1 = null;
+    private static Pane mMove2 = null;
+    private static int mClick = 0;
+    private static int firstHash = 0;
+    private static int secondHash = 0;
+    private static Pane moveFrom = null;
+    private static Pane moveTo = null;
+    private static ImageView ivMove = null;
+    private static ImageView ivTaken = null;
+    private  ImageView imv1 = new ImageView();
+    private  ImageView imv2 = new ImageView();
+    
     Game oneGame = new Game();
+    
+    //@Override
+    public void initialize(URL url, ResourceBundle rg) {
+                iviews.add(A8_ImageView);iviews.add(B8_ImageView);iviews.add(C8_ImageView);iviews.add(D8_ImageView);
+        iviews.add(E8_ImageView);iviews.add(F8_ImageView);iviews.add(G8_ImageView);iviews.add(H8_ImageView);
+        iviews.add(A7_ImageView);iviews.add(B7_ImageView);iviews.add(C7_ImageView);iviews.add(D7_ImageView);
+        iviews.add(E7_ImageView);iviews.add(F7_ImageView);iviews.add(G7_ImageView);iviews.add(H7_ImageView); 
+        iviews.add(A6_ImageView);iviews.add(B6_ImageView);iviews.add(C6_ImageView);iviews.add(D6_ImageView);
+        iviews.add(E6_ImageView);iviews.add(F6_ImageView);iviews.add(G6_ImageView);iviews.add(H6_ImageView);  
+        iviews.add(A5_ImageView);iviews.add(B5_ImageView);iviews.add(C5_ImageView);iviews.add(D5_ImageView);
+        iviews.add(E5_ImageView);iviews.add(F5_ImageView);iviews.add(G5_ImageView);iviews.add(H5_ImageView);  
+        iviews.add(A4_ImageView);iviews.add(B4_ImageView);iviews.add(C4_ImageView);iviews.add(D4_ImageView);
+        iviews.add(E4_ImageView);iviews.add(F4_ImageView);iviews.add(G4_ImageView);iviews.add(H4_ImageView); 
+        iviews.add(A3_ImageView);iviews.add(B3_ImageView);iviews.add(C3_ImageView);iviews.add(D3_ImageView);
+        iviews.add(E3_ImageView);iviews.add(F3_ImageView);iviews.add(G3_ImageView);iviews.add(H3_ImageView);
+        iviews.add(A2_ImageView);iviews.add(B2_ImageView);iviews.add(C2_ImageView);iviews.add(D2_ImageView);
+        iviews.add(E2_ImageView);iviews.add(F2_ImageView);iviews.add(G2_ImageView);iviews.add(H2_ImageView); 
+        iviews.add(A1_ImageView);iviews.add(B1_ImageView);iviews.add(C1_ImageView);iviews.add(D1_ImageView);
+        iviews.add(E1_ImageView);iviews.add(F1_ImageView);iviews.add(G1_ImageView);iviews.add(H1_ImageView);
+        
+        paneList.add(A8_Pane);paneList.add(B8_Pane);paneList.add(C8_Pane);paneList.add(D8_Pane);
+        paneList.add(E8_Pane);paneList.add(F8_Pane);paneList.add(G8_Pane);paneList.add(H8_Pane);
+        paneList.add(A7_Pane);paneList.add(B7_Pane);paneList.add(C7_Pane);paneList.add(D7_Pane);
+        paneList.add(E7_Pane);paneList.add(F7_Pane);paneList.add(G7_Pane);paneList.add(H7_Pane); 
+        paneList.add(A6_Pane);paneList.add(B6_Pane);paneList.add(C6_Pane);paneList.add(D6_Pane);
+        paneList.add(E6_Pane);paneList.add(F6_Pane);paneList.add(G6_Pane);paneList.add(H6_Pane);  
+        paneList.add(A5_Pane);paneList.add(B5_Pane);paneList.add(C5_Pane);paneList.add(D5_Pane);
+        paneList.add(E5_Pane);paneList.add(F5_Pane);paneList.add(G5_Pane);paneList.add(H5_Pane);  
+        paneList.add(A4_Pane);paneList.add(B4_Pane);paneList.add(C4_Pane);paneList.add(D4_Pane);
+        paneList.add(E4_Pane);paneList.add(F4_Pane);paneList.add(G4_Pane);paneList.add(H4_Pane); 
+        paneList.add(A3_Pane);paneList.add(B3_Pane);paneList.add(C3_Pane);paneList.add(D3_Pane);
+        paneList.add(E3_Pane);paneList.add(F3_Pane);paneList.add(G3_Pane);paneList.add(H3_Pane);
+        paneList.add(A2_Pane);paneList.add(B2_Pane);paneList.add(C2_Pane);paneList.add(D2_Pane);
+        paneList.add(E2_Pane);paneList.add(F2_Pane);paneList.add(G2_Pane);paneList.add(H2_Pane); 
+        paneList.add(A1_Pane);paneList.add(B1_Pane);paneList.add(C1_Pane);paneList.add(D1_Pane);
+        paneList.add(E1_Pane);paneList.add(F1_Pane);paneList.add(G1_Pane);paneList.add(H1_Pane);
+      
+        System.out.println("calling setImageNames");
+        setImageNames();  
+         for (Pane pane : paneList) {
+            pane.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                @Override
+                    public void handle(MouseEvent event) {
+                        mClick++;
+                        if (mClick == 1) {
+                            System.out.println("clicked it 1");
+                            System.out.println("Target: " + event.getTarget());
+                            System.out.println("Source: " + event.getSource());
+                            System.out.println(event.getSource().hashCode());
+                            if (event.getTarget() instanceof ImageView) {
+                                System.out.println("event.getTarget() is instanceof ImageView");
+                                imv1 = (ImageView) event.getTarget();
+                                Image img1 = imv1.getImage();
+                                ImageView currentImage = new ImageView();
+                                currentImage.setImage(img1);
+                                currentImage.setId(img1.getClass().getSimpleName() + System.currentTimeMillis());
+                                System.out.println("currentImage.getId() " + currentImage.getId());
+                                Pane moveFromPane = (Pane) event.getSource();
+                                //moveFromPane.getChildren().remove(imv1);
+                            } else {
+                                System.out.println("not instance of imageview, reset mClick");
+                                mClick=0;
+                            }
+                          
+                        } else if (mClick == 2) {
+                            System.out.println("clicked it 2");
+                            System.out.println("Target: " + event.getTarget());
+                            System.out.println("Source: " + event.getSource());
+                            System.out.println(event.getSource().hashCode());
+                            if (event.getTarget() instanceof ImageView) {
+                                System.out.println("event.getTarget() is instanceof ImageView");
+                                
+                                //ImageView imv1 = (ImageView) event.getTarget();
+                                
+                                imv2 = (ImageView) event.getTarget();
+                                
+                                
+                                Pane moveToPane = (Pane) event.getSource();
+                                System.out.println("moveToPane ...");
+                                Image im2 = imv2.getImage();
+                                
+                                moveToPane.getChildren().remove(imv2);
+                                moveToPane.getChildren().add(imv1);
+                                System.out.println("added imageview");
+                          
+                            mClick = 0;
+                        } if (!(event.getTarget() instanceof ImageView)) {
+                             Pane moveToPane = (Pane) event.getTarget();
+                             
+                             moveToPane.getChildren().add(imv1);
+                             mClick=0;
+                        }  
+                   }                        
+                }
+            });
+           }
+    } // end initialize
     
     @FXML void A1_ImageViewClicked(MouseEvent event) {
         oneGame.determineAndExeLogicAction();
     }
 
     @FXML
-    void A2_ImageViewClicked(MouseEvent event) {
-        
-       
+    void A2_ImageViewClicked(MouseEvent event) {     
     }
 
     @FXML
     void A3_ImageViewClicked(MouseEvent event) {
         //It works!!!!
         Image movedPawn;
-        movedPawn = new Image("/teamlewischess/images/white pawn.png");
+        movedPawn = new Image("/teamlewischess/images/WP.png");
         A3_ImageView.setImage(movedPawn);
         A2_ImageView.setImage(null);
         
@@ -470,144 +728,160 @@ public class TeamLewisChessController {
 
     @FXML
     void NewGameMenuItemClicked(ActionEvent event) {
+        System.out.println("Button pushed: New Game");
+        System.out.println("Remove all imageViews from panes");
+        for (Pane pane : paneList) {
+            pane.getChildren().removeAll(iviews);
+        }
+        
+        System.out.println("put the starting arrangement of imageviews in the panes");
+        int i = 0;
+        for (Pane pane : paneList) {
+            pane.getChildren().add(iviews.get(i));
+            i++;
+        }
+       // add Panes to the list of Panes
+        paneList.clear();
+        paneList.add(A8_Pane);paneList.add(B8_Pane);paneList.add(C8_Pane);paneList.add(D8_Pane);
+        paneList.add(E8_Pane);paneList.add(F8_Pane);paneList.add(G8_Pane);paneList.add(H8_Pane);
+        paneList.add(A7_Pane);paneList.add(B7_Pane);paneList.add(C7_Pane);paneList.add(D7_Pane);
+        paneList.add(E7_Pane);paneList.add(F7_Pane);paneList.add(G7_Pane);paneList.add(H7_Pane); 
+        paneList.add(A6_Pane);paneList.add(B6_Pane);paneList.add(C6_Pane);paneList.add(D6_Pane);
+        paneList.add(E6_Pane);paneList.add(F6_Pane);paneList.add(G6_Pane);paneList.add(H6_Pane);  
+        paneList.add(A5_Pane);paneList.add(B5_Pane);paneList.add(C5_Pane);paneList.add(D5_Pane);
+        paneList.add(E5_Pane);paneList.add(F5_Pane);paneList.add(G5_Pane);paneList.add(H5_Pane);  
+        paneList.add(A4_Pane);paneList.add(B4_Pane);paneList.add(C4_Pane);paneList.add(D4_Pane);
+        paneList.add(E4_Pane);paneList.add(F4_Pane);paneList.add(G4_Pane);paneList.add(H4_Pane); 
+        paneList.add(A3_Pane);paneList.add(B3_Pane);paneList.add(C3_Pane);paneList.add(D3_Pane);
+        paneList.add(E3_Pane);paneList.add(F3_Pane);paneList.add(G3_Pane);paneList.add(H3_Pane);
+        paneList.add(A2_Pane);paneList.add(B2_Pane);paneList.add(C2_Pane);paneList.add(D2_Pane);
+        paneList.add(E2_Pane);paneList.add(F2_Pane);paneList.add(G2_Pane);paneList.add(H2_Pane); 
+        paneList.add(A1_Pane);paneList.add(B1_Pane);paneList.add(C1_Pane);paneList.add(D1_Pane);
+        paneList.add(E1_Pane);paneList.add(F1_Pane);paneList.add(G1_Pane);paneList.add(H1_Pane);
+        
+        System.out.println("Clear the list of ImageView");
+        iviews.clear();
+        iviews.add(A8_ImageView);iviews.add(B8_ImageView);iviews.add(C8_ImageView);iviews.add(D8_ImageView);
+        iviews.add(E8_ImageView);iviews.add(F8_ImageView);iviews.add(G8_ImageView);iviews.add(H8_ImageView);
+        iviews.add(A7_ImageView);iviews.add(B7_ImageView);iviews.add(C7_ImageView);iviews.add(D7_ImageView);
+        iviews.add(E7_ImageView);iviews.add(F7_ImageView);iviews.add(G7_ImageView);iviews.add(H7_ImageView); 
+        iviews.add(A6_ImageView);iviews.add(B6_ImageView);iviews.add(C6_ImageView);iviews.add(D6_ImageView);
+        iviews.add(E6_ImageView);iviews.add(F6_ImageView);iviews.add(G6_ImageView);iviews.add(H6_ImageView);  
+        iviews.add(A5_ImageView);iviews.add(B5_ImageView);iviews.add(C5_ImageView);iviews.add(D5_ImageView);
+        iviews.add(E5_ImageView);iviews.add(F5_ImageView);iviews.add(G5_ImageView);iviews.add(H5_ImageView);  
+        iviews.add(A4_ImageView);iviews.add(B4_ImageView);iviews.add(C4_ImageView);iviews.add(D4_ImageView);
+        iviews.add(E4_ImageView);iviews.add(F4_ImageView);iviews.add(G4_ImageView);iviews.add(H4_ImageView); 
+        iviews.add(A3_ImageView);iviews.add(B3_ImageView);iviews.add(C3_ImageView);iviews.add(D3_ImageView);
+        iviews.add(E3_ImageView);iviews.add(F3_ImageView);iviews.add(G3_ImageView);iviews.add(H3_ImageView);
+        iviews.add(A2_ImageView);iviews.add(B2_ImageView);iviews.add(C2_ImageView);iviews.add(D2_ImageView);
+        iviews.add(E2_ImageView);iviews.add(F2_ImageView);iviews.add(G2_ImageView);iviews.add(H2_ImageView); 
+        iviews.add(A1_ImageView);iviews.add(B1_ImageView);iviews.add(C1_ImageView);iviews.add(D1_ImageView);
+        iviews.add(E1_ImageView);iviews.add(F1_ImageView);iviews.add(G1_ImageView);iviews.add(H1_ImageView);
+        
+       
+//         for (Pane pane : paneList) {
+//          pane.setOnMouseMoved(new EventHandler<MouseEvent>() {
+//                    @Override
+//                    public void handle(MouseEvent event) {
+//                           mMove2 = (Pane) event.getSource();
+//                           if(mMove2 != mMove1) {
+//                               mMove2.setEffect(shadow);
+//                               if(mMove1 != null) mMove1.setEffect(null);
+//                               mMove1 = mMove2;
+//                           }
+//
+//                    }
+//                });
+//       }
+//        
+        System.out.println("put the starting images in the starting imageviews");
+        String imageName = new String();
 
+        for (int row = 0; row < NUM_SQUARE_SIDE; row++) {
+        
+            for (int col = 0; col < NUM_SQUARE_SIDE; col ++) {
+                try {
+                    imageName = imageNames.get((row)*8+col);                    
+                    Image img = new Image(imageName);
+
+                    iviews.get((row)*8+col).setImage(null);
+                    iviews.get((row)*8+col).setImage(img);
+  
+                } catch (RuntimeException ex)  {  //(IOException ex) {
+                    System.out.println("Failed with exception: " + ex.getMessage() + " "  + imageName);
+                }
+
+            }
+        }  
     }
     
     @FXML
     void CloseMenuItemClicked(ActionEvent event) {
         System.exit(0);
     }
+    
+    private void setImageNames() {
+        System.out.println("size of imageNames entering setImageNames = " + imageNames.size());
+        String pieceAbbrev = "";
+        String colorAbbrev = "";
+        String colorTop = "B";
+        String colorBottom = "W";   // ""
+        if (imageNames.size() < 64) {
+            String imgPrefix = "teamlewischess/images/"; // resources/images/";teamlewischess/images/"
+            String imageName;
+            
+            for (int row = 0; row < NUM_SQUARE_SIDE; row++) {
+                if (row > 1 && row < NUM_SQUARE_SIDE-1) {
+                    colorAbbrev = "E";
+                }
+                for (int col = 0; col < NUM_SQUARE_SIDE ; col++) {
+                    //System.out.println("row = " + row + ", col = " + col);
+                    if (row == 0 || row == 1) {
+                        colorAbbrev = colorTop;
+                    } else if ((row == 7) || (row == 6)) {
+                        colorAbbrev = colorBottom;
+                    } else {
+                        colorAbbrev = "E";
+                    }
+                    if ((row == 0) || (row == NUM_SQUARE_SIDE-1)) {
+                        if (col == 0 || col == NUM_SQUARE_SIDE-1) {
+                            pieceAbbrev = "R";
+                        } else if (col == 1 || col == 6) {
+                            pieceAbbrev = "N";
+                        } else if (col == 2 || col == 5) {
+                            pieceAbbrev = "B";
+                        } else if (col == 3) {
+                            pieceAbbrev = "Q";
+                        } else if (col == 4) {
+                            pieceAbbrev = "K";
+                        }
+                    }
+                    if ((row == 1) || (row == 6)) {
+                        pieceAbbrev = "P";
+                    }
+                    if (colorAbbrev.contentEquals("E")) {
+                        imageName = imgPrefix + "EE" + ".png";
+                    } else {
+                        imageName = imgPrefix + colorAbbrev + pieceAbbrev + ".png";
+                    }
 
-    @FXML
-    void initialize() {
-        assert A8_Rectangle != null : "fx:id=\"A8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A7_Rectangle != null : "fx:id=\"A7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A6_Rectangle != null : "fx:id=\"A6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A5_Rectangle != null : "fx:id=\"A5_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A4_Rectangle != null : "fx:id=\"A4_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A3_Rectangle != null : "fx:id=\"A3_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A2_Rectangle != null : "fx:id=\"A2_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A1_Rectangle != null : "fx:id=\"A1_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B8_Rectangle != null : "fx:id=\"B8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B7_Rectangle != null : "fx:id=\"B7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B6_Rectangle != null : "fx:id=\"B6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B5_Rectangle != null : "fx:id=\"B5_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B4_Rectangle != null : "fx:id=\"B4_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B3_Rectangle != null : "fx:id=\"B3_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B2_Rectangle != null : "fx:id=\"B2_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B1_Rectangle != null : "fx:id=\"B1_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C8_Rectangle != null : "fx:id=\"C8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C7_Rectangle != null : "fx:id=\"C7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C6_Rectangle != null : "fx:id=\"C6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C5_Rectangle != null : "fx:id=\"C5_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C4_Rectangle != null : "fx:id=\"C4_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C3_Rectangle != null : "fx:id=\"C3_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C2_Rectangle != null : "fx:id=\"C2_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C1_Rectangle != null : "fx:id=\"C1_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D8_Rectangle != null : "fx:id=\"D8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D7_Rectangle != null : "fx:id=\"D7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D6_Rectangle != null : "fx:id=\"D6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D5_Rectangle != null : "fx:id=\"D5_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D4_Rectangle != null : "fx:id=\"D4_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D3_Rectangle != null : "fx:id=\"D3_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D2_Rectangle != null : "fx:id=\"D2_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D1_Rectangle != null : "fx:id=\"D1_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E8_Rectangle != null : "fx:id=\"E8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E7_Rectangle != null : "fx:id=\"E7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E6_Rectangle != null : "fx:id=\"E6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E5_Rectangle != null : "fx:id=\"E5_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E4_Rectangle != null : "fx:id=\"E4_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E3_Rectangle != null : "fx:id=\"E3_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E2_Rectangle != null : "fx:id=\"E2_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E1_Rectangle != null : "fx:id=\"E1_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F8_Rectangle != null : "fx:id=\"F8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F7_Rectangle != null : "fx:id=\"F7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F6_Rectangle != null : "fx:id=\"F6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F5_Rectangle != null : "fx:id=\"F5_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F4_Rectangle != null : "fx:id=\"F4_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F3_Rectangle != null : "fx:id=\"F3_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F2_Rectangle != null : "fx:id=\"F2_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F1_Rectangle != null : "fx:id=\"F1_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G8_Rectangle != null : "fx:id=\"G8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G7_Rectangle != null : "fx:id=\"G7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G6_Rectangle != null : "fx:id=\"G6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G5_Rectangle != null : "fx:id=\"G5_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G4_Rectangle != null : "fx:id=\"G4_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G3_Rectangle != null : "fx:id=\"G3_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G2_Rectangle != null : "fx:id=\"G2_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G1_Rectangle != null : "fx:id=\"G1_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H8_Rectangle != null : "fx:id=\"H8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H7_Rectangle != null : "fx:id=\"H7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H6_Rectangle != null : "fx:id=\"H6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H5_Rectangle != null : "fx:id=\"H5_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H4_Rectangle != null : "fx:id=\"H4_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H3_Rectangle != null : "fx:id=\"H3_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H2_Rectangle != null : "fx:id=\"H2_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H1_Rectangle != null : "fx:id=\"H1_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A8_ImageView != null : "fx:id=\"A8_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A7_ImageView != null : "fx:id=\"A7_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A6_ImageView != null : "fx:id=\"A6_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A5_ImageView != null : "fx:id=\"A5_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A4_ImageView != null : "fx:id=\"A4_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A3_ImageView != null : "fx:id=\"A3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A2_ImageView != null : "fx:id=\"A2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A1_ImageView != null : "fx:id=\"A1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B8_ImageView != null : "fx:id=\"B8_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B7_ImageView != null : "fx:id=\"B7_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B6_ImageView != null : "fx:id=\"B6_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B5_ImageView != null : "fx:id=\"B5_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B4_ImageView != null : "fx:id=\"B4_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B3_ImageView != null : "fx:id=\"B3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B2_ImageView != null : "fx:id=\"B2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B1_ImageView != null : "fx:id=\"B1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C8_ImageView != null : "fx:id=\"C8_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C7_ImageView != null : "fx:id=\"C7_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C6_ImageView != null : "fx:id=\"C6_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C5_ImageView != null : "fx:id=\"C5_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C4_ImageView != null : "fx:id=\"C4_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C3_ImageView != null : "fx:id=\"C3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C2_ImageView != null : "fx:id=\"C2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C1_ImageView != null : "fx:id=\"C1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D8_ImageView != null : "fx:id=\"D8_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D7_ImageView != null : "fx:id=\"D7_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D6_ImageView != null : "fx:id=\"D6_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D5_ImageView != null : "fx:id=\"D5_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D4_ImageView != null : "fx:id=\"D4_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D3_ImageView != null : "fx:id=\"D3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D2_ImageView != null : "fx:id=\"D2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D1_ImageView != null : "fx:id=\"D1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E8_ImageView != null : "fx:id=\"E8_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E7_ImageView != null : "fx:id=\"E7_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E6_ImageView != null : "fx:id=\"E6_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E5_ImageView != null : "fx:id=\"E5_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E4_ImageView != null : "fx:id=\"E4_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E3_ImageView != null : "fx:id=\"E3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E2_ImageView != null : "fx:id=\"E2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E1_ImageView != null : "fx:id=\"E1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F8_ImageView != null : "fx:id=\"F8_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F7_ImageView != null : "fx:id=\"F7_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F6_ImageView != null : "fx:id=\"F6_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F5_ImageView != null : "fx:id=\"F5_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F4_ImageView != null : "fx:id=\"F4_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F3_ImageView != null : "fx:id=\"F3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F2_ImageView != null : "fx:id=\"F2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F1_ImageView != null : "fx:id=\"F1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G8_ImageView != null : "fx:id=\"G8_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G7_ImageView != null : "fx:id=\"G7_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G6_ImageView != null : "fx:id=\"G6_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G5_ImageView != null : "fx:id=\"G5_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G4_ImageView != null : "fx:id=\"G4_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G3_ImageView != null : "fx:id=\"G3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G2_ImageView != null : "fx:id=\"G2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G1_ImageView != null : "fx:id=\"G1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H8_ImageView != null : "fx:id=\"H8_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H7_ImageView != null : "fx:id=\"H7_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H6_ImageView != null : "fx:id=\"H6_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H5_ImageView != null : "fx:id=\"H5_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H4_ImageView != null : "fx:id=\"H4_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H3_ImageView != null : "fx:id=\"H3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H2_ImageView != null : "fx:id=\"H2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H1_ImageView != null : "fx:id=\"H1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-
+                    imageNames.add(imageName);
+                    Image img = new Image(imageName);
+                    imgList.add(img);
+                }
+            }// end load imageNmes
+        } // end if 
+//         System.out.println("Access List using Iterator");
+//        Iterator iterator = imageNames.iterator();
+//        while(iterator.hasNext()){
+//            System.out.println(iterator.next());
+//        }
+//        System.out.println();
+//        System.out.println("Access List using Short form of for-loop");
+//        for(String s: imageNames){
+//            System.out.println(s);
+//        }
+       
     }
+
 }

@@ -13,14 +13,14 @@
    <children>
       <ImageView fitHeight="663.0" fitWidth="653.0" layoutX="25.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="25.0">
          <image>
-            <Image url="@images/chessboard.png" />
+            <Image url="@images/chess%20board.png" />
          </image>
       </ImageView>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem fx:id="newGameMenuItem" mnemonicParsing="false" onAction="#NewGameMenuItemClicked" text="New Game" />
+                  <MenuItem mnemonicParsing="false" onAction="#NewGameMenuItemClicked" text="New Game" />
               <MenuItem mnemonicParsing="false" onAction="#CloseMenuItemClicked" text="Close" />
             </items>
           </Menu>
@@ -90,453 +90,327 @@
       <Rectangle fx:id="H3_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="557.0" layoutY="429.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
       <Rectangle fx:id="H2_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="557.0" layoutY="505.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
       <Rectangle fx:id="H1_Rectangle" arcHeight="5.0" arcWidth="5.0" fill="#fbff2100" height="76.0" layoutX="557.0" layoutY="581.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="76.0" />
-      <Pane fx:id="A8_Pane" layoutX="23.0" layoutY="47.0">
+      <Pane layoutX="23.0" layoutY="47.0">
          <children>
             <ImageView fx:id="A8_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#A8_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/blackrook.png" />
+                  <Image url="@images/black%20rook.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="A7_Pane" layoutX="23.0" layoutY="123.0">
+      <Pane layoutX="23.0" layoutY="123.0">
          <children>
             <ImageView fx:id="A7_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#A7_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/blackpawn.png" />
+                  <Image url="@images/black%20pawn.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="A6_Pane" layoutX="23.0" layoutY="200.0">
+      <Pane layoutX="23.0" layoutY="200.0">
          <children>
             <ImageView fx:id="A6_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#A6_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="A5_Pane" layoutX="23.0" layoutY="276.0">
+      <Pane layoutX="23.0" layoutY="276.0">
          <children>
             <ImageView fx:id="A5_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#A5_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="A4_Pane" layoutX="23.0" layoutY="353.0">
+      <Pane layoutX="23.0" layoutY="353.0">
          <children>
             <ImageView fx:id="A4_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#A4_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="A3_Pane" layoutX="23.0" layoutY="423.0">
+      <Pane layoutX="23.0" layoutY="423.0">
          <children>
             <ImageView fx:id="A3_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#A3_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="A2_Pane" layoutX="23.0" layoutY="505.0">
+      <Pane layoutX="23.0" layoutY="505.0">
          <children>
             <ImageView fx:id="A2_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#A2_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/whitepawn.png" />
+                  <Image url="@images/white%20pawn.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="A1_Pane" layoutX="23.0" layoutY="581.0">
+      <Pane layoutX="23.0" layoutY="581.0">
          <children>
             <ImageView fx:id="A1_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#A1_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/whiterook.png" />
+                  <Image url="@images/white%20rook.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="B8_Pane" layoutX="99.0" layoutY="47.0">
+      <Pane layoutX="99.0" layoutY="47.0">
          <children>
             <ImageView fx:id="B8_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#B8_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/blackknight.png" />
+                  <Image url="@images/black%20knight.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="B7_Pane" layoutX="99.0" layoutY="123.0">
+      <Pane layoutX="99.0" layoutY="123.0">
          <children>
             <ImageView fx:id="B7_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#B7_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/blackpawn.png" />
+                  <Image url="@images/black%20pawn.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="B6_Pane" layoutX="99.0" layoutY="200.0">
+      <Pane layoutX="99.0" layoutY="200.0">
          <children>
             <ImageView fx:id="B6_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#B6_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="B5_Pane" layoutX="99.0" layoutY="276.0">
+      <Pane layoutX="99.0" layoutY="276.0">
          <children>
             <ImageView fx:id="B5_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#B5_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="B4_Pane" layoutX="99.0" layoutY="353.0">
+      <Pane layoutX="99.0" layoutY="353.0">
          <children>
             <ImageView fx:id="B4_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#B4_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="B3_Pane" layoutX="99.0" layoutY="429.0">
+      <Pane layoutX="99.0" layoutY="429.0">
          <children>
             <ImageView fx:id="B3_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#B3_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="B2_Pane" layoutX="99.0" layoutY="505.0">
+      <Pane layoutX="99.0" layoutY="505.0">
          <children>
             <ImageView fx:id="B2_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#B2_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/whitepawn.png" />
+                  <Image url="@images/white%20pawn.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="B1_Pane" layoutX="99.0" layoutY="581.0">
+      <Pane layoutX="99.0" layoutY="581.0">
          <children>
             <ImageView fx:id="B1_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#B1_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/whiteknight.png" />
+                  <Image url="@images/white%20knight.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="C8_Pane" layoutX="175.0" layoutY="48.0">
+      <Pane layoutX="175.0" layoutY="48.0">
          <children>
             <ImageView fx:id="C8_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#C1_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/blackbishop.png" />
+                  <Image url="@images/black%20bishop.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="C7_Pane" layoutX="175.0" layoutY="124.0">
+      <Pane layoutX="175.0" layoutY="124.0">
          <children>
             <ImageView fx:id="C7_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#C7_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/blackpawn.png" />
+                  <Image url="@images/black%20pawn.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="C6_Pane" layoutX="175.0" layoutY="200.0">
+      <Pane layoutX="175.0" layoutY="200.0">
          <children>
             <ImageView fx:id="C6_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#C6_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="C5_Pane" layoutX="175.0" layoutY="276.0">
+      <Pane layoutX="175.0" layoutY="276.0">
          <children>
             <ImageView fx:id="C5_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#C5_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="C4_Pane" layoutX="175.0" layoutY="353.0">
+      <Pane layoutX="175.0" layoutY="353.0">
          <children>
             <ImageView fx:id="C4_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#C4_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="C3_Pane" layoutX="175.0" layoutY="429.0">
+      <Pane layoutX="175.0" layoutY="429.0">
          <children>
             <ImageView fx:id="C3_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#C3_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="C2_Pane" layoutX="175.0" layoutY="505.0">
+      <Pane layoutX="175.0" layoutY="505.0">
          <children>
             <ImageView fx:id="C2_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#C2_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/whitepawn.png" />
+                  <Image url="@images/white%20pawn.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="C1_Pane" layoutX="175.0" layoutY="582.0">
+      <Pane layoutX="175.0" layoutY="582.0">
          <children>
             <ImageView fx:id="C1_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#C1_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/whitebishop.png" />
+                  <Image url="@images/white%20bishop.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="D8_Pane" layoutX="252.0" layoutY="47.0">
+      <Pane layoutX="252.0" layoutY="47.0">
          <children>
             <ImageView fx:id="D8_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#D8_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/blackqueen.png" />
+                  <Image url="@images/black%20queen.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="D7_Pane" layoutX="252.0" layoutY="123.0">
+      <Pane layoutX="252.0" layoutY="123.0">
          <children>
             <ImageView fx:id="D7_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#D7_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/blackpawn.png" />
+                  <Image url="@images/black%20pawn.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="D6_Pane" layoutX="252.0" layoutY="200.0">
+      <Pane layoutX="252.0" layoutY="200.0">
          <children>
             <ImageView fx:id="D6_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#D6_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="D5_Pane" layoutX="252.0" layoutY="276.0">
+      <Pane layoutX="252.0" layoutY="276.0">
          <children>
             <ImageView fx:id="D5_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#D5_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="D4_Pane" layoutX="252.0" layoutY="353.0">
+      <Pane layoutX="252.0" layoutY="353.0">
          <children>
             <ImageView fx:id="D4_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#D4_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="D3_Pane" layoutX="252.0" layoutY="429.0">
+      <Pane layoutX="252.0" layoutY="429.0">
          <children>
             <ImageView fx:id="D3_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#D3_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="D2_Pane" layoutX="252.0" layoutY="505.0">
+      <Pane layoutX="252.0" layoutY="505.0">
          <children>
             <ImageView fx:id="D2_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#D2_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/whitepawn.png" />
+                  <Image url="@images/white%20pawn.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="D1_Pane" layoutX="252.0" layoutY="581.0">
+      <Pane layoutX="252.0" layoutY="581.0">
          <children>
             <ImageView fx:id="D1_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#D1_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/whitequeen.png" />
+                  <Image url="@images/white%20queen.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="E8_Pane" layoutX="328.0" layoutY="47.0">
+      <Pane layoutX="328.0" layoutY="47.0">
          <children>
             <ImageView fx:id="E8_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#E8_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/blackking.png" />
+                  <Image url="@images/black%20king.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="E7_Pane" layoutX="328.0" layoutY="123.0">
+      <Pane layoutX="328.0" layoutY="123.0">
          <children>
             <ImageView fx:id="E7_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#E7_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/blackpawn.png" />
+                  <Image url="@images/black%20pawn.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="E6_Pane" layoutX="328.0" layoutY="200.0">
+      <Pane layoutX="328.0" layoutY="200.0">
          <children>
             <ImageView fx:id="E6_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#E6_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="E5_Pane" layoutX="328.0" layoutY="276.0">
+      <Pane layoutX="328.0" layoutY="276.0">
          <children>
             <ImageView fx:id="E5_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#E5_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
          </children>
       </Pane>
-      <Pane fx:id="E4_Pane" layoutX="328.0" layoutY="353.0">
-         <children>
-            <ImageView fx:id="E4_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#E4_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
-      <Pane fx:id="E3_Pane" layoutX="328.0" layoutY="429.0">
-         <children>
-            <ImageView fx:id="E3_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#E3_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
-      <Pane fx:id="E2_Pane" layoutX="328.0" layoutY="505.0">
-         <children>
-            <ImageView fx:id="E2_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#E2_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/whitepawn.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="E1_Pane" layoutX="328.0" layoutY="581.0">
-         <children>
-            <ImageView fx:id="E1_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#E1_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/whiteking.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="F8_Pane" layoutX="404.0" layoutY="47.0">
-         <children>
-            <ImageView fx:id="F8_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#F8_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/blackbishop.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="F7_Pane" layoutX="404.0" layoutY="123.0">
-         <children>
-            <ImageView fx:id="F7_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#F7_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/blackpawn.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="F6_Pane" layoutX="404.0" layoutY="200.0">
-         <children>
-            <ImageView fx:id="F6_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#F6_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
-      <Pane fx:id="F5_Pane" layoutX="404.0" layoutY="276.0">
-         <children>
-            <ImageView fx:id="F5_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#F5_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
-      <Pane fx:id="F4_Pane" layoutX="404.0" layoutY="353.0">
-         <children>
-            <ImageView fx:id="F4_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#F4_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
-      <Pane fx:id="F3_Pane" layoutX="404.0" layoutY="429.0">
-         <children>
-            <ImageView fx:id="F3_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#F3_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
-      <Pane fx:id="F2_Pane" layoutX="404.0" layoutY="505.0">
-         <children>
-            <ImageView fx:id="F2_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#F2_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/whitepawn.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="F1_Pane" layoutX="404.0" layoutY="581.0">
-         <children>
-            <ImageView fx:id="F1_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#F1_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/whitebishop.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="G8_Pane" layoutX="481.0" layoutY="47.0">
-         <children>
-            <ImageView fx:id="G8_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#G8_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/blackknight.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="G7_Pane" layoutX="481.0" layoutY="123.0">
-         <children>
-            <ImageView fx:id="G7_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#G7_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/blackpawn.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="G6_Pane" layoutX="481.0" layoutY="200.0">
-         <children>
-            <ImageView fx:id="G6_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#G6_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
-      <Pane fx:id="G5_Pane" layoutX="481.0" layoutY="276.0">
-         <children>
-            <ImageView fx:id="G5_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#G5_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
-      <Pane fx:id="G4_Pane" layoutX="481.0" layoutY="353.0">
-         <children>
-            <ImageView fx:id="G4_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#G4_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
-      <Pane fx:id="G3_Pane" layoutX="481.0" layoutY="429.0">
-         <children>
-            <ImageView fx:id="G3_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#G3_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
-      <Pane fx:id="G2_Pane" layoutX="481.0" layoutY="505.0">
-         <children>
-            <ImageView fx:id="G2_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#G2_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/whitepawn.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="G1_Pane" layoutX="481.0" layoutY="581.0">
-         <children>
-            <ImageView fx:id="G1_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#G1_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/whiteknight.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="H8_Pane" layoutX="557.0" layoutY="47.0">
-         <children>
-            <ImageView fx:id="H8_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#H8_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/blackrook.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="H7_Pane" layoutX="557.0" layoutY="123.0">
-         <children>
-            <ImageView fx:id="H7_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#H7_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/blackpawn.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="H6_Pane" layoutX="557.0" layoutY="200.0">
-         <children>
-            <ImageView fx:id="H6_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#H6_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
-      <Pane fx:id="H5_Pane" layoutX="557.0" layoutY="276.0">
-         <children>
-            <ImageView fx:id="H5_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#H5_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
-      <Pane fx:id="H4_Pane" layoutX="557.0" layoutY="353.0">
-         <children>
-            <ImageView fx:id="H4_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#H4_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
-      <Pane fx:id="H3_Pane" layoutX="557.0" layoutY="429.0">
-         <children>
-            <ImageView fx:id="H3_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#H3_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
-         </children>
-      </Pane>
-      <Pane fx:id="H2_Pane" layoutX="557.0" layoutY="505.0">
-         <children>
-            <ImageView fx:id="H2_ImageView" fitHeight="76.0" fitWidth="76.0" onMouseClicked="#H2_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/whitepawn.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane fx:id="H1_Pane" layoutX="557.0" layoutY="581.0">
-         <children>
-            <ImageView fx:id="H1_ImageView" fitHeight="76.0" fitWidth="76.0"  pickOnBounds="true" preserveRatio="true"> <!-->onMouseClicked="#H1_ImageViewClicked"<-->
-               <image>
-                  <Image url="@images/whiterook.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
+      <ImageView fx:id="E4_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="328.0" layoutY="353.0" onMouseClicked="#E4_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="E3_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="328.0" layoutY="429.0" onMouseClicked="#E3_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="E2_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="328.0" layoutY="505.0" onMouseClicked="#E2_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/white%20pawn.png" />
+         </image></ImageView>
+      <ImageView fx:id="E1_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="328.0" layoutY="581.0" onMouseClicked="#E1_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/white%20king.png" />
+         </image></ImageView>
+      <ImageView fx:id="F8_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="404.0" layoutY="47.0" onMouseClicked="#F8_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/black%20bishop.png" />
+         </image></ImageView>
+      <ImageView fx:id="F7_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="404.0" layoutY="123.0" onMouseClicked="#F7_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/black%20pawn.png" />
+         </image></ImageView>
+      <ImageView fx:id="F6_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="404.0" layoutY="200.0" onMouseClicked="#F6_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="F5_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="404.0" layoutY="276.0" onMouseClicked="#F5_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="F4_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="404.0" layoutY="353.0" onMouseClicked="#F4_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="F3_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="404.0" layoutY="429.0" onMouseClicked="#F3_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="F2_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="404.0" layoutY="505.0" onMouseClicked="#F2_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/white%20pawn.png" />
+         </image></ImageView>
+      <ImageView fx:id="F1_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="404.0" layoutY="581.0" onMouseClicked="#F1_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/white%20bishop.png" />
+         </image></ImageView>
+      <ImageView fx:id="G8_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="481.0" layoutY="47.0" onMouseClicked="#G8_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/black%20knight.png" />
+         </image></ImageView>
+      <ImageView fx:id="G7_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="481.0" layoutY="123.0" onMouseClicked="#G7_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/black%20pawn.png" />
+         </image></ImageView>
+      <ImageView fx:id="G6_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="481.0" layoutY="200.0" onMouseClicked="#G6_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="G5_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="481.0" layoutY="276.0" onMouseClicked="#G5_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="G4_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="481.0" layoutY="353.0" onMouseClicked="#G4_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="G3_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="481.0" layoutY="429.0" onMouseClicked="#G3_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="G2_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="481.0" layoutY="505.0" onMouseClicked="#G2_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/white%20pawn.png" />
+         </image></ImageView>
+      <ImageView fx:id="G1_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="481.0" layoutY="581.0" onMouseClicked="#G1_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/white%20knight.png" />
+         </image></ImageView>
+      <ImageView fx:id="H8_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="557.0" layoutY="47.0" onMouseClicked="#H8_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/black%20rook.png" />
+         </image></ImageView>
+      <ImageView fx:id="H7_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="557.0" layoutY="123.0" onMouseClicked="#H7_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/black%20pawn.png" />
+         </image></ImageView>
+      <ImageView fx:id="H6_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="557.0" layoutY="200.0" onMouseClicked="#H6_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="H5_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="557.0" layoutY="276.0" onMouseClicked="#H5_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="H4_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="557.0" layoutY="353.0" onMouseClicked="#H4_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="H3_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="557.0" layoutY="429.0" onMouseClicked="#H3_ImageViewClicked" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="H2_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="557.0" layoutY="505.0" onMouseClicked="#H2_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/white%20pawn.png" />
+         </image></ImageView>
+      <ImageView fx:id="H1_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="557.0" layoutY="581.0" onMouseClicked="#H1_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/white%20rook.png" />
+         </image></ImageView>
    </children>
 </AnchorPane>
