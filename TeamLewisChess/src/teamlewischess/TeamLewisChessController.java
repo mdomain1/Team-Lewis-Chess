@@ -302,12 +302,16 @@ public class TeamLewisChessController implements Initializable{
     private static int mClick = 0;
     private static int firstHash = 0;
     private static int secondHash = 0;
-    private static Pane moveFrom = null;
-    private static Pane moveTo = null;
+    private static int firstHashT = 0;
+    private static int secondHashT = 0;
+    private static Pane moveFromPane = null;
+    private static Pane moveToPane = null;
     private static ImageView ivMove = null;
     private static ImageView ivTaken = null;
     private  ImageView imv1 = new ImageView();
     private  ImageView imv2 = new ImageView();
+    private static final Image imEmpty = new Image("teamlewischess/images/empty.png");
+    private static final ImageView imvEmpty = new ImageView(imEmpty);
     
     Game oneGame = new Game();
     
@@ -348,64 +352,102 @@ public class TeamLewisChessController implements Initializable{
         paneList.add(E1_Pane);paneList.add(F1_Pane);paneList.add(G1_Pane);paneList.add(H1_Pane);
       
         System.out.println("calling setImageNames");
-        setImageNames();  
-         for (Pane pane : paneList) {
+        setImageNames();
+        for (Pane pane : paneList) {
             pane.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                 @Override
-                    public void handle(MouseEvent event) {
-                        mClick++;
-                        if (mClick == 1) {
-                            System.out.println("clicked it 1");
-                            System.out.println("Target: " + event.getTarget());
-                            System.out.println("Source: " + event.getSource());
-                            System.out.println(event.getSource().hashCode());
-                            if (event.getTarget() instanceof ImageView) {
-                                System.out.println("event.getTarget() is instanceof ImageView");
-                                imv1 = (ImageView) event.getTarget();
-                                Image img1 = imv1.getImage();
-                                ImageView currentImage = new ImageView();
-                                currentImage.setImage(img1);
-                                currentImage.setId(img1.getClass().getSimpleName() + System.currentTimeMillis());
-                                System.out.println("currentImage.getId() " + currentImage.getId());
-                                Pane moveFromPane = (Pane) event.getSource();
-                                //moveFromPane.getChildren().remove(imv1);
-                            } else {
-                                System.out.println("not instance of imageview, reset mClick");
-                                mClick=0;
-                            }
-                          
-                        } else if (mClick == 2) {
-                            System.out.println("clicked it 2");
-                            System.out.println("Target: " + event.getTarget());
-                            System.out.println("Source: " + event.getSource());
-                            System.out.println(event.getSource().hashCode());
-                            if (event.getTarget() instanceof ImageView) {
-                                System.out.println("event.getTarget() is instanceof ImageView");
-                                
-                                //ImageView imv1 = (ImageView) event.getTarget();
-                                
-                                imv2 = (ImageView) event.getTarget();
-                                
-                                
-                                Pane moveToPane = (Pane) event.getSource();
-                                System.out.println("moveToPane ...");
-                                Image im2 = imv2.getImage();
-                                
+                public void handle(MouseEvent event) {
+                    if (mClick == 0) {
+                        // TODO 
+                        firstHash = 0;
+                        firstHashT = 0;
+                        secondHash = 0;
+                        secondHashT = 0;
+                    }
+                    mClick++;
+                    if (mClick == 1) {
+                        System.out.println("\n\nclicked it 1");
+                        System.out.println("Target: " + event.getTarget());
+                        System.out.println("Source: " + event.getSource());
+                        
+                        firstHash = event.getSource().hashCode();
+                        firstHashT = event.getTarget().hashCode();
+                        System.out.println("1: firstHash = " + firstHash);
+                        System.out.println("1: firstHashT = " + firstHashT);
+                        if(firstHash == firstHashT) {
+                            mClick=0;
+                            System.out.println("fistHash = firstHashT");
+                        }else {
+                        moveFromPane = (Pane) event.getSource();
+                        System.out.println("moveFromPane children = " + moveFromPane.getChildren().size());
+                        imv1 = (ImageView) event.getTarget();
+                        if (imv1.getImage() == null) {
+                            System.out.println("imv1 get imge = null");
+
+                            mClick = 0;
+                        } else if (imv1.getImage() != null) {
+
+                            System.out.println("image at imv1 not equal to null");
+                            imv1 = (ImageView) event.getTarget();
+                            //Image img1 = imv1.getImage();
+                            //ImageView currentImage = new ImageView();
+                            //currentImage.setImage(img1);
+                            //currentImage.setId(img1.getClass().getSimpleName() + System.currentTimeMillis());
+                            //System.out.println("currentImage.getId() " + currentImage.getId());
+
+                            //moveFromPane.getChildren().remove(imv1);
+                        } else {
+                            System.out.println("1: Shouldn't get here");
+                            mClick = 0;
+                        }
+                        }
+
+                    } else if (mClick == 2) {
+                        System.out.println("\nclicked it 2");
+                        System.out.println("Target: " + event.getTarget());
+                        System.out.println("Source: " + event.getSource());
+                        secondHash = event.getSource().hashCode();
+                        secondHashT = event.getTarget().hashCode();
+                        System.out.println("2: hashCode = " + secondHash);
+                        System.out.println("2: hashCodeT = " + secondHashT);
+                        moveToPane = (Pane) event.getSource();
+                        imv2 = (ImageView) event.getTarget();
+                        if (imv2.getImage() == null) {
+
+                            System.out.println("imv2 equal to null ...");
+                            Image im2 = imv2.getImage();
+
+                            //moveToPane.getChildren().remove(imv2);
+                            moveToPane.getChildren().add(imv1);
+                            moveFromPane.getChildren().remove(imv1);
+                            moveFromPane.getChildren().add(imvEmpty);
+                            System.out.println("added imageview");
+
+                            mClick = 0;
+                        } else if (imv2.getImage() != null) {
+                            if (firstHash != secondHash) {
+                                System.out.println("firstHash != secondHash");
                                 moveToPane.getChildren().remove(imv2);
                                 moveToPane.getChildren().add(imv1);
-                                System.out.println("added imageview");
-                          
-                            mClick = 0;
-                        } if (!(event.getTarget() instanceof ImageView)) {
-                             Pane moveToPane = (Pane) event.getTarget();
-                             
-                             moveToPane.getChildren().add(imv1);
-                             mClick=0;
-                        }  
-                   }                        
+                                moveFromPane.getChildren().remove(imv1);
+                                moveFromPane.getChildren().add(imvEmpty);
+
+                                mClick = 0;
+                            }else {
+                                System.out.println("first hash == secondHash");
+                                mClick = 1;
+                            }
+                            
+                            
+                        } else {
+                            System.out.println("2: Shouldn't be here");
+                            mClick=0;
+                        }
+
+                    }
                 }
             });
-           }
+        }
     } // end initialize
     
     @FXML void A1_ImageViewClicked(MouseEvent event) {
@@ -419,10 +461,11 @@ public class TeamLewisChessController implements Initializable{
     @FXML
     void A3_ImageViewClicked(MouseEvent event) {
         //It works!!!!
-        Image movedPawn;
-        movedPawn = new Image("/teamlewischess/images/WP.png");
-        A3_ImageView.setImage(movedPawn);
-        A2_ImageView.setImage(null);
+//        Image movedPawn;
+//        movedPawn = new Image("/teamlewischess/images/WP.png");
+//        A3_ImageView.setImage(movedPawn);
+//        A2_ImageView.setImage(null);
+//          event.consume();
         
     }
 
@@ -824,8 +867,8 @@ public class TeamLewisChessController implements Initializable{
         System.out.println("size of imageNames entering setImageNames = " + imageNames.size());
         String pieceAbbrev = "";
         String colorAbbrev = "";
-        String colorTop = "B";
-        String colorBottom = "W";   // ""
+        String colorTop = "black";   // B
+        String colorBottom = "white";   // W
         if (imageNames.size() < 64) {
             String imgPrefix = "teamlewischess/images/"; // resources/images/";teamlewischess/images/"
             String imageName;
@@ -841,26 +884,26 @@ public class TeamLewisChessController implements Initializable{
                     } else if ((row == 7) || (row == 6)) {
                         colorAbbrev = colorBottom;
                     } else {
-                        colorAbbrev = "E";
+                        colorAbbrev = "empty";
                     }
                     if ((row == 0) || (row == NUM_SQUARE_SIDE-1)) {
                         if (col == 0 || col == NUM_SQUARE_SIDE-1) {
-                            pieceAbbrev = "R";
+                            pieceAbbrev = "rook";  // R
                         } else if (col == 1 || col == 6) {
-                            pieceAbbrev = "N";
+                            pieceAbbrev = "knight";   //N
                         } else if (col == 2 || col == 5) {
-                            pieceAbbrev = "B";
+                            pieceAbbrev = "bishop"; // B
                         } else if (col == 3) {
-                            pieceAbbrev = "Q";
+                            pieceAbbrev = "queen";  // Q
                         } else if (col == 4) {
-                            pieceAbbrev = "K";
+                            pieceAbbrev = "king";   // K
                         }
                     }
                     if ((row == 1) || (row == 6)) {
-                        pieceAbbrev = "P";
+                        pieceAbbrev = "pawn";   //pawn
                     }
-                    if (colorAbbrev.contentEquals("E")) {
-                        imageName = imgPrefix + "EE" + ".png";
+                    if (colorAbbrev.contentEquals("empty")) {    // E
+                        imageName = imgPrefix + "empty" + ".png";   // EE
                     } else {
                         imageName = imgPrefix + colorAbbrev + pieceAbbrev + ".png";
                     }
