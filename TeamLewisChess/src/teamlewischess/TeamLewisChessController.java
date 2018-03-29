@@ -449,8 +449,13 @@ public class TeamLewisChessController {
     {
         
     }
-            
+       
     static public void setSpecialSquareToWipe(int fSquare)
+    {
+        
+    }
+
+    static public void setSpecialSquareMovedTo(int fSquare)
     {
         
     }
