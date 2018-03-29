@@ -1,76 +1,68 @@
 package teamlewischess;
-import javafx.scene.image.Image;
 
 public class Pawn extends Piece {
-    boolean firstmove;
-    public String name = "Pawn";
-    public String imgname = "pawn.png";
-    private Piece[][] boardstate;
-    private int i;
-    private int j;
-    private int te;
-	
-    public Pawn(int type, int ii, int jj, boolean fm) {
-	super(type);
-	te=type;
-	i = ii;
-	j = jj;
-	firstmove = fm;
+    private boolean promoted;
+    private boolean promotedToKnight;
+    private boolean promotedToBishop;
+    private boolean promotedToRook;
+    private boolean promotedToQueen;
+    
+    static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam)
+    {
+        //Just to satisfy program and to be updated with algorithm:
+        return true;
     }
-	
-    @Override
-    public Image image(){
-    if(te==1)
-        return new Image("white pawn.png");
-    else
-        return new Image("black pawn.png");
+    
+    static private boolean withinRangeOfPieceMobility(int[][] fPieceTypeLocationsOnBoard)
+    {
+        //Just to satisfy program and to be updated with algorithm:
+        return false;
     }
-	
-    @Override
-    public int icoord(){
-        if(i > 8){
-	return 7;}
-		
-	if(i < 0){
-	return 0;}
-		
-	else{return i;}
+    
+    static private boolean noPieceBlocksPathToSquare(int[][] fPieceTypeLocationsOnBoard)
+    {
+        //Just to satisfy program and to be updated with algorithm:
+        return false;
     }
-	
-    @Override
-    public int jcoord(){
-        if(j > 8){
-	return 7;}
-		
-	if(j < 0){
-	return 0;}
-		
-	else{return j;}
+    
+    static private boolean moveDoesNotPlaceKingInCheck(int[][] fPieceTypeLocationsOnBoard)
+    {
+        //Just to satisfy program and to be updated with algorithm:
+        return false;
     }
-	
-    @Override
-    public String toString(){
-        return name;
+    
+    public boolean promoted()
+    {
+        return promoted;
     }
-	
-    @Override
-    public String imagefilename(){
-        return imgname;
+    
+    public boolean promotedToKnight()
+    {
+        return promotedToKnight;
     }
-	
-    @Override
-    public boolean firstmove(){
-	return firstmove;
+        
+    public boolean promotedToBishop()
+    {
+        return promotedToBishop;
     }
-	
-    public Piece[][] movepawn(Piece p, Piece t, Piece[][] bs){
-	boardstate = bs;
-	// Move pawn
-	firstmove = false;
-	boardstate[t.icoord()][t.jcoord()] = new Pawn(p.type(), t.icoord(), t.jcoord(), firstmove);
-	boardstate[p.icoord()][p.jcoord()] = new Empty(0, p.icoord(), p.jcoord());
-	// Return the new board
-	return boardstate;
+    
+    public boolean promotedToRook()
+    {
+        return promotedToRook;
     }
-} 
-
+    
+    public boolean promotedToQueen()
+    {
+        return promotedToQueen;
+    }
+    
+    public Pawn(int fLocation, int fTeam) {
+        super(fLocation, fTeam);
+        
+        promoted = false;
+        promotedToKnight = false;
+        promotedToBishop = false;
+        promotedToRook = false;
+        promotedToQueen = false;
+    }
+}

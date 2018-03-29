@@ -16,7 +16,32 @@ public class Game {
     
     public void determineAndExeLogicAction()
     {
-        
+        if (targetedSquare == -1)
+        {
+            if (oneBoard.containsSelectablePiece())
+            {
+                targetedSquare = TeamLewisChessController.getSquareClicked();
+                TeamLewisChessController.setHighlightSquareClicked(true);
+            }
+            
+            TeamLewisChessController.resetSquareAndImageVar();
+        }
+        else
+        {
+            if (oneBoard.pieceOnTargetedSquareCanMoveToSquareClicked())
+            {
+                oneBoard.updateBoard();
+                targetedSquare = -1;
+                TeamLewisChessController.setHighlightSquareClicked(false);
+                updateCurrentTeamsTurn();
+            }
+            else
+            {
+                targetedSquare = -1;
+                TeamLewisChessController.setHighlightSquareClicked(false);
+                TeamLewisChessController.resetSquareAndImageVar();
+            }
+        }
     }
     
     private void updateCurrentTeamsTurn()
@@ -38,14 +63,16 @@ public class Game {
     {
         return gameStatus;
     }
-                    
+    
     static public void setGameStatus(int fGameStatus)
     {
-        
+        gameStatus = fGameStatus;
     }
     
     public Game()
     {
-        
+        targetedSquare = -1;
+        currentTeamsTurn = 0;
+        gameStatus = 0;
     }
 }

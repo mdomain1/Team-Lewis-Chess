@@ -413,7 +413,10 @@ public class TeamLewisChessController {
     }
 
     @FXML void NewGameMenuItemClicked(ActionEvent event) {
-        
+        Image movedPawn;
+        movedPawn = new Image("/teamlewischess/images/whitepawn.png");
+        A2_ImageView.setImage(movedPawn);
+        A3_ImageView.setImage(null);
     }
     
     @FXML void CloseMenuItemClicked(ActionEvent event) {
@@ -442,32 +445,32 @@ public class TeamLewisChessController {
         
     static public void setSquareMovedTo(int fSquare)
     {
-        
+        squareMovedTo = fSquare;
     }
         
     static public void setImageToUpdateSquareMovedTo(int fImage)
     {
-        
+        imageToUpdateSquareMovedTo = fImage;
     }
        
     static public void setSpecialSquareToWipe(int fSquare)
     {
-        
+        specialSquareToWipe = fSquare;
     }
 
     static public void setSpecialSquareMovedTo(int fSquare)
     {
-        
+        specialSquareMovedTo = fSquare;
     }
     
     static public void setImageToUpdateSpecialSquareMovedTo(int fImage)
     {
-        
+        imageToUpdateSpecialSquareMovedTo = fImage;
     }
         
     static public void setHighlightSquareClicked(boolean fHighlight)
     {
-        
+        highlightSquareClicked = fHighlight;
     }
 
     @FXML void initialize() {
