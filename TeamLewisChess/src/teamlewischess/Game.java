@@ -46,7 +46,13 @@ public class Game {
     
     private void updateCurrentTeamsTurn()
     {
-        
+        // 0 – indicates it is white’s turn, 1 – indicates it is black’s turn
+        if(currentTeamsTurn == 0){
+            currentTeamsTurn = 1;
+        }
+        else{
+            currentTeamsTurn = 0;
+        }
     }
         
     static public int getTargetedSquare()
