@@ -109,6 +109,47 @@ public class Board {
     
     public Board()
     {
+        //All squares with no pieces on them (rows 2-5) are initialized to 0,
+        //no piece is on these squares.
+        for (int i = 2; i <= 5; i++)
+        {
+            for (int j = 0; j <=7; j++)
+            {
+                pieceTypeLocationsOnBoard[i][j] = 0;
+            }
+        }
         
+        pieceTypeLocationsOnBoard[0][0] = 8;  //black rook
+        pieceTypeLocationsOnBoard[0][1] = 9;  //black knight
+        pieceTypeLocationsOnBoard[0][2] = 10; //black bishop
+        pieceTypeLocationsOnBoard[0][3] = 11; //black queen
+        pieceTypeLocationsOnBoard[0][4] = 12; //black king
+        pieceTypeLocationsOnBoard[0][5] = 10; //black bishop
+        pieceTypeLocationsOnBoard[0][6] = 9;  //black knight
+        pieceTypeLocationsOnBoard[0][7] = 8;  //black rook
+        pieceTypeLocationsOnBoard[1][0] = 7;  //black pawn
+        pieceTypeLocationsOnBoard[1][1] = 7;  //black pawn
+        pieceTypeLocationsOnBoard[1][2] = 7;  //black pawn
+        pieceTypeLocationsOnBoard[1][3] = 7;  //black pawn
+        pieceTypeLocationsOnBoard[1][4] = 7;  //black pawn
+        pieceTypeLocationsOnBoard[1][5] = 7;  //black pawn
+        pieceTypeLocationsOnBoard[1][6] = 7;  //black pawn
+        pieceTypeLocationsOnBoard[1][7] = 7;  //black pawn
+        pieceTypeLocationsOnBoard[6][0] = 1;  //white pawn
+        pieceTypeLocationsOnBoard[6][1] = 1;  //white pawn
+        pieceTypeLocationsOnBoard[6][2] = 1;  //white pawn
+        pieceTypeLocationsOnBoard[6][3] = 1;  //white pawn
+        pieceTypeLocationsOnBoard[6][4] = 1;  //white pawn
+        pieceTypeLocationsOnBoard[6][5] = 1;  //white pawn
+        pieceTypeLocationsOnBoard[6][6] = 1;  //white pawn
+        pieceTypeLocationsOnBoard[6][7] = 1;  //white pawn
+        pieceTypeLocationsOnBoard[7][0] = 2;  //white rook
+        pieceTypeLocationsOnBoard[7][1] = 3;  //white knight
+        pieceTypeLocationsOnBoard[7][2] = 4;  //white bishop
+        pieceTypeLocationsOnBoard[7][3] = 5;  //white queen
+        pieceTypeLocationsOnBoard[7][4] = 6;  //white king
+        pieceTypeLocationsOnBoard[7][5] = 4;  //white bishop
+        pieceTypeLocationsOnBoard[7][6] = 3;  //white knight
+        pieceTypeLocationsOnBoard[7][7] = 2;  //white rook
     }
 }
