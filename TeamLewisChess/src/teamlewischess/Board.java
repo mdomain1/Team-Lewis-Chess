@@ -99,8 +99,237 @@ public class Board {
     
     public boolean pieceOnTargetedSquareCanMoveToSquareClicked()
     {
-        //Just to satisfy program and to be updated with algorithm:
-        return true;
+        int row = getRowFromLocation(Game.getTargetedSquare());
+        int column = getColumnFromLocation(Game.getTargetedSquare());
+        
+        if (wK.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            return King.isValidMove(pieceTypeLocationsOnBoard, black);
+        } else if (wQ.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            return Queen.isValidMove(pieceTypeLocationsOnBoard, black);
+        } else if (wR_1.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            return Rook.isValidMove(pieceTypeLocationsOnBoard, black);
+        } else if (wR_2.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            return Rook.isValidMove(pieceTypeLocationsOnBoard, black);
+        } else if (wB_1.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            return Bishop.isValidMove(pieceTypeLocationsOnBoard, black);
+        } else if (wB_2.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            return Bishop.isValidMove(pieceTypeLocationsOnBoard, black);
+        } else if (wN_1.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            return Knight.isValidMove(pieceTypeLocationsOnBoard, black);
+        } else if (wN_2.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            return Knight.isValidMove(pieceTypeLocationsOnBoard, black);
+        } else if (wP_1.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            if (wP_1.promoted() == false) {
+                return Pawn.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_1.promotedToQueen() == true) {
+                return Queen.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_1.promotedToRook() == true) {
+                return Rook.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_1.promotedToBishop() == true) {
+                return Bishop.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_1.promotedToKnight() == true) {
+                return Knight.isValidMove(pieceTypeLocationsOnBoard, black);
+            }
+        } else if (wP_2.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            if (wP_2.promoted() == false) {
+                return Pawn.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_2.promotedToQueen() == true) {
+                return Queen.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_2.promotedToRook() == true) {
+                return Rook.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_2.promotedToBishop() == true) {
+                return Bishop.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_2.promotedToKnight() == true) {
+                return Knight.isValidMove(pieceTypeLocationsOnBoard, black);
+            }
+        } else if (wP_3.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            if (wP_3.promoted() == false) {
+                return Pawn.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_3.promotedToQueen() == true) {
+                return Queen.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_3.promotedToRook() == true) {
+                return Rook.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_3.promotedToBishop() == true) {
+                return Bishop.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_3.promotedToKnight() == true) {
+                return Knight.isValidMove(pieceTypeLocationsOnBoard, black);
+            }
+        } else if (wP_4.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            if (wP_4.promoted() == false) {
+                return Pawn.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_4.promotedToQueen() == true) {
+                return Queen.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_4.promotedToRook() == true) {
+                return Rook.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_4.promotedToBishop() == true) {
+                return Bishop.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_4.promotedToKnight() == true) {
+                return Knight.isValidMove(pieceTypeLocationsOnBoard, black);
+            }
+        } else if (wP_5.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            if (wP_5.promoted() == false) {
+                return Pawn.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_5.promotedToQueen() == true) {
+                return Queen.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_5.promotedToRook() == true) {
+                return Rook.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_5.promotedToBishop() == true) {
+                return Bishop.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_5.promotedToKnight() == true) {
+                return Knight.isValidMove(pieceTypeLocationsOnBoard, black);
+            }
+        } else if (wP_6.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            if (wP_6.promoted() == false) {
+                return Pawn.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_6.promotedToQueen() == true) {
+                return Queen.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_6.promotedToRook() == true) {
+                return Rook.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_6.promotedToBishop() == true) {
+                return Bishop.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_6.promotedToKnight() == true) {
+                return Knight.isValidMove(pieceTypeLocationsOnBoard, black);
+            }
+        } else if (wP_7.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            if (wP_7.promoted() == false) {
+                return Pawn.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_7.promotedToQueen() == true) {
+                return Queen.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_7.promotedToRook() == true) {
+                return Rook.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_7.promotedToBishop() == true) {
+                return Bishop.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_7.promotedToKnight() == true) {
+                return Knight.isValidMove(pieceTypeLocationsOnBoard, black);
+            }
+        } else if (wP_8.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            if (wP_8.promoted() == false) {
+                return Pawn.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_8.promotedToQueen() == true) {
+                return Queen.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_8.promotedToRook() == true) {
+                return Rook.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_8.promotedToBishop() == true) {
+                return Bishop.isValidMove(pieceTypeLocationsOnBoard, black);
+            } else if (wP_8.promotedToKnight() == true) {
+                return Knight.isValidMove(pieceTypeLocationsOnBoard, black);
+            }
+        } else if (bK.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            return King.isValidMove(pieceTypeLocationsOnBoard, white);
+        } else if (bQ.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            return Queen.isValidMove(pieceTypeLocationsOnBoard, white);
+        } else if (bR_1.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            return Rook.isValidMove(pieceTypeLocationsOnBoard, white);
+        } else if (bR_2.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            return Rook.isValidMove(pieceTypeLocationsOnBoard, white);
+        } else if (bB_1.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            return Bishop.isValidMove(pieceTypeLocationsOnBoard, white);
+        } else if (bB_2.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            return Bishop.isValidMove(pieceTypeLocationsOnBoard, white);
+        } else if (bN_1.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            return Knight.isValidMove(pieceTypeLocationsOnBoard, white);
+        } else if (bN_2.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            return Knight.isValidMove(pieceTypeLocationsOnBoard, white);
+        } else if (bP_1.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            if (bP_1.promoted() == false) {
+                return Pawn.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_1.promotedToQueen() == true) {
+                return Queen.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_1.promotedToRook() == true) {
+                return Rook.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_1.promotedToBishop() == true) {
+                return Bishop.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_1.promotedToKnight() == true) {
+                return Knight.isValidMove(pieceTypeLocationsOnBoard, white);
+            }
+        } else if (bP_2.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            if (bP_2.promoted() == false) {
+                return Pawn.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_2.promotedToQueen() == true) {
+                return Queen.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_2.promotedToRook() == true) {
+                return Rook.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_2.promotedToBishop() == true) {
+                return Bishop.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_2.promotedToKnight() == true) {
+                return Knight.isValidMove(pieceTypeLocationsOnBoard, white);
+            }
+        } else if (bP_3.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            if (bP_3.promoted() == false) {
+                return Pawn.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_3.promotedToQueen() == true) {
+                return Queen.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_3.promotedToRook() == true) {
+                return Rook.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_3.promotedToBishop() == true) {
+                return Bishop.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_3.promotedToKnight() == true) {
+                return Knight.isValidMove(pieceTypeLocationsOnBoard, white);
+            }
+        } else if (bP_4.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            if (bP_4.promoted() == false) {
+                return Pawn.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_4.promotedToQueen() == true) {
+                return Queen.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_4.promotedToRook() == true) {
+                return Rook.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_4.promotedToBishop() == true) {
+                return Bishop.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_4.promotedToKnight() == true) {
+                return Knight.isValidMove(pieceTypeLocationsOnBoard, white);
+            }
+        } else if (bP_5.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            if (bP_5.promoted() == false) {
+                return Pawn.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_5.promotedToQueen() == true) {
+                return Queen.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_5.promotedToRook() == true) {
+                return Rook.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_5.promotedToBishop() == true) {
+                return Bishop.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_5.promotedToKnight() == true) {
+                return Knight.isValidMove(pieceTypeLocationsOnBoard, white);
+            }
+        } else if (bP_6.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            if (bP_6.promoted() == false) {
+                return Pawn.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_6.promotedToQueen() == true) {
+                return Queen.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_6.promotedToRook() == true) {
+                return Rook.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_6.promotedToBishop() == true) {
+                return Bishop.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_6.promotedToKnight() == true) {
+                return Knight.isValidMove(pieceTypeLocationsOnBoard, white);
+            }
+        } else if (bP_7.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            if (bP_7.promoted() == false) {
+                return Pawn.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_7.promotedToQueen() == true) {
+                return Queen.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_7.promotedToRook() == true) {
+                return Rook.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_7.promotedToBishop() == true) {
+                return Bishop.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_7.promotedToKnight() == true) {
+                return Knight.isValidMove(pieceTypeLocationsOnBoard, white);
+            }
+        } else if (bP_8.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            if (bP_8.promoted() == false) {
+                return Pawn.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_8.promotedToQueen() == true) {
+                return Queen.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_8.promotedToRook() == true) {
+                return Rook.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_8.promotedToBishop() == true) {
+                return Bishop.isValidMove(pieceTypeLocationsOnBoard, white);
+            } else if (bP_8.promotedToKnight() == true) {
+                return Knight.isValidMove(pieceTypeLocationsOnBoard, white);
+            }
+        }
+        
+        //Because the IDE doesn't know that at least one of these if blocks will be entered:
+        return false;
     }
     
     public void updateBoard()
