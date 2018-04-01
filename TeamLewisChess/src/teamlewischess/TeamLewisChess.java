@@ -23,5 +23,5 @@ public class TeamLewisChess extends Application {
    public static void main(String[] args) {
       // create a TeamLewisChess object and call its start method
       launch(args);
-   } 
+   }
 }

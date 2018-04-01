@@ -69,19 +69,18 @@ public class Board {
     static public int getRowFromLocation(int fLocation)
     {
         //Just to satisfy program and to be updated with algorithm:
-        return 1;
+        return (fLocation / 8);
     }
     
     static public int getColumnFromLocation(int fLocation)
     {
         //Just to satisfy program and to be updated with algorithm:
-        return 1;
+        return (fLocation % 8);
     }
     
     static public int getLocationFromRowAndColumn(int fRow, int fColumn)
-    {
-        //Just to satisfy program and to be updated with algorithm:
-        return 1;
+    {        
+        return ((fRow * 8) + fColumn);
     }
     
     private boolean isACastlingMove()
