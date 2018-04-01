@@ -156,264 +156,707 @@ public class TeamLewisChessController {
     static private boolean highlightSquareClicked;
     
     @FXML void A1_ImageViewClicked(MouseEvent event) {
-        //Testing / to be updated / for demonstration:
-        oneGame.determineAndExeLogicAction();
+        squareClicked = 56;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void A2_ImageViewClicked(MouseEvent event) {
-       
+        squareClicked = 48;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void A3_ImageViewClicked(MouseEvent event) {
-        //It works!!!!
-        Image movedPawn;
-        movedPawn = new Image("/teamlewischess/images/whitepawn.png");
-        A3_ImageView.setImage(movedPawn);
-        A2_ImageView.setImage(null);
+        squareClicked = 40;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void A4_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 32;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void A5_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 24;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void A6_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 16;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void A7_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 8;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void A8_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 0;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void B1_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 57;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void B2_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 49;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void B3_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 41;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void B4_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 33;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void B5_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 25;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void B6_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 17;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void B7_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 9;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void B8_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 1;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void C1_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 58;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void C2_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 50;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void C3_ImageViewClicked(MouseEvent event) {
-        //Another move to test NewGameMenuItemClicked event:
-        Image movedKnight;
-        movedKnight = new Image("/teamlewischess/images/whiteknight.png");
-        C3_ImageView.setImage(movedKnight);
-        B1_ImageView.setImage(null);
+        squareClicked = 42;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void C4_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 34;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void C5_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 26;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void C6_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 18;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void C7_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 10;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
+    }
+    
+    @FXML void C8_ImageViewClicked(MouseEvent event) {
+        squareClicked = 2;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void D1_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 59;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void D2_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 51;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void D3_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 43;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void D4_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 35;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void D5_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 27;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void D6_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 19;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void D7_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 11;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void D8_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 3;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void E1_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 60;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void E2_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 52;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void E3_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 44;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void E4_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 36;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void E5_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 28;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void E6_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 20;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void E7_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 12;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void E8_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 4;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void F1_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 61;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void F2_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 53;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void F3_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 45;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void F4_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 37;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void F5_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 29;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void F6_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 21;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void F7_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 13;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void F8_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 5;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void G1_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 62;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void G2_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 54;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void G3_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 46;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void G4_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 38;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void G5_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 30;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void G6_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 22;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void G7_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 14;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void G8_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 6;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void H1_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 63;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void H2_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 55;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void H3_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 47;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void H4_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 39;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void H5_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 31;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void H6_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 23;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void H7_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 15;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void H8_ImageViewClicked(MouseEvent event) {
-
+        squareClicked = 7;
+        
+        if (Game.getGameStatus() == 0)
+        {
+            oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            updateHighlightValue();
+        }
     }
 
     @FXML void NewGameMenuItemClicked(ActionEvent event) {
