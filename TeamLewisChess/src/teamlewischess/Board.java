@@ -334,7 +334,126 @@ public class Board {
     
     public void updateBoard()
     {
+        //Testing / playing for now:
         
+        int row = getRowFromLocation(Game.getTargetedSquare());
+        int column = getColumnFromLocation(Game.getTargetedSquare());
+        
+        switch (pieceTypeLocationsOnBoard[row][column]) {            
+            case 1:
+                TeamLewisChessController.setImageToUpdateSquareMovedTo(1);
+                break;
+            case 2:
+                TeamLewisChessController.setImageToUpdateSquareMovedTo(2);
+                break;
+            case 3:
+                TeamLewisChessController.setImageToUpdateSquareMovedTo(3);
+                break;
+            case 4:
+                TeamLewisChessController.setImageToUpdateSquareMovedTo(4);
+                break;
+            case 5:
+                TeamLewisChessController.setImageToUpdateSquareMovedTo(5);
+                break;
+            case 6:
+                TeamLewisChessController.setImageToUpdateSquareMovedTo(6);
+                break;
+            case 7:
+                TeamLewisChessController.setImageToUpdateSquareMovedTo(7);
+                break;
+            case 8:
+                TeamLewisChessController.setImageToUpdateSquareMovedTo(8);
+                break;
+            case 9:
+                TeamLewisChessController.setImageToUpdateSquareMovedTo(9);
+                break;
+            case 10:
+                TeamLewisChessController.setImageToUpdateSquareMovedTo(10);
+                break;
+            case 11:
+                TeamLewisChessController.setImageToUpdateSquareMovedTo(11);
+                break;
+            case 12:
+                TeamLewisChessController.setImageToUpdateSquareMovedTo(12);
+                break;
+            default:
+                break;
+        }
+        
+        TeamLewisChessController.setSquareMovedTo(TeamLewisChessController.getSquareClicked());
+        TeamLewisChessController.setSquareToWipe(Game.getTargetedSquare());
+        
+        int row2 = getRowFromLocation(TeamLewisChessController.getSquareClicked());
+        int column2 = getColumnFromLocation(TeamLewisChessController.getSquareClicked());
+        
+        pieceTypeLocationsOnBoard[row2][column2] = pieceTypeLocationsOnBoard[row][column];
+        pieceTypeLocationsOnBoard[row][column] = 0;
+        
+        if (wK.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wK.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (wQ.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wQ.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (wR_1.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wR_1.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (wR_2.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wR_2.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (wB_1.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wB_1.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (wB_2.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wB_2.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (wN_1.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wN_1.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (wN_2.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wN_2.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (wP_1.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wP_1.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (wP_2.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wP_2.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (wP_3.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wP_3.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (wP_4.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wP_4.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (wP_5.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wP_5.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (wP_6.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wP_6.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (wP_7.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wP_7.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (wP_8.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wP_8.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (bK.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            bK.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (bQ.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            bQ.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (bR_1.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            bR_1.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (bR_2.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            bR_2.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (bB_1.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            bB_1.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (bB_2.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            bB_2.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (bN_1.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            bN_1.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (bN_2.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            wK.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (bP_1.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            bP_1.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (bP_2.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            bP_2.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (bP_3.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            bP_3.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (bP_4.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            bP_4.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (bP_5.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            bP_5.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (bP_6.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            bP_6.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (bP_7.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            bP_7.setLocation(TeamLewisChessController.getSquareClicked());
+        } else if (bP_8.getLocation() == pieceTypeLocationsOnBoard[row][column]) {
+            bP_8.setLocation(TeamLewisChessController.getSquareClicked());
+        }
     }
     
     static public int getRowFromLocation(int fLocation)

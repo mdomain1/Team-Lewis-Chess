@@ -86,5 +86,6 @@ public class Game {
         
         //So no image is erroneously updated on the first click:
         TeamLewisChessController.setSquareMovedTo(-1);
+        TeamLewisChessController.setSpecialSquareToWipe(-1);
     }
 }
