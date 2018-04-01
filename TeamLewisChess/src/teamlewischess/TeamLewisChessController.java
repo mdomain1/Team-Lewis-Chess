@@ -233,7 +233,11 @@ public class TeamLewisChessController {
     }
 
     @FXML void C3_ImageViewClicked(MouseEvent event) {
-
+        //Another move to test NewGameMenuItemClicked event:
+        Image movedKnight;
+        movedKnight = new Image("/teamlewischess/images/whiteknight.png");
+        C3_ImageView.setImage(movedKnight);
+        B1_ImageView.setImage(null);
     }
 
     @FXML void C4_ImageViewClicked(MouseEvent event) {
@@ -413,10 +417,86 @@ public class TeamLewisChessController {
     }
 
     @FXML void NewGameMenuItemClicked(ActionEvent event) {
-        Image movedPawn;
-        movedPawn = new Image("/teamlewischess/images/whitepawn.png");
-        A2_ImageView.setImage(movedPawn);
+        oneGame.newGame();
+        
         A3_ImageView.setImage(null);
+        A4_ImageView.setImage(null);
+        A5_ImageView.setImage(null);
+        A6_ImageView.setImage(null);
+        B3_ImageView.setImage(null);
+        B4_ImageView.setImage(null);
+        B5_ImageView.setImage(null);
+        B6_ImageView.setImage(null);
+        C3_ImageView.setImage(null);
+        C4_ImageView.setImage(null);
+        C5_ImageView.setImage(null);
+        C6_ImageView.setImage(null);
+        D3_ImageView.setImage(null);
+        D4_ImageView.setImage(null);
+        D5_ImageView.setImage(null);
+        D6_ImageView.setImage(null);
+        E3_ImageView.setImage(null);
+        E4_ImageView.setImage(null);
+        E5_ImageView.setImage(null);
+        E6_ImageView.setImage(null);
+        F3_ImageView.setImage(null);
+        F4_ImageView.setImage(null);
+        F5_ImageView.setImage(null);
+        F6_ImageView.setImage(null);
+        G3_ImageView.setImage(null);
+        G4_ImageView.setImage(null);
+        G5_ImageView.setImage(null);
+        G6_ImageView.setImage(null);
+        H3_ImageView.setImage(null);
+        H4_ImageView.setImage(null);
+        H5_ImageView.setImage(null);
+        H6_ImageView.setImage(null);
+        
+        Image imageOne;
+        imageOne = new Image("/teamlewischess/images/whitepawn.png");
+        A2_ImageView.setImage(imageOne);
+        B2_ImageView.setImage(imageOne);
+        C2_ImageView.setImage(imageOne);
+        D2_ImageView.setImage(imageOne);
+        E2_ImageView.setImage(imageOne);
+        F2_ImageView.setImage(imageOne);
+        G2_ImageView.setImage(imageOne);
+        H2_ImageView.setImage(imageOne);
+        imageOne = new Image("/teamlewischess/images/whiterook.png");
+        A1_ImageView.setImage(imageOne);
+        H1_ImageView.setImage(imageOne);
+        imageOne = new Image("/teamlewischess/images/whiteknight.png");
+        B1_ImageView.setImage(imageOne);
+        G1_ImageView.setImage(imageOne);
+        imageOne = new Image("/teamlewischess/images/whitebishop.png");
+        C1_ImageView.setImage(imageOne);
+        F1_ImageView.setImage(imageOne);
+        imageOne = new Image("/teamlewischess/images/whitequeen.png");
+        D1_ImageView.setImage(imageOne);
+        imageOne = new Image("/teamlewischess/images/whiteking.png");
+        E1_ImageView.setImage(imageOne);
+        imageOne = new Image("/teamlewischess/images/blackpawn.png");
+        A7_ImageView.setImage(imageOne);
+        B7_ImageView.setImage(imageOne);
+        C7_ImageView.setImage(imageOne);
+        D7_ImageView.setImage(imageOne);
+        E7_ImageView.setImage(imageOne);
+        F7_ImageView.setImage(imageOne);
+        G7_ImageView.setImage(imageOne);
+        H7_ImageView.setImage(imageOne);
+        imageOne = new Image("/teamlewischess/images/blackrook.png");
+        A8_ImageView.setImage(imageOne);
+        H8_ImageView.setImage(imageOne);
+        imageOne = new Image("/teamlewischess/images/blackknight.png");
+        B8_ImageView.setImage(imageOne);
+        G8_ImageView.setImage(imageOne);
+        imageOne = new Image("/teamlewischess/images/blackbishop.png");
+        C8_ImageView.setImage(imageOne);
+        F8_ImageView.setImage(imageOne);
+        imageOne = new Image("/teamlewischess/images/blackqueen.png");
+        D8_ImageView.setImage(imageOne);
+        imageOne = new Image("/teamlewischess/images/blackking.png");
+        E8_ImageView.setImage(imageOne);
     }
     
     @FXML void CloseMenuItemClicked(ActionEvent event) {

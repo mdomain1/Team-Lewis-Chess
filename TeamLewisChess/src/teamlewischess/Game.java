@@ -11,7 +11,10 @@ public class Game {
     
     public void newGame()
     {
-        
+        targetedSquare = -1;
+        currentTeamsTurn = 0;
+        gameStatus = 0;
+        oneBoard.resetBoardForNewGame();
     }
     
     public void determineAndExeLogicAction()
