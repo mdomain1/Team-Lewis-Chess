@@ -83,5 +83,8 @@ public class Game {
         targetedSquare = -1;
         currentTeamsTurn = 0;
         gameStatus = 0;
+        
+        //So no image is erroneously updated on the first click:
+        TeamLewisChessController.setSquareMovedTo(-1);
     }
 }

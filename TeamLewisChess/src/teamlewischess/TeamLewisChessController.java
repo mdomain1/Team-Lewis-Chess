@@ -148,6 +148,7 @@ public class TeamLewisChessController {
     
     Game oneGame = new Game();
     static private int squareClicked;
+    static private int squareToWipe;
     static private int squareMovedTo;
     static private int imageToUpdateSquareMovedTo;
     static private int specialSquareToWipe;
@@ -948,7 +949,888 @@ public class TeamLewisChessController {
     
     private void updateSquareImages()
     {
-        
+        if (squareMovedTo != -1)
+        {
+            switch (squareToWipe) {
+                case 0:
+                    A8_ImageView.setImage(null);
+                    break;
+                case 1:
+                    B8_ImageView.setImage(null);
+                    break;
+                case 2:
+                    C8_ImageView.setImage(null);
+                    break;
+                case 3:
+                    D8_ImageView.setImage(null);
+                    break;
+                case 4:
+                    E8_ImageView.setImage(null);
+                    break;
+                case 5:
+                    F8_ImageView.setImage(null);
+                    break;
+                case 6:
+                    G8_ImageView.setImage(null);
+                    break;
+                case 7:
+                    H8_ImageView.setImage(null);
+                    break;
+                case 8:
+                    A7_ImageView.setImage(null);
+                    break;
+                case 9:
+                    B7_ImageView.setImage(null);
+                    break;
+                case 10:
+                    C7_ImageView.setImage(null);
+                    break;
+                case 11:
+                    D7_ImageView.setImage(null);
+                    break;
+                case 12:
+                    E7_ImageView.setImage(null);
+                    break;
+                case 13:
+                    F7_ImageView.setImage(null);
+                    break;
+                case 14:
+                    G7_ImageView.setImage(null);
+                    break;
+                case 15:
+                    H7_ImageView.setImage(null);
+                    break;
+                case 16:
+                    A6_ImageView.setImage(null);
+                    break;
+                case 17:
+                    B6_ImageView.setImage(null);
+                    break;
+                case 18:
+                    C6_ImageView.setImage(null);
+                    break;
+                case 19:
+                    D6_ImageView.setImage(null);
+                    break;
+                case 20:
+                    E6_ImageView.setImage(null);
+                    break;
+                case 21:
+                    F6_ImageView.setImage(null);
+                    break;
+                case 22:
+                    G6_ImageView.setImage(null);
+                    break;
+                case 23:
+                    H6_ImageView.setImage(null);
+                    break;
+                case 24:
+                    A5_ImageView.setImage(null);
+                    break;
+                case 25:
+                    B5_ImageView.setImage(null);
+                    break;
+                case 26:
+                    C5_ImageView.setImage(null);
+                    break;
+                case 27:
+                    D5_ImageView.setImage(null);
+                    break;
+                case 28:
+                    E5_ImageView.setImage(null);
+                    break;
+                case 29:
+                    F5_ImageView.setImage(null);
+                    break;
+                case 30:
+                    G5_ImageView.setImage(null);
+                    break;
+                case 31:
+                    H5_ImageView.setImage(null);
+                    break;
+                case 32:
+                    A4_ImageView.setImage(null);
+                    break;
+                case 33:
+                    B4_ImageView.setImage(null);
+                    break;
+                case 34:
+                    C4_ImageView.setImage(null);
+                    break;
+                case 35:
+                    D4_ImageView.setImage(null);
+                    break;
+                case 36:
+                    E4_ImageView.setImage(null);
+                    break;
+                case 37:
+                    F4_ImageView.setImage(null);
+                    break;
+                case 38:
+                    G4_ImageView.setImage(null);
+                    break;
+                case 39:
+                    H4_ImageView.setImage(null);
+                    break;
+                case 40:
+                    A3_ImageView.setImage(null);
+                    break;
+                case 41:
+                    B3_ImageView.setImage(null);
+                    break;
+                case 42:
+                    C3_ImageView.setImage(null);
+                    break;
+                case 43:
+                    D3_ImageView.setImage(null);
+                    break;
+                case 44:
+                    E3_ImageView.setImage(null);
+                    break;
+                case 45:
+                    F3_ImageView.setImage(null);
+                    break;
+                case 46:
+                    G3_ImageView.setImage(null);
+                    break;
+                case 47:
+                    H3_ImageView.setImage(null);
+                    break;
+                case 48:
+                    A2_ImageView.setImage(null);
+                    break;
+                case 49:
+                    B2_ImageView.setImage(null);
+                    break;
+                case 50:
+                    C2_ImageView.setImage(null);
+                    break;
+                case 51:
+                    D2_ImageView.setImage(null);
+                    break;
+                case 52:
+                    E2_ImageView.setImage(null);
+                    break;
+                case 53:
+                    F2_ImageView.setImage(null);
+                    break;
+                case 54:
+                    G2_ImageView.setImage(null);
+                    break;
+                case 55:
+                    H2_ImageView.setImage(null);
+                    break;
+                case 56:
+                    A1_ImageView.setImage(null);
+                    break;
+                case 57:
+                    B1_ImageView.setImage(null);
+                    break;
+                case 58:
+                    C1_ImageView.setImage(null);
+                    break;
+                case 59:
+                    D1_ImageView.setImage(null);
+                    break;
+                case 60:
+                    E1_ImageView.setImage(null);
+                    break;
+                case 61:
+                    F1_ImageView.setImage(null);
+                    break;
+                case 62:
+                    G1_ImageView.setImage(null);
+                    break;
+                case 63:
+                    H1_ImageView.setImage(null);
+                    break;
+                default:
+                    break;
+            }
+            
+            //Initializing just because the IDE doesn't know that one of the switch
+            //conditions will be true and execute its case block.
+            Image imageOne = new Image("/teamlewischess/images/whitepawn.png");
+            
+            switch (imageToUpdateSquareMovedTo) {
+                case 1:
+                    imageOne = new Image("/teamlewischess/images/whitepawn.png");
+                    break;
+                case 2:
+                    imageOne = new Image("/teamlewischess/images/whiterook.png");
+                    break;
+                case 3:
+                    imageOne = new Image("/teamlewischess/images/whiteknight.png");
+                    break;
+                case 4:
+                    imageOne = new Image("/teamlewischess/images/whitebishop.png");
+                    break;
+                case 5:
+                    imageOne = new Image("/teamlewischess/images/whitequeen.png");
+                    break;
+                case 6:
+                    imageOne = new Image("/teamlewischess/images/whiteking.png");
+                    break;
+                case 7:
+                    imageOne = new Image("/teamlewischess/images/blackpawn.png");
+                    break;
+                case 8:
+                    imageOne = new Image("/teamlewischess/images/blackrook.png");
+                    break;
+                case 9:
+                    imageOne = new Image("/teamlewischess/images/blackknight.png");
+                    break;
+                case 10:
+                    imageOne = new Image("/teamlewischess/images/blackbishop.png");
+                    break;
+                case 11:
+                    imageOne = new Image("/teamlewischess/images/blackqueen.png");
+                    break;
+                case 12:
+                    imageOne = new Image("/teamlewischess/images/blackking.png");
+                    break;
+                default:
+                    break;
+            }
+            
+            switch (squareMovedTo) {
+                case 0:
+                    A8_ImageView.setImage(imageOne);
+                    break;
+                case 1:
+                    B8_ImageView.setImage(imageOne);
+                    break;
+                case 2:
+                    C8_ImageView.setImage(imageOne);
+                    break;
+                case 3:
+                    D8_ImageView.setImage(imageOne);
+                    break;
+                case 4:
+                    E8_ImageView.setImage(imageOne);
+                    break;
+                case 5:
+                    F8_ImageView.setImage(imageOne);
+                    break;
+                case 6:
+                    G8_ImageView.setImage(imageOne);
+                    break;
+                case 7:
+                    H8_ImageView.setImage(imageOne);
+                    break;
+                case 8:
+                    A7_ImageView.setImage(imageOne);
+                    break;
+                case 9:
+                    B7_ImageView.setImage(imageOne);
+                    break;
+                case 10:
+                    C7_ImageView.setImage(imageOne);
+                    break;
+                case 11:
+                    D7_ImageView.setImage(imageOne);
+                    break;
+                case 12:
+                    E7_ImageView.setImage(imageOne);
+                    break;
+                case 13:
+                    F7_ImageView.setImage(imageOne);
+                    break;
+                case 14:
+                    G7_ImageView.setImage(imageOne);
+                    break;
+                case 15:
+                    H7_ImageView.setImage(imageOne);
+                    break;
+                case 16:
+                    A6_ImageView.setImage(imageOne);
+                    break;
+                case 17:
+                    B6_ImageView.setImage(imageOne);
+                    break;
+                case 18:
+                    C6_ImageView.setImage(imageOne);
+                    break;
+                case 19:
+                    D6_ImageView.setImage(imageOne);
+                    break;
+                case 20:
+                    E6_ImageView.setImage(imageOne);
+                    break;
+                case 21:
+                    F6_ImageView.setImage(imageOne);
+                    break;
+                case 22:
+                    G6_ImageView.setImage(imageOne);
+                    break;
+                case 23:
+                    H6_ImageView.setImage(imageOne);
+                    break;
+                case 24:
+                    A5_ImageView.setImage(imageOne);
+                    break;
+                case 25:
+                    B5_ImageView.setImage(imageOne);
+                    break;
+                case 26:
+                    C5_ImageView.setImage(imageOne);
+                    break;
+                case 27:
+                    D5_ImageView.setImage(imageOne);
+                    break;
+                case 28:
+                    E5_ImageView.setImage(imageOne);
+                    break;
+                case 29:
+                    F5_ImageView.setImage(imageOne);
+                    break;
+                case 30:
+                    G5_ImageView.setImage(imageOne);
+                    break;
+                case 31:
+                    H5_ImageView.setImage(imageOne);
+                    break;
+                case 32:
+                    A4_ImageView.setImage(imageOne);
+                    break;
+                case 33:
+                    B4_ImageView.setImage(imageOne);
+                    break;
+                case 34:
+                    C4_ImageView.setImage(imageOne);
+                    break;
+                case 35:
+                    D4_ImageView.setImage(imageOne);
+                    break;
+                case 36:
+                    E4_ImageView.setImage(imageOne);
+                    break;
+                case 37:
+                    F4_ImageView.setImage(imageOne);
+                    break;
+                case 38:
+                    G4_ImageView.setImage(imageOne);
+                    break;
+                case 39:
+                    H4_ImageView.setImage(imageOne);
+                    break;
+                case 40:
+                    A3_ImageView.setImage(imageOne);
+                    break;
+                case 41:
+                    B3_ImageView.setImage(imageOne);
+                    break;
+                case 42:
+                    C3_ImageView.setImage(imageOne);
+                    break;
+                case 43:
+                    D3_ImageView.setImage(imageOne);
+                    break;
+                case 44:
+                    E3_ImageView.setImage(imageOne);
+                    break;
+                case 45:
+                    F3_ImageView.setImage(imageOne);
+                    break;
+                case 46:
+                    G3_ImageView.setImage(imageOne);
+                    break;
+                case 47:
+                    H3_ImageView.setImage(imageOne);
+                    break;
+                case 48:
+                    A2_ImageView.setImage(imageOne);
+                    break;
+                case 49:
+                    B2_ImageView.setImage(imageOne);
+                    break;
+                case 50:
+                    C2_ImageView.setImage(imageOne);
+                    break;
+                case 51:
+                    D2_ImageView.setImage(imageOne);
+                    break;
+                case 52:
+                    E2_ImageView.setImage(imageOne);
+                    break;
+                case 53:
+                    F2_ImageView.setImage(imageOne);
+                    break;
+                case 54:
+                    G2_ImageView.setImage(imageOne);
+                    break;
+                case 55:
+                    H2_ImageView.setImage(imageOne);
+                    break;
+                case 56:
+                    A1_ImageView.setImage(imageOne);
+                    break;
+                case 57:
+                    B1_ImageView.setImage(imageOne);
+                    break;
+                case 58:
+                    C1_ImageView.setImage(imageOne);
+                    break;
+                case 59:
+                    D1_ImageView.setImage(imageOne);
+                    break;
+                case 60:
+                    E1_ImageView.setImage(imageOne);
+                    break;
+                case 61:
+                    F1_ImageView.setImage(imageOne);
+                    break;
+                case 62:
+                    G1_ImageView.setImage(imageOne);
+                    break;
+                case 63:
+                    H1_ImageView.setImage(imageOne);
+                    break;
+                default:
+                    break;
+            }
+            
+            if (specialSquareToWipe != -1)
+            {
+                switch (specialSquareToWipe) {
+                    case 0:
+                        A8_ImageView.setImage(null);
+                        break;
+                    case 1:
+                        B8_ImageView.setImage(null);
+                        break;
+                    case 2:
+                        C8_ImageView.setImage(null);
+                        break;
+                    case 3:
+                        D8_ImageView.setImage(null);
+                        break;
+                    case 4:
+                        E8_ImageView.setImage(null);
+                        break;
+                    case 5:
+                        F8_ImageView.setImage(null);
+                        break;
+                    case 6:
+                        G8_ImageView.setImage(null);
+                        break;
+                    case 7:
+                        H8_ImageView.setImage(null);
+                        break;
+                    case 8:
+                        A7_ImageView.setImage(null);
+                        break;
+                    case 9:
+                        B7_ImageView.setImage(null);
+                        break;
+                    case 10:
+                        C7_ImageView.setImage(null);
+                        break;
+                    case 11:
+                        D7_ImageView.setImage(null);
+                        break;
+                    case 12:
+                        E7_ImageView.setImage(null);
+                        break;
+                    case 13:
+                        F7_ImageView.setImage(null);
+                        break;
+                    case 14:
+                        G7_ImageView.setImage(null);
+                        break;
+                    case 15:
+                        H7_ImageView.setImage(null);
+                        break;
+                    case 16:
+                        A6_ImageView.setImage(null);
+                        break;
+                    case 17:
+                        B6_ImageView.setImage(null);
+                        break;
+                    case 18:
+                        C6_ImageView.setImage(null);
+                        break;
+                    case 19:
+                        D6_ImageView.setImage(null);
+                        break;
+                    case 20:
+                        E6_ImageView.setImage(null);
+                        break;
+                    case 21:
+                        F6_ImageView.setImage(null);
+                        break;
+                    case 22:
+                        G6_ImageView.setImage(null);
+                        break;
+                    case 23:
+                        H6_ImageView.setImage(null);
+                        break;
+                    case 24:
+                        A5_ImageView.setImage(null);
+                        break;
+                    case 25:
+                        B5_ImageView.setImage(null);
+                        break;
+                    case 26:
+                        C5_ImageView.setImage(null);
+                        break;
+                    case 27:
+                        D5_ImageView.setImage(null);
+                        break;
+                    case 28:
+                        E5_ImageView.setImage(null);
+                        break;
+                    case 29:
+                        F5_ImageView.setImage(null);
+                        break;
+                    case 30:
+                        G5_ImageView.setImage(null);
+                        break;
+                    case 31:
+                        H5_ImageView.setImage(null);
+                        break;
+                    case 32:
+                        A4_ImageView.setImage(null);
+                        break;
+                    case 33:
+                        B4_ImageView.setImage(null);
+                        break;
+                    case 34:
+                        C4_ImageView.setImage(null);
+                        break;
+                    case 35:
+                        D4_ImageView.setImage(null);
+                        break;
+                    case 36:
+                        E4_ImageView.setImage(null);
+                        break;
+                    case 37:
+                        F4_ImageView.setImage(null);
+                        break;
+                    case 38:
+                        G4_ImageView.setImage(null);
+                        break;
+                    case 39:
+                        H4_ImageView.setImage(null);
+                        break;
+                    case 40:
+                        A3_ImageView.setImage(null);
+                        break;
+                    case 41:
+                        B3_ImageView.setImage(null);
+                        break;
+                    case 42:
+                        C3_ImageView.setImage(null);
+                        break;
+                    case 43:
+                        D3_ImageView.setImage(null);
+                        break;
+                    case 44:
+                        E3_ImageView.setImage(null);
+                        break;
+                    case 45:
+                        F3_ImageView.setImage(null);
+                        break;
+                    case 46:
+                        G3_ImageView.setImage(null);
+                        break;
+                    case 47:
+                        H3_ImageView.setImage(null);
+                        break;
+                    case 48:
+                        A2_ImageView.setImage(null);
+                        break;
+                    case 49:
+                        B2_ImageView.setImage(null);
+                        break;
+                    case 50:
+                        C2_ImageView.setImage(null);
+                        break;
+                    case 51:
+                        D2_ImageView.setImage(null);
+                        break;
+                    case 52:
+                        E2_ImageView.setImage(null);
+                        break;
+                    case 53:
+                        F2_ImageView.setImage(null);
+                        break;
+                    case 54:
+                        G2_ImageView.setImage(null);
+                        break;
+                    case 55:
+                        H2_ImageView.setImage(null);
+                        break;
+                    case 56:
+                        A1_ImageView.setImage(null);
+                        break;
+                    case 57:
+                        B1_ImageView.setImage(null);
+                        break;
+                    case 58:
+                        C1_ImageView.setImage(null);
+                        break;
+                    case 59:
+                        D1_ImageView.setImage(null);
+                        break;
+                    case 60:
+                        E1_ImageView.setImage(null);
+                        break;
+                    case 61:
+                        F1_ImageView.setImage(null);
+                        break;
+                    case 62:
+                        G1_ImageView.setImage(null);
+                        break;
+                    case 63:
+                        H1_ImageView.setImage(null);
+                        break;
+                    default:
+                        break;
+                }
+                
+                if (specialSquareMovedTo != -1)
+                {
+                    switch (imageToUpdateSpecialSquareMovedTo) {
+                        case 1:
+                            imageOne = new Image("/teamlewischess/images/whitepawn.png");
+                            break;
+                        case 2:
+                            imageOne = new Image("/teamlewischess/images/whiterook.png");
+                            break;
+                        case 3:
+                            imageOne = new Image("/teamlewischess/images/whiteknight.png");
+                            break;
+                        case 4:
+                            imageOne = new Image("/teamlewischess/images/whitebishop.png");
+                            break;
+                        case 5:
+                            imageOne = new Image("/teamlewischess/images/whitequeen.png");
+                            break;
+                        case 6:
+                            imageOne = new Image("/teamlewischess/images/whiteking.png");
+                            break;
+                        case 7:
+                            imageOne = new Image("/teamlewischess/images/blackpawn.png");
+                            break;
+                        case 8:
+                            imageOne = new Image("/teamlewischess/images/blackrook.png");
+                            break;
+                        case 9:
+                            imageOne = new Image("/teamlewischess/images/blackknight.png");
+                            break;
+                        case 10:
+                            imageOne = new Image("/teamlewischess/images/blackbishop.png");
+                            break;
+                        case 11:
+                            imageOne = new Image("/teamlewischess/images/blackqueen.png");
+                            break;
+                        case 12:
+                            imageOne = new Image("/teamlewischess/images/blackking.png");
+                            break;
+                        default:
+                            break;
+                    }
+                
+                    switch (specialSquareMovedTo) {
+                        case 0:
+                            A8_ImageView.setImage(imageOne);
+                            break;
+                        case 1:
+                            B8_ImageView.setImage(imageOne);
+                            break;
+                        case 2:
+                            C8_ImageView.setImage(imageOne);
+                            break;
+                        case 3:
+                            D8_ImageView.setImage(imageOne);
+                            break;
+                        case 4:
+                            E8_ImageView.setImage(imageOne);
+                            break;
+                        case 5:
+                            F8_ImageView.setImage(imageOne);
+                            break;
+                        case 6:
+                            G8_ImageView.setImage(imageOne);
+                            break;
+                        case 7:
+                            H8_ImageView.setImage(imageOne);
+                            break;
+                        case 8:
+                            A7_ImageView.setImage(imageOne);
+                            break;
+                        case 9:
+                            B7_ImageView.setImage(imageOne);
+                            break;
+                        case 10:
+                            C7_ImageView.setImage(imageOne);
+                            break;
+                        case 11:
+                            D7_ImageView.setImage(imageOne);
+                            break;
+                        case 12:
+                            E7_ImageView.setImage(imageOne);
+                            break;
+                        case 13:
+                            F7_ImageView.setImage(imageOne);
+                            break;
+                        case 14:
+                            G7_ImageView.setImage(imageOne);
+                            break;
+                        case 15:
+                            H7_ImageView.setImage(imageOne);
+                            break;
+                        case 16:
+                            A6_ImageView.setImage(imageOne);
+                            break;
+                        case 17:
+                            B6_ImageView.setImage(imageOne);
+                            break;
+                        case 18:
+                            C6_ImageView.setImage(imageOne);
+                            break;
+                        case 19:
+                            D6_ImageView.setImage(imageOne);
+                            break;
+                        case 20:
+                            E6_ImageView.setImage(imageOne);
+                            break;
+                        case 21:
+                            F6_ImageView.setImage(imageOne);
+                            break;
+                        case 22:
+                            G6_ImageView.setImage(imageOne);
+                            break;
+                        case 23:
+                            H6_ImageView.setImage(imageOne);
+                            break;
+                        case 24:
+                            A5_ImageView.setImage(imageOne);
+                            break;
+                        case 25:
+                            B5_ImageView.setImage(imageOne);
+                            break;
+                        case 26:
+                            C5_ImageView.setImage(imageOne);
+                            break;
+                        case 27:
+                            D5_ImageView.setImage(imageOne);
+                            break;
+                        case 28:
+                            E5_ImageView.setImage(imageOne);
+                            break;
+                        case 29:
+                            F5_ImageView.setImage(imageOne);
+                            break;
+                        case 30:
+                            G5_ImageView.setImage(imageOne);
+                            break;
+                        case 31:
+                            H5_ImageView.setImage(imageOne);
+                            break;
+                        case 32:
+                            A4_ImageView.setImage(imageOne);
+                            break;
+                        case 33:
+                            B4_ImageView.setImage(imageOne);
+                            break;
+                        case 34:
+                            C4_ImageView.setImage(imageOne);
+                            break;
+                        case 35:
+                            D4_ImageView.setImage(imageOne);
+                            break;
+                        case 36:
+                            E4_ImageView.setImage(imageOne);
+                            break;
+                        case 37:
+                            F4_ImageView.setImage(imageOne);
+                            break;
+                        case 38:
+                            G4_ImageView.setImage(imageOne);
+                            break;
+                        case 39:
+                            H4_ImageView.setImage(imageOne);
+                            break;
+                        case 40:
+                            A3_ImageView.setImage(imageOne);
+                            break;
+                        case 41:
+                            B3_ImageView.setImage(imageOne);
+                            break;
+                        case 42:
+                            C3_ImageView.setImage(imageOne);
+                            break;
+                        case 43:
+                            D3_ImageView.setImage(imageOne);
+                            break;
+                        case 44:
+                            E3_ImageView.setImage(imageOne);
+                            break;
+                        case 45:
+                            F3_ImageView.setImage(imageOne);
+                            break;
+                        case 46:
+                            G3_ImageView.setImage(imageOne);
+                            break;
+                        case 47:
+                            H3_ImageView.setImage(imageOne);
+                            break;
+                        case 48:
+                            A2_ImageView.setImage(imageOne);
+                            break;
+                        case 49:
+                            B2_ImageView.setImage(imageOne);
+                            break;
+                        case 50:
+                            C2_ImageView.setImage(imageOne);
+                            break;
+                        case 51:
+                            D2_ImageView.setImage(imageOne);
+                            break;
+                        case 52:
+                            E2_ImageView.setImage(imageOne);
+                            break;
+                        case 53:
+                            F2_ImageView.setImage(imageOne);
+                            break;
+                        case 54:
+                            G2_ImageView.setImage(imageOne);
+                            break;
+                        case 55:
+                            H2_ImageView.setImage(imageOne);
+                            break;
+                        case 56:
+                            A1_ImageView.setImage(imageOne);
+                            break;
+                        case 57:
+                            B1_ImageView.setImage(imageOne);
+                            break;
+                        case 58:
+                            C1_ImageView.setImage(imageOne);
+                            break;
+                        case 59:
+                            D1_ImageView.setImage(imageOne);
+                            break;
+                        case 60:
+                            E1_ImageView.setImage(imageOne);
+                            break;
+                        case 61:
+                            F1_ImageView.setImage(imageOne);
+                            break;
+                        case 62:
+                            G1_ImageView.setImage(imageOne);
+                            break;
+                        case 63:
+                            H1_ImageView.setImage(imageOne);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
     }
     
     private void updateHighlightValue()
@@ -966,6 +1848,11 @@ public class TeamLewisChessController {
         return squareClicked;
     }
         
+    static public void setSquareToWipe(int fSquare)
+    {
+        squareToWipe = fSquare;
+    }
+    
     static public void setSquareMovedTo(int fSquare)
     {
         squareMovedTo = fSquare;
