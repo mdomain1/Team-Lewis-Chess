@@ -51,8 +51,50 @@ public class Board {
     
     public boolean containsSelectablePiece()
     {
-        //Just to satisfy program and to be updated with algorithm:
-        return true;
+        int row = getRowFromLocation(TeamLewisChessController.getSquareClicked());
+        int column = getColumnFromLocation(TeamLewisChessController.getSquareClicked());
+        
+        if (Game.getCurrentTeamsTurn() == 0)
+        {
+            switch (pieceTypeLocationsOnBoard[row][column]) {
+                case 1:
+                    return true;
+                case 2:
+                    return true;
+                case 3:
+                    return true;
+                case 4:
+                    return true;
+                case 5:
+                    return true;
+                case 6:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        else if (Game.getCurrentTeamsTurn() == 1)
+        {
+            switch (pieceTypeLocationsOnBoard[row][column]) {
+                case 7:
+                    return true;
+                case 8:
+                    return true;
+                case 9:
+                    return true;
+                case 10:
+                    return true;
+                case 11:
+                    return true;
+                case 12:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+        
+        //Won't ever execute, but IDE doesn't know that a switch block will be entered:
+        return false;
     }
     
     public boolean pieceOnTargetedSquareCanMoveToSquareClicked()
