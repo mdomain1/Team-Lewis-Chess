@@ -129,7 +129,7 @@
          <image>
             <Image url="@images/whiteknight.png" />
          </image></ImageView>
-      <ImageView fx:id="C8_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="175.0" layoutY="48.0" onMouseClicked="#C1_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="C8_ImageView" fitHeight="76.0" fitWidth="76.0" layoutX="175.0" layoutY="48.0" onMouseClicked="#C8_ImageViewClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@images/blackbishop.png" />
          </image></ImageView>

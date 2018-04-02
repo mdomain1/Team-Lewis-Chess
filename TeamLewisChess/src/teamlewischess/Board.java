@@ -336,6 +336,11 @@ public class Board {
     {
         //Testing / playing for now:
         
+        //When audio files play will be updated after this method is complete.
+        TeamLewisChess.playSoundMove();
+        
+        //Again, to be updated; this sound is played each player's movement, for now:
+        
         int row = getRowFromLocation(Game.getTargetedSquare());
         int column = getColumnFromLocation(Game.getTargetedSquare());
         

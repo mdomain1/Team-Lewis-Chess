@@ -896,6 +896,11 @@ public class TeamLewisChessController {
         H5_ImageView.setImage(null);
         H6_ImageView.setImage(null);
         
+        //Playing these two sounds together to make it sound like a lot of pieces are
+        //being moved at once as the board is being reset:
+        TeamLewisChess.playSoundMove();
+        TeamLewisChess.playSoundCapture();
+        
         Image imageOne;
         imageOne = new Image("/teamlewischess/images/whitepawn.png");
         A2_ImageView.setImage(imageOne);
