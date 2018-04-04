@@ -334,6 +334,257 @@ public class Board {
     
     public void updateBoard()
     {
+        int targetedSquareRow = getRowFromLocation(Game.getTargetedSquare());
+        int targetedSquareColumn = getColumnFromLocation(Game.getTargetedSquare());
+        
+        int squareClickedRow = getRowFromLocation(TeamLewisChessController.getSquareClicked());
+        int squareClickedColumn = getColumnFromLocation(TeamLewisChessController.getSquareClicked());
+        
+        if (isACastlingMove())
+        {
+            
+        }
+        else if (isAnEnPassantMove())
+        {
+            
+        }
+        else //is a normal move where, if a piece is being captured, that piece is always
+             //one the squareClicked.
+        {
+            //Step 3-A. Update current Team's numOfMovesNoCaptureOrPawnMoves
+            if (wP_1.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wP_2.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wP_3.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wP_4.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wP_5.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wP_6.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wP_7.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wP_8.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bP_1.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bP_2.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bP_3.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bP_4.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bP_5.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bP_6.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bP_7.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bP_8.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            //} else if (wK.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+            //    black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wQ.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wR_1.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wR_2.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wB_1.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wB_2.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wN_1.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wN_2.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wP_1.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wP_2.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wP_3.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wP_4.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wP_5.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wP_6.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wP_7.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (wP_8.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            //} else if (bK.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+            //    white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bQ.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bR_1.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bR_2.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bB_1.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bB_2.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bN_1.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bN_2.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bP_1.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bP_2.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bP_3.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bP_4.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bP_5.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bP_6.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bP_7.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (bP_8.getLocation() == pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn]) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else if (Game.getCurrentTeamsTurn() == 0 ) {
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else {
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            }
+            
+            //Step 3-B. If the piece moved was a pawn moving two spaces forward, update
+            //the current team's pawnMovedTwoSpacesLastMove variabe to true and set the
+            //squarePawnMovedTwoLastMovedTo to the squareClicked.
+            if (wP_1.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                {
+                    white.pawnMovedTwoSpacesLastMove = true;
+                    white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+                } 
+            } else if (wP_2.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                {
+                    white.pawnMovedTwoSpacesLastMove = true;
+                    white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+                }
+            } else if (wP_3.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                {
+                    white.pawnMovedTwoSpacesLastMove = true;
+                    white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+                }
+            } else if (wP_4.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                {
+                    white.pawnMovedTwoSpacesLastMove = true;
+                    white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+                }
+            } else if (wP_5.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                {
+                    white.pawnMovedTwoSpacesLastMove = true;
+                    white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+                }
+            } else if (wP_6.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                {
+                    white.pawnMovedTwoSpacesLastMove = true;
+                    white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+                }
+            } else if (wP_7.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                {
+                    white.pawnMovedTwoSpacesLastMove = true;
+                    white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+                }
+            } else if (wP_8.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                {
+                    white.pawnMovedTwoSpacesLastMove = true;
+                    white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+                }
+            } else if (bP_1.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                {
+                    black.pawnMovedTwoSpacesLastMove = true;
+                    black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+                }
+            } else if (bP_2.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                {
+                    black.pawnMovedTwoSpacesLastMove = true;
+                    black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+                }
+            } else if (bP_3.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                {
+                    black.pawnMovedTwoSpacesLastMove = true;
+                    black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+                }
+            } else if (bP_4.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                {
+                    black.pawnMovedTwoSpacesLastMove = true;
+                    black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+                }
+            } else if (bP_5.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                {
+                    black.pawnMovedTwoSpacesLastMove = true;
+                    black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+                }
+            } else if (bP_6.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                {
+                    black.pawnMovedTwoSpacesLastMove = true;
+                    black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+                }
+            } else if (bP_7.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                {
+                    black.pawnMovedTwoSpacesLastMove = true;
+                    black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+                }
+            } else if (bP_8.getLocation() == pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]) {
+                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                {
+                    black.pawnMovedTwoSpacesLastMove = true;
+                    black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+                }
+            } else if (Game.getCurrentTeamsTurn() == 0) {
+                white.pawnMovedTwoSpacesLastMove = false;
+                white.squarePawnMovedTwoLastMovedTo = -1;
+            } else {
+                black.pawnMovedTwoSpacesLastMove = false;
+                black.squarePawnMovedTwoLastMovedTo = -1;
+            }
+            
+            //Step 3-C. If a piece was captured, find the piece that is located on squareClicked.
+            //Set that Piece's location variable to -1 and captured boolean variable to true.
+            
+            //Step 3-D. Update the location variable of the piece on the targetedSquare to the
+            //squareClicked value.
+            
+            //Step 3-E. If the piece being moved is a King, set King's hasMoved variable to true.
+            
+            //Step 3-F. If the piece being moved is a Pawn and the squareClicked has row value of
+            //either 0 or 7, then the pawn is promoted.
+                //Display menu for user to choose what to promote pawn to; wait for user input.
+                //Set that Pawn object's promoted boolean variable to true.
+                //Set that Pawn object's corresponding promotion boolean variable to true.
+            
+            //Step 3-G. Update the square and image values for controller class.
+            
+            //Step 3-H. Update the pieceTypeLocationsOnBoard double array.
+        }
+        
+        updateGameStatus();
+        
+        //End method; the rest was for testing purposes and will be deleted after this
+        //method is updated.
+        
         //Testing / playing for now:
         
         //When audio files play will be updated after this method is complete.
@@ -481,19 +732,19 @@ public class Board {
     private boolean isACastlingMove()
     {
         //Just to satisfy program and to be updated with algorithm:
-        return true;
+        return false;
     }
     
     private boolean isAnEnPassantMove()
     {
         //Just to satisfy program and to be updated with algorithm:
-        return true;
+        return false;
     }
     
     private boolean isBeingPromoted()
     {
         //Just to satisfy program and to be updated with algorithm:
-        return true;
+        return false;
     }
     
     private void updateGameStatus()
