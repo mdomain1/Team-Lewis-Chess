@@ -1,5 +1,7 @@
 package teamlewischess;
 
+import java.io.IOException;
+
 /**
  * Description pending...
  */
@@ -17,7 +19,7 @@ public class Game {
         oneBoard.resetBoardForNewGame();
     }
     
-    public void determineAndExeLogicAction()
+    public void determineAndExeLogicAction() throws IOException
     {
         if (targetedSquare == -1)
         {
