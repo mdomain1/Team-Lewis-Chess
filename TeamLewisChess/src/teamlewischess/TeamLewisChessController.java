@@ -863,6 +863,71 @@ public class TeamLewisChessController {
     @FXML void NewGameMenuItemClicked(ActionEvent event) {
         oneGame.newGame();
         
+        A8_Rectangle.setVisible(false);
+        B8_Rectangle.setVisible(false);
+        C8_Rectangle.setVisible(false);
+        D8_Rectangle.setVisible(false);
+        E8_Rectangle.setVisible(false);
+        F8_Rectangle.setVisible(false);
+        G8_Rectangle.setVisible(false);
+        H8_Rectangle.setVisible(false);
+        A7_Rectangle.setVisible(false);
+        B7_Rectangle.setVisible(false);
+        C7_Rectangle.setVisible(false);
+        D7_Rectangle.setVisible(false);
+        E7_Rectangle.setVisible(false);
+        F7_Rectangle.setVisible(false);
+        G7_Rectangle.setVisible(false);
+        H7_Rectangle.setVisible(false);
+        A6_Rectangle.setVisible(false);
+        B6_Rectangle.setVisible(false);
+        C6_Rectangle.setVisible(false);
+        D6_Rectangle.setVisible(false);
+        E6_Rectangle.setVisible(false);
+        F6_Rectangle.setVisible(false);
+        G6_Rectangle.setVisible(false);
+        H6_Rectangle.setVisible(false);
+        A5_Rectangle.setVisible(false);
+        B5_Rectangle.setVisible(false);
+        C5_Rectangle.setVisible(false);
+        D5_Rectangle.setVisible(false);
+        E5_Rectangle.setVisible(false);
+        F5_Rectangle.setVisible(false);
+        G5_Rectangle.setVisible(false);
+        H5_Rectangle.setVisible(false);
+        A4_Rectangle.setVisible(false);
+        B4_Rectangle.setVisible(false);
+        C4_Rectangle.setVisible(false);
+        D4_Rectangle.setVisible(false);
+        E4_Rectangle.setVisible(false);
+        F4_Rectangle.setVisible(false);
+        G4_Rectangle.setVisible(false);
+        H4_Rectangle.setVisible(false);
+        A3_Rectangle.setVisible(false);
+        B3_Rectangle.setVisible(false);
+        C3_Rectangle.setVisible(false);
+        D3_Rectangle.setVisible(false);
+        E3_Rectangle.setVisible(false);
+        F3_Rectangle.setVisible(false);
+        G3_Rectangle.setVisible(false);
+        H3_Rectangle.setVisible(false);
+        A2_Rectangle.setVisible(false);
+        B2_Rectangle.setVisible(false);
+        C2_Rectangle.setVisible(false);
+        D2_Rectangle.setVisible(false);
+        E2_Rectangle.setVisible(false);
+        F2_Rectangle.setVisible(false);
+        G2_Rectangle.setVisible(false);
+        H2_Rectangle.setVisible(false);
+        A1_Rectangle.setVisible(false);
+        B1_Rectangle.setVisible(false);
+        C1_Rectangle.setVisible(false);
+        D1_Rectangle.setVisible(false);
+        E1_Rectangle.setVisible(false);
+        F1_Rectangle.setVisible(false);
+        G1_Rectangle.setVisible(false);
+        H1_Rectangle.setVisible(false);
+        
         A3_ImageView.setImage(null);
         A4_ImageView.setImage(null);
         A5_ImageView.setImage(null);
@@ -1840,7 +1905,402 @@ public class TeamLewisChessController {
     
     private void updateHighlightValue()
     {
-        
+        if (highlightSquareClicked == true)
+        {
+            switch (Game.getTargetedSquare()) {
+                case 0:
+                    A8_Rectangle.setVisible(true);
+                    break;
+                case 1:
+                    B8_Rectangle.setVisible(true);
+                    break;
+                case 2:
+                    C8_Rectangle.setVisible(true);
+                    break;
+                case 3:
+                    D8_Rectangle.setVisible(true);
+                    break;
+                case 4:
+                    E8_Rectangle.setVisible(true);
+                    break;
+                case 5:
+                    F8_Rectangle.setVisible(true);
+                    break;
+                case 6:
+                    G8_Rectangle.setVisible(true);
+                    break;
+                case 7:
+                    H8_Rectangle.setVisible(true);
+                    break;
+                case 8:
+                    A7_Rectangle.setVisible(true);
+                    break;
+                case 9:
+                    B7_Rectangle.setVisible(true);
+                    break;
+                case 10:
+                    C7_Rectangle.setVisible(true);
+                    break;
+                case 11:
+                    D7_Rectangle.setVisible(true);
+                    break;
+                case 12:
+                    E7_Rectangle.setVisible(true);
+                    break;
+                case 13:
+                    F7_Rectangle.setVisible(true);
+                    break;
+                case 14:
+                    G7_Rectangle.setVisible(true);
+                    break;
+                case 15:
+                    H7_Rectangle.setVisible(true);
+                    break;
+                case 16:
+                    A6_Rectangle.setVisible(true);
+                    break;
+                case 17:
+                    B6_Rectangle.setVisible(true);
+                    break;
+                case 18:
+                    C6_Rectangle.setVisible(true);
+                    break;
+                case 19:
+                    D6_Rectangle.setVisible(true);
+                    break;
+                case 20:
+                    E6_Rectangle.setVisible(true);
+                    break;
+                case 21:
+                    F6_Rectangle.setVisible(true);
+                    break;
+                case 22:
+                    G6_Rectangle.setVisible(true);
+                    break;
+                case 23:
+                    H6_Rectangle.setVisible(true);
+                    break;
+                case 24:
+                    A5_Rectangle.setVisible(true);
+                    break;
+                case 25:
+                    B5_Rectangle.setVisible(true);
+                    break;
+                case 26:
+                    C5_Rectangle.setVisible(true);
+                    break;
+                case 27:
+                    D5_Rectangle.setVisible(true);
+                    break;
+                case 28:
+                    E5_Rectangle.setVisible(true);
+                    break;
+                case 29:
+                    F5_Rectangle.setVisible(true);
+                    break;
+                case 30:
+                    G5_Rectangle.setVisible(true);
+                    break;
+                case 31:
+                    H5_Rectangle.setVisible(true);
+                    break;
+                case 32:
+                    A4_Rectangle.setVisible(true);
+                    break;
+                case 33:
+                    B4_Rectangle.setVisible(true);
+                    break;
+                case 34:
+                    C4_Rectangle.setVisible(true);
+                    break;
+                case 35:
+                    D4_Rectangle.setVisible(true);
+                    break;
+                case 36:
+                    E4_Rectangle.setVisible(true);
+                    break;
+                case 37:
+                    F4_Rectangle.setVisible(true);
+                    break;
+                case 38:
+                    G4_Rectangle.setVisible(true);
+                    break;
+                case 39:
+                    H4_Rectangle.setVisible(true);
+                    break;
+                case 40:
+                    A3_Rectangle.setVisible(true);
+                    break;
+                case 41:
+                    B3_Rectangle.setVisible(true);
+                    break;
+                case 42:
+                    C3_Rectangle.setVisible(true);
+                    break;
+                case 43:
+                    D3_Rectangle.setVisible(true);
+                    break;
+                case 44:
+                    E3_Rectangle.setVisible(true);
+                    break;
+                case 45:
+                    F3_Rectangle.setVisible(true);
+                    break;
+                case 46:
+                    G3_Rectangle.setVisible(true);
+                    break;
+                case 47:
+                    H3_Rectangle.setVisible(true);
+                    break;
+                case 48:
+                    A2_Rectangle.setVisible(true);
+                    break;
+                case 49:
+                    B2_Rectangle.setVisible(true);
+                    break;
+                case 50:
+                    C2_Rectangle.setVisible(true);
+                    break;
+                case 51:
+                    D2_Rectangle.setVisible(true);
+                    break;
+                case 52:
+                    E2_Rectangle.setVisible(true);
+                    break;
+                case 53:
+                    F2_Rectangle.setVisible(true);
+                    break;
+                case 54:
+                    G2_Rectangle.setVisible(true);
+                    break;
+                case 55:
+                    H2_Rectangle.setVisible(true);
+                    break;
+                case 56:
+                    A1_Rectangle.setVisible(true);
+                    break;
+                case 57:
+                    B1_Rectangle.setVisible(true);
+                    break;
+                case 58:
+                    C1_Rectangle.setVisible(true);
+                    break;
+                case 59:
+                    D1_Rectangle.setVisible(true);
+                    break;
+                case 60:
+                    E1_Rectangle.setVisible(true);
+                    break;
+                case 61:
+                    F1_Rectangle.setVisible(true);
+                    break;
+                case 62:
+                    G1_Rectangle.setVisible(true);
+                    break;
+                case 63:
+                    H1_Rectangle.setVisible(true);
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            switch (squareToWipe) {
+                case 0:
+                    A8_Rectangle.setVisible(false);
+                    break;
+                case 1:
+                    B8_Rectangle.setVisible(false);
+                    break;
+                case 2:
+                    C8_Rectangle.setVisible(false);
+                    break;
+                case 3:
+                    D8_Rectangle.setVisible(false);
+                    break;
+                case 4:
+                    E8_Rectangle.setVisible(false);
+                    break;
+                case 5:
+                    F8_Rectangle.setVisible(false);
+                    break;
+                case 6:
+                    G8_Rectangle.setVisible(false);
+                    break;
+                case 7:
+                    H8_Rectangle.setVisible(false);
+                    break;
+                case 8:
+                    A7_Rectangle.setVisible(false);
+                    break;
+                case 9:
+                    B7_Rectangle.setVisible(false);
+                    break;
+                case 10:
+                    C7_Rectangle.setVisible(false);
+                    break;
+                case 11:
+                    D7_Rectangle.setVisible(false);
+                    break;
+                case 12:
+                    E7_Rectangle.setVisible(false);
+                    break;
+                case 13:
+                    F7_Rectangle.setVisible(false);
+                    break;
+                case 14:
+                    G7_Rectangle.setVisible(false);
+                    break;
+                case 15:
+                    H7_Rectangle.setVisible(false);
+                    break;
+                case 16:
+                    A6_Rectangle.setVisible(false);
+                    break;
+                case 17:
+                    B6_Rectangle.setVisible(false);
+                    break;
+                case 18:
+                    C6_Rectangle.setVisible(false);
+                    break;
+                case 19:
+                    D6_Rectangle.setVisible(false);
+                    break;
+                case 20:
+                    E6_Rectangle.setVisible(false);
+                    break;
+                case 21:
+                    F6_Rectangle.setVisible(false);
+                    break;
+                case 22:
+                    G6_Rectangle.setVisible(false);
+                    break;
+                case 23:
+                    H6_Rectangle.setVisible(false);
+                    break;
+                case 24:
+                    A5_Rectangle.setVisible(false);
+                    break;
+                case 25:
+                    B5_Rectangle.setVisible(false);
+                    break;
+                case 26:
+                    C5_Rectangle.setVisible(false);
+                    break;
+                case 27:
+                    D5_Rectangle.setVisible(false);
+                    break;
+                case 28:
+                    E5_Rectangle.setVisible(false);
+                    break;
+                case 29:
+                    F5_Rectangle.setVisible(false);
+                    break;
+                case 30:
+                    G5_Rectangle.setVisible(false);
+                    break;
+                case 31:
+                    H5_Rectangle.setVisible(false);
+                    break;
+                case 32:
+                    A4_Rectangle.setVisible(false);
+                    break;
+                case 33:
+                    B4_Rectangle.setVisible(false);
+                    break;
+                case 34:
+                    C4_Rectangle.setVisible(false);
+                    break;
+                case 35:
+                    D4_Rectangle.setVisible(false);
+                    break;
+                case 36:
+                    E4_Rectangle.setVisible(false);
+                    break;
+                case 37:
+                    F4_Rectangle.setVisible(false);
+                    break;
+                case 38:
+                    G4_Rectangle.setVisible(false);
+                    break;
+                case 39:
+                    H4_Rectangle.setVisible(false);
+                    break;
+                case 40:
+                    A3_Rectangle.setVisible(false);
+                    break;
+                case 41:
+                    B3_Rectangle.setVisible(false);
+                    break;
+                case 42:
+                    C3_Rectangle.setVisible(false);
+                    break;
+                case 43:
+                    D3_Rectangle.setVisible(false);
+                    break;
+                case 44:
+                    E3_Rectangle.setVisible(false);
+                    break;
+                case 45:
+                    F3_Rectangle.setVisible(false);
+                    break;
+                case 46:
+                    G3_Rectangle.setVisible(false);
+                    break;
+                case 47:
+                    H3_Rectangle.setVisible(false);
+                    break;
+                case 48:
+                    A2_Rectangle.setVisible(false);
+                    break;
+                case 49:
+                    B2_Rectangle.setVisible(false);
+                    break;
+                case 50:
+                    C2_Rectangle.setVisible(false);
+                    break;
+                case 51:
+                    D2_Rectangle.setVisible(false);
+                    break;
+                case 52:
+                    E2_Rectangle.setVisible(false);
+                    break;
+                case 53:
+                    F2_Rectangle.setVisible(false);
+                    break;
+                case 54:
+                    G2_Rectangle.setVisible(false);
+                    break;
+                case 55:
+                    H2_Rectangle.setVisible(false);
+                    break;
+                case 56:
+                    A1_Rectangle.setVisible(false);
+                    break;
+                case 57:
+                    B1_Rectangle.setVisible(false);
+                    break;
+                case 58:
+                    C1_Rectangle.setVisible(false);
+                    break;
+                case 59:
+                    D1_Rectangle.setVisible(false);
+                    break;
+                case 60:
+                    E1_Rectangle.setVisible(false);
+                    break;
+                case 61:
+                    F1_Rectangle.setVisible(false);
+                    break;
+                case 62:
+                    G1_Rectangle.setVisible(false);
+                    break;
+                case 63:
+                    H1_Rectangle.setVisible(false);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
     
     static public void resetSquareAndImageVar()
