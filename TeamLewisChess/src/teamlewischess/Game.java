@@ -40,6 +40,7 @@ public class Game {
             }
             else
             {
+                TeamLewisChessController.setSquareToWipe(Game.getTargetedSquare()); //for de-highlighting
                 targetedSquare = -1;
                 TeamLewisChessController.setHighlightSquareClicked(false);
                 TeamLewisChessController.resetSquareAndImageVar();

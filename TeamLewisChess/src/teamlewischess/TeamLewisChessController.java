@@ -2305,7 +2305,6 @@ public class TeamLewisChessController {
     
     static public void resetSquareAndImageVar()
     {
-        squareToWipe = -1;
         squareMovedTo = -1;
         imageToUpdateSquareMovedTo = -1;
         specialSquareToWipe = -1;

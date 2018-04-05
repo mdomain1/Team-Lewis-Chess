@@ -46,6 +46,11 @@ public class King extends Piece {
         return hasMoved;
     }
     
+    public void setHasMoved(boolean fHasMoved)
+    {
+        hasMoved = fHasMoved;
+    }
+    
     public King(int fLocation, int fTeam) {
         super(fLocation, fTeam);
         

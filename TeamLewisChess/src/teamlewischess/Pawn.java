@@ -56,6 +56,31 @@ public class Pawn extends Piece {
         return promotedToQueen;
     }
     
+    public void setPromoted(boolean fPromoted)
+    {
+        promoted = fPromoted;
+    }
+    
+    public void setPromotedToKnight(boolean fPromotedToKnight)
+    {
+        promotedToKnight = fPromotedToKnight;
+    }
+    
+    public void setPromotedToBishop(boolean fPromotedToBishop)
+    {
+        promotedToBishop = fPromotedToBishop;
+    }
+    
+    public void setPromotedToRook(boolean fPromotedToRook)
+    {
+        promotedToRook = fPromotedToRook;
+    }
+    
+    public void setPromotedToQueen(boolean fPromotedToQueen)
+    {
+        promotedToQueen = fPromotedToQueen;
+    }
+    
     public Pawn(int fLocation, int fTeam) {
         super(fLocation, fTeam);
         

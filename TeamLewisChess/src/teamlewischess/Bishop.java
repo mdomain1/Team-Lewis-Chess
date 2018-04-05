@@ -142,7 +142,7 @@ public class Bishop extends Piece {
     static private boolean moveDoesNotPlaceKingInCheck(int[][] fPieceTypeLocationsOnBoard)
     { 
         //Just to satisfy program and to be update with algorithm:
-        return false;
+        return true;
     }
     
     public Bishop(int fLocation, int fTeam) {
