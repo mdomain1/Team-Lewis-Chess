@@ -112,8 +112,37 @@ public class Knight extends Piece {
      */
     static private boolean noPieceBlocksPathToSquare(int[][] fPieceTypeLocationsOnBoard)
     {
-        //Just to satisfy program and to be updated with algorithm:
-        //return false;
+        //Plugged into switch statement; assigned here just for readability, to shorten the length.
+        int rowClicked = Board.getRowFromLocation(TeamLewisChessController.getSquareClicked());
+        int columnClicked = Board.getColumnFromLocation(TeamLewisChessController.getSquareClicked());
+        
+        //No break statements so that cases can fall through down to one return false statement.
+        //If it is white's turn and the square the knight is trying to move to contains one
+        //of white's pieces, return false, a piece does block the knight's path to that square.
+        //Else if it is black's turn, do the same for black. Otherwise, return true, the knight
+        //can move to an empty square or a square that contains another enemy piece.
+        if (Game.getCurrentTeamsTurn() == 0) {
+            switch (fPieceTypeLocationsOnBoard[rowClicked][columnClicked]) {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                    return false;
+            }
+        } else {
+            switch (fPieceTypeLocationsOnBoard[rowClicked][columnClicked]) {
+                case 7:
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                case 12:
+                    return false;
+            }
+        }
+            
         return true;
     }
     
