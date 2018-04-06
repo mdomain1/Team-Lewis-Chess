@@ -2,16 +2,31 @@ package teamlewischess;
 
 // TeamLewisChessController.java
 // Controller that handles Rectangle and ImageView events, as well as the File menu events.
+
+/**
+ * @author
+ * 
+ * FXML Controller Document 
+ * 
+ *
+ */
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 
-public class TeamLewisChessController {
+/**
+ * 
+ * @author 
+ */
+public class TeamLewisChessController  {
 
     @FXML private ResourceBundle resources;
     @FXML private URL location;
@@ -156,710 +171,1287 @@ public class TeamLewisChessController {
     static private int imageToUpdateSpecialSquareMovedTo;
     static private boolean highlightSquareClicked;
     
+    /**
+     * @param Mouse event for ImageView
+     * calls gamelogic, updates square images and highlight
+     */
+    
     @FXML void A1_ImageViewClicked(MouseEvent event) {
         squareClicked = 56;
         
-        if (Game.getGameStatus() == 0)
-        {
+        if (Game.getGameStatus() == 0) {
+        
+            try {
             oneGame.determineAndExeLogicAction();
+            } catch (IOException ioex) {
+                System.out.println("IOException " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * @param Mouse event for ImageView
+     * calls gamelogic, updates square images and highlight
+     */
     @FXML void A2_ImageViewClicked(MouseEvent event) {
         squareClicked = 48;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
             updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void A3_ImageViewClicked(MouseEvent event) {
         squareClicked = 40;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void A4_ImageViewClicked(MouseEvent event) {
         squareClicked = 32;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void A5_ImageViewClicked(MouseEvent event) {
         squareClicked = 24;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void A6_ImageViewClicked(MouseEvent event) {
         squareClicked = 16;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void A7_ImageViewClicked(MouseEvent event) {
         squareClicked = 8;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void A8_ImageViewClicked(MouseEvent event) {
         squareClicked = 0;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void B1_ImageViewClicked(MouseEvent event) {
         squareClicked = 57;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void B2_ImageViewClicked(MouseEvent event) {
         squareClicked = 49;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void B3_ImageViewClicked(MouseEvent event) {
         squareClicked = 41;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void B4_ImageViewClicked(MouseEvent event) {
         squareClicked = 33;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void B5_ImageViewClicked(MouseEvent event) {
         squareClicked = 25;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void B6_ImageViewClicked(MouseEvent event) {
         squareClicked = 17;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
-
+ 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void B7_ImageViewClicked(MouseEvent event) {
         squareClicked = 9;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
-
+ 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void B8_ImageViewClicked(MouseEvent event) {
         squareClicked = 1;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void C1_ImageViewClicked(MouseEvent event) {
         squareClicked = 58;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void C2_ImageViewClicked(MouseEvent event) {
         squareClicked = 50;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */  
     @FXML void C3_ImageViewClicked(MouseEvent event) {
         squareClicked = 42;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void C4_ImageViewClicked(MouseEvent event) {
         squareClicked = 34;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void C5_ImageViewClicked(MouseEvent event) {
         squareClicked = 26;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void C6_ImageViewClicked(MouseEvent event) {
         squareClicked = 18;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void C7_ImageViewClicked(MouseEvent event) {
         squareClicked = 10;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
-    
+    /**
+     * 
+     * @param event 
+     */
     @FXML void C8_ImageViewClicked(MouseEvent event) {
         squareClicked = 2;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void D1_ImageViewClicked(MouseEvent event) {
         squareClicked = 59;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void D2_ImageViewClicked(MouseEvent event) {
         squareClicked = 51;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void D3_ImageViewClicked(MouseEvent event) {
         squareClicked = 43;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void D4_ImageViewClicked(MouseEvent event) {
         squareClicked = 35;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void D5_ImageViewClicked(MouseEvent event) {
         squareClicked = 27;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void D6_ImageViewClicked(MouseEvent event) {
         squareClicked = 19;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void D7_ImageViewClicked(MouseEvent event) {
         squareClicked = 11;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void D8_ImageViewClicked(MouseEvent event) {
         squareClicked = 3;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void E1_ImageViewClicked(MouseEvent event) {
         squareClicked = 60;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void E2_ImageViewClicked(MouseEvent event) {
         squareClicked = 52;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void E3_ImageViewClicked(MouseEvent event) {
         squareClicked = 44;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void E4_ImageViewClicked(MouseEvent event) {
         squareClicked = 36;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void E5_ImageViewClicked(MouseEvent event) {
         squareClicked = 28;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void E6_ImageViewClicked(MouseEvent event) {
         squareClicked = 20;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void E7_ImageViewClicked(MouseEvent event) {
         squareClicked = 12;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void E8_ImageViewClicked(MouseEvent event) {
         squareClicked = 4;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void F1_ImageViewClicked(MouseEvent event) {
         squareClicked = 61;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void F2_ImageViewClicked(MouseEvent event) {
         squareClicked = 53;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void F3_ImageViewClicked(MouseEvent event) {
         squareClicked = 45;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void F4_ImageViewClicked(MouseEvent event) {
         squareClicked = 37;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void F5_ImageViewClicked(MouseEvent event) {
         squareClicked = 29;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void F6_ImageViewClicked(MouseEvent event) {
         squareClicked = 21;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void F7_ImageViewClicked(MouseEvent event) {
         squareClicked = 13;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void F8_ImageViewClicked(MouseEvent event) {
         squareClicked = 5;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void G1_ImageViewClicked(MouseEvent event) {
         squareClicked = 62;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
             updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void G2_ImageViewClicked(MouseEvent event) {
         squareClicked = 54;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void G3_ImageViewClicked(MouseEvent event) {
         squareClicked = 46;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void G4_ImageViewClicked(MouseEvent event) {
         squareClicked = 38;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void G5_ImageViewClicked(MouseEvent event) {
         squareClicked = 30;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void G6_ImageViewClicked(MouseEvent event) {
         squareClicked = 22;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void G7_ImageViewClicked(MouseEvent event) {
         squareClicked = 14;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void G8_ImageViewClicked(MouseEvent event) {
         squareClicked = 6;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void H1_ImageViewClicked(MouseEvent event) {
         squareClicked = 63;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void H2_ImageViewClicked(MouseEvent event) {
         squareClicked = 55;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void H3_ImageViewClicked(MouseEvent event) {
         squareClicked = 47;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void H4_ImageViewClicked(MouseEvent event) {
         squareClicked = 39;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void H5_ImageViewClicked(MouseEvent event) {
         squareClicked = 31;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void H6_ImageViewClicked(MouseEvent event) {
         squareClicked = 23;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void H7_ImageViewClicked(MouseEvent event) {
         squareClicked = 15;
         
         if (Game.getGameStatus() == 0)
         {
+            try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void H8_ImageViewClicked(MouseEvent event) {
         squareClicked = 7;
         
         if (Game.getGameStatus() == 0)
         {
+           try {
             oneGame.determineAndExeLogicAction();
+            updateSquareImages();
+            }catch (IOException ioex) {
+                System.out.println("IOexception ioex " + ioex.getMessage());
+            }
             updateSquareImages();
             updateHighlightValue();
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     @FXML void NewGameMenuItemClicked(ActionEvent event) {
         oneGame.newGame();
         
@@ -1903,6 +2495,9 @@ public class TeamLewisChessController {
         }
     }
     
+    /**
+     *  updates highlight value on board for (targeted) square
+     */
     private void updateHighlightValue()
     {
         if (highlightSquareClicked == true)
@@ -2302,7 +2897,9 @@ public class TeamLewisChessController {
             }
         }
     }
-    
+    /**
+     * resets square ane image
+     */
     static public void resetSquareAndImageVar()
     {
         squareMovedTo = -1;
@@ -2312,174 +2909,83 @@ public class TeamLewisChessController {
         imageToUpdateSpecialSquareMovedTo = -1;
     }
     
+    /**
+     * 
+     * @return squareClicked
+     */
     static public int getSquareClicked()
     {
         return squareClicked;
     }
-        
+    
+    /**
+     * 
+     * @param fSquare sets square to wipe
+     */
     static public void setSquareToWipe(int fSquare)
     {
         squareToWipe = fSquare;
     }
     
+    /**
+     * 
+     * @param fSquare  sets square to move to
+     */
     static public void setSquareMovedTo(int fSquare)
     {
         squareMovedTo = fSquare;
     }
-        
+     
+    /**
+     * 
+     * @param fImage  sets image to update square moved to
+     */
     static public void setImageToUpdateSquareMovedTo(int fImage)
     {
         imageToUpdateSquareMovedTo = fImage;
     }
-       
+    
+    /**
+     * 
+     * @param fSquare sets special square to wipe
+     */
     static public void setSpecialSquareToWipe(int fSquare)
     {
         specialSquareToWipe = fSquare;
     }
 
+    /**
+     * 
+     * @param fSquare sets special square to move to
+     */
     static public void setSpecialSquareMovedTo(int fSquare)
     {
         specialSquareMovedTo = fSquare;
     }
     
+    /**
+     * 
+     * @param fImage sets Image to update special square moved to
+     */
     static public void setImageToUpdateSpecialSquareMovedTo(int fImage)
     {
         imageToUpdateSpecialSquareMovedTo = fImage;
     }
-        
+    
+    /**
+     * 
+     * @param fHighlight boolean sets highlight of square clicked on or off 
+     */    
     static public void setHighlightSquareClicked(boolean fHighlight)
     {
         highlightSquareClicked = fHighlight;
     }
-
-    @FXML void initialize() {
-        assert A8_Rectangle != null : "fx:id=\"A8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A7_Rectangle != null : "fx:id=\"A7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A6_Rectangle != null : "fx:id=\"A6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A5_Rectangle != null : "fx:id=\"A5_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A4_Rectangle != null : "fx:id=\"A4_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A3_Rectangle != null : "fx:id=\"A3_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A2_Rectangle != null : "fx:id=\"A2_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A1_Rectangle != null : "fx:id=\"A1_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B8_Rectangle != null : "fx:id=\"B8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B7_Rectangle != null : "fx:id=\"B7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B6_Rectangle != null : "fx:id=\"B6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B5_Rectangle != null : "fx:id=\"B5_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B4_Rectangle != null : "fx:id=\"B4_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B3_Rectangle != null : "fx:id=\"B3_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B2_Rectangle != null : "fx:id=\"B2_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B1_Rectangle != null : "fx:id=\"B1_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C8_Rectangle != null : "fx:id=\"C8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C7_Rectangle != null : "fx:id=\"C7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C6_Rectangle != null : "fx:id=\"C6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C5_Rectangle != null : "fx:id=\"C5_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C4_Rectangle != null : "fx:id=\"C4_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C3_Rectangle != null : "fx:id=\"C3_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C2_Rectangle != null : "fx:id=\"C2_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C1_Rectangle != null : "fx:id=\"C1_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D8_Rectangle != null : "fx:id=\"D8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D7_Rectangle != null : "fx:id=\"D7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D6_Rectangle != null : "fx:id=\"D6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D5_Rectangle != null : "fx:id=\"D5_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D4_Rectangle != null : "fx:id=\"D4_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D3_Rectangle != null : "fx:id=\"D3_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D2_Rectangle != null : "fx:id=\"D2_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D1_Rectangle != null : "fx:id=\"D1_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E8_Rectangle != null : "fx:id=\"E8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E7_Rectangle != null : "fx:id=\"E7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E6_Rectangle != null : "fx:id=\"E6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E5_Rectangle != null : "fx:id=\"E5_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E4_Rectangle != null : "fx:id=\"E4_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E3_Rectangle != null : "fx:id=\"E3_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E2_Rectangle != null : "fx:id=\"E2_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E1_Rectangle != null : "fx:id=\"E1_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F8_Rectangle != null : "fx:id=\"F8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F7_Rectangle != null : "fx:id=\"F7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F6_Rectangle != null : "fx:id=\"F6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F5_Rectangle != null : "fx:id=\"F5_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F4_Rectangle != null : "fx:id=\"F4_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F3_Rectangle != null : "fx:id=\"F3_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F2_Rectangle != null : "fx:id=\"F2_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F1_Rectangle != null : "fx:id=\"F1_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G8_Rectangle != null : "fx:id=\"G8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G7_Rectangle != null : "fx:id=\"G7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G6_Rectangle != null : "fx:id=\"G6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G5_Rectangle != null : "fx:id=\"G5_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G4_Rectangle != null : "fx:id=\"G4_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G3_Rectangle != null : "fx:id=\"G3_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G2_Rectangle != null : "fx:id=\"G2_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G1_Rectangle != null : "fx:id=\"G1_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H8_Rectangle != null : "fx:id=\"H8_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H7_Rectangle != null : "fx:id=\"H7_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H6_Rectangle != null : "fx:id=\"H6_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H5_Rectangle != null : "fx:id=\"H5_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H4_Rectangle != null : "fx:id=\"H4_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H3_Rectangle != null : "fx:id=\"H3_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H2_Rectangle != null : "fx:id=\"H2_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H1_Rectangle != null : "fx:id=\"H1_Rectangle\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A8_ImageView != null : "fx:id=\"A8_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A7_ImageView != null : "fx:id=\"A7_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A6_ImageView != null : "fx:id=\"A6_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A5_ImageView != null : "fx:id=\"A5_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A4_ImageView != null : "fx:id=\"A4_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A3_ImageView != null : "fx:id=\"A3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A2_ImageView != null : "fx:id=\"A2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert A1_ImageView != null : "fx:id=\"A1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B8_ImageView != null : "fx:id=\"B8_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B7_ImageView != null : "fx:id=\"B7_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B6_ImageView != null : "fx:id=\"B6_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B5_ImageView != null : "fx:id=\"B5_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B4_ImageView != null : "fx:id=\"B4_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B3_ImageView != null : "fx:id=\"B3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B2_ImageView != null : "fx:id=\"B2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert B1_ImageView != null : "fx:id=\"B1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C8_ImageView != null : "fx:id=\"C8_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C7_ImageView != null : "fx:id=\"C7_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C6_ImageView != null : "fx:id=\"C6_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C5_ImageView != null : "fx:id=\"C5_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C4_ImageView != null : "fx:id=\"C4_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C3_ImageView != null : "fx:id=\"C3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C2_ImageView != null : "fx:id=\"C2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert C1_ImageView != null : "fx:id=\"C1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D8_ImageView != null : "fx:id=\"D8_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D7_ImageView != null : "fx:id=\"D7_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D6_ImageView != null : "fx:id=\"D6_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D5_ImageView != null : "fx:id=\"D5_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D4_ImageView != null : "fx:id=\"D4_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D3_ImageView != null : "fx:id=\"D3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D2_ImageView != null : "fx:id=\"D2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert D1_ImageView != null : "fx:id=\"D1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E8_ImageView != null : "fx:id=\"E8_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E7_ImageView != null : "fx:id=\"E7_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E6_ImageView != null : "fx:id=\"E6_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E5_ImageView != null : "fx:id=\"E5_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E4_ImageView != null : "fx:id=\"E4_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E3_ImageView != null : "fx:id=\"E3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E2_ImageView != null : "fx:id=\"E2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert E1_ImageView != null : "fx:id=\"E1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F8_ImageView != null : "fx:id=\"F8_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F7_ImageView != null : "fx:id=\"F7_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F6_ImageView != null : "fx:id=\"F6_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F5_ImageView != null : "fx:id=\"F5_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F4_ImageView != null : "fx:id=\"F4_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F3_ImageView != null : "fx:id=\"F3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F2_ImageView != null : "fx:id=\"F2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert F1_ImageView != null : "fx:id=\"F1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G8_ImageView != null : "fx:id=\"G8_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G7_ImageView != null : "fx:id=\"G7_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G6_ImageView != null : "fx:id=\"G6_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G5_ImageView != null : "fx:id=\"G5_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G4_ImageView != null : "fx:id=\"G4_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G3_ImageView != null : "fx:id=\"G3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G2_ImageView != null : "fx:id=\"G2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert G1_ImageView != null : "fx:id=\"G1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H8_ImageView != null : "fx:id=\"H8_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H7_ImageView != null : "fx:id=\"H7_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H6_ImageView != null : "fx:id=\"H6_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H5_ImageView != null : "fx:id=\"H5_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H4_ImageView != null : "fx:id=\"H4_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H3_ImageView != null : "fx:id=\"H3_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H2_ImageView != null : "fx:id=\"H2_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-        assert H1_ImageView != null : "fx:id=\"H1_ImageView\" was not injected: check your FXML file 'TeamLewisChess.fxml'.";
-    }
+    
+//    /**
+//     *  initialize implemented in FXML Control Document
+//     */
+//    @FXML void initialize() {
+//        
+//        
+//    }
 }

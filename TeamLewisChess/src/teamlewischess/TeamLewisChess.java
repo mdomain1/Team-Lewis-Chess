@@ -2,6 +2,13 @@
 // Main application class that loads and displays Team Lewis's chess GUI.
 package teamlewischess;
 
+/**
+ * package teamlewischess Main extends Application
+ * 
+ * @author TeamLewisChess Isaiah Gregov, Leana Tran, Adam Perry, Marcus Page, Peggy Haeger
+ * 
+ */
+
 //Imported to play piece move sounds:
 import java.io.File;
 //import java.io.FileInputStream;
@@ -20,6 +27,12 @@ import javafx.stage.Stage;
 
 
 public class TeamLewisChess extends Application {
+    
+    /**
+     * 
+     * @param stage FXML
+     * @throws Exception 
+     */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("TeamLewisChess.fxml"));
@@ -30,7 +43,10 @@ public class TeamLewisChess extends Application {
         stage.setResizable(false);
         stage.show(); // display the stage
     }
-
+    /**
+     * launches main application
+     * @param args 
+     */
     public static void main(String[] args) {      
       // create a TeamLewisChess object and call its start method
       launch(args);
@@ -38,6 +54,12 @@ public class TeamLewisChess extends Application {
    
     //Call this method in Board class when piece moves but does not capture, place in check, or castles.
     //Credit: JavaTutorials101 on YouTube
+    /**
+     *  @see Board
+     *  call this method in Board class when piece moves but does not capture, place in check, or castles.
+     *  Credit: JavaTutorials101 on YouTube
+     *  Requires move.wav  
+     */
     public static void playSoundMove()
     {
         try {
@@ -53,6 +75,12 @@ public class TeamLewisChess extends Application {
     
     //Call this method in Board class when piece captures.
     //Credit: JavaTutorials101 on YouTube
+    /**
+     *  @see Board
+     *  Call this method in Board class when piece captures.
+     *  Credit: JavaTutorials101 on YouTube
+     *  Requires capture.wav  
+     */
     public static void playSoundCapture()
     {
         try {
@@ -68,6 +96,12 @@ public class TeamLewisChess extends Application {
     
     //Call this method in Board class when piece is moved and enemy king is placed in check.
     //Credit: JavaTutorials101 on YouTube
+     /**
+     *  @see Board
+     *  Call this method in Board class when piece is moved and enemy king is placed in check.
+     *  Credit: JavaTutorials101 on YouTube
+     *  Requires check.wav  
+     */
     public static void playSoundCheck()
     {
         try {
@@ -83,6 +117,12 @@ public class TeamLewisChess extends Application {
     
     //Call this method in Board class when a king castles castles.
     //Credit: JavaTutorials101 on YouTube
+    /**
+     * @see Board
+     * Call this method in Board class when a king castles castles.
+     * Credit: JavaTutorials101 on YouTube
+     * Requires: castle.wav
+     */
     public static void playSoundCastle()
     {
         try {

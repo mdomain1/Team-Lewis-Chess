@@ -1,5 +1,9 @@
 package teamlewischess;
 
+/**
+ * @see Piece
+ */
+
 public class Pawn extends Piece {
     private boolean promoted;
     private boolean promotedToKnight;

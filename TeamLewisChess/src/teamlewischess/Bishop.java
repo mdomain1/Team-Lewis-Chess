@@ -1,9 +1,15 @@
 package teamlewischess;
 
 /**
- * Description pending...
+ * @see Piece
  */
 public class Bishop extends Piece {
+    /**
+     * 
+     * @param fPieceTypeLocationsOnBoard
+     * @param fTeam
+     * @return boolean if a valid move for Bishop
+     */
     static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam)
     {
         if(Bishop.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
@@ -19,6 +25,11 @@ public class Bishop extends Piece {
         return false;
     }
     
+    /**
+     * 
+     * @param fPieceTypeLocationsOnBoard
+     * @return boolean 
+     */
     static private boolean withinRangeOfPieceMobility(int[][] fPieceTypeLocationsOnBoard)
     {        
      	int displacement = Game.getTargetedSquare() - TeamLewisChessController.getSquareClicked();
@@ -31,6 +42,11 @@ public class Bishop extends Piece {
             return false;
     }
     
+    /**
+     * 
+     * @param fPieceTypeLocationsOnBoard
+     * @return boolean path blocked/unblocked
+     */
     static private boolean noPieceBlocksPathToSquare(int[][] fPieceTypeLocationsOnBoard)
     {	
         int rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
@@ -139,12 +155,22 @@ public class Bishop extends Piece {
         return true;
     }
     
+    /**
+     * 
+     * @param fPieceTypeLocationsOnBoard
+     * @return 
+     */
     static private boolean moveDoesNotPlaceKingInCheck(int[][] fPieceTypeLocationsOnBoard)
     { 
         //Just to satisfy program and to be update with algorithm:
         return true;
     }
     
+    /**
+     * 
+     * @param fLocation
+     * @param fTeam 
+     */
     public Bishop(int fLocation, int fTeam) {
         super(fLocation, fTeam);
     }

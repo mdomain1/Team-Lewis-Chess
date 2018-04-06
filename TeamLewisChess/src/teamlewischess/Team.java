@@ -9,6 +9,9 @@ public class Team {
     public int squarePawnMovedTwoLastMovedTo;
     public int numOfMovesNoCaptureOrPawnMoves;
     
+    /**
+     * 
+     */
     public Team() {
         isCheckmated = false;
         pawnMovedTwoSpacesLastMove = false;

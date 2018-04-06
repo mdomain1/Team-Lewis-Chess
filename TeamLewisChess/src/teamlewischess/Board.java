@@ -3,7 +3,8 @@ package teamlewischess;
 import java.io.IOException;
 
 /**
- * Description pending...
+ * 
+ * Board class.
  */
 public class Board {
     PromotionWindow onePromotionWindow; //For promoting pawns
@@ -58,6 +59,10 @@ public class Board {
     Pawn bP_7 = new Pawn(14, 1);
     Pawn bP_8 = new Pawn(15, 1);
     
+    /**
+     * Resets board
+     * @see TeamLewisChessController
+     */
     public void resetBoardForNewGame()
     {
         //White pieces' starting positions:
@@ -289,6 +294,10 @@ public class Board {
         pieceTypeLocationsOnBoard[7][7] = 2;  //white rook
     }
     
+    /**
+     * 
+     * @return boolean if square contains a selectable piece
+     */
     public boolean containsSelectablePiece()
     {
         int row = getRowFromLocation(TeamLewisChessController.getSquareClicked());
@@ -336,7 +345,10 @@ public class Board {
         //Won't ever execute, but IDE doesn't know that a switch block will be entered:
         return false;
     }
-    
+    /**
+     * 
+     * @return boolean if piece on targeted square can move to square clicked
+     */
     public boolean pieceOnTargetedSquareCanMoveToSquareClicked()
     {
         if (wK.getLocation() == Game.getTargetedSquare()) {
@@ -569,6 +581,11 @@ public class Board {
         return false;
     }
     
+    /**
+     * updateBoard
+     * @throws IOException if can't find sound i think, if put in resource file maybe can incorporate it in executable
+     * @see TeamLewisChessController
+     */
     public void updateBoard() throws IOException
     {
         //When audio files play will be updated after this method is complete.
@@ -1139,46 +1156,80 @@ public class Board {
         updateGameStatus();
     }
     
+    /**
+     * 
+     * @param fLocation
+     * @return row of fLocation
+     */
     static public int getRowFromLocation(int fLocation)
     {
         //Just to satisfy program and to be updated with algorithm:
         return (fLocation / 8);
     }
     
+    /**
+     * 
+     * @param fLocation
+     * @return column of fLoction
+     */
     static public int getColumnFromLocation(int fLocation)
     {
         //Just to satisfy program and to be updated with algorithm:
         return (fLocation % 8);
     }
     
+    /**
+     * 
+     * @param fRow
+     * @param fColumn
+     * @return location on board given row and column, integer from 0 to 63
+     */
     static public int getLocationFromRowAndColumn(int fRow, int fColumn)
     {        
         return ((fRow * 8) + fColumn);
     }
     
+    /**
+     * 
+     * @return boolean if castling move
+     */
     private boolean isACastlingMove()
     {
         //Just to satisfy program and to be updated with algorithm:
         return false;
     }
     
+    /**
+     * 
+     * @return boolean if EnPassant Pawn move
+     */
     private boolean isAnEnPassantMove()
     {
         //Just to satisfy program and to be updated with algorithm:
         return false;
     }
     
+    /**
+     * 
+     * @return boolean from piece pawn promoted
+     */
     private boolean isBeingPromoted()
     {
         //Just to satisfy program and to be updated with algorithm:
         return false;
     }
     
+    /**
+     * updateGameStatus 
+     */
     private void updateGameStatus()
     {
         
     }
     
+    /**
+     * 
+     */
     public Board()
     {
         this.onePromotionWindow = new PromotionWindow();

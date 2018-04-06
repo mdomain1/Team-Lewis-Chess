@@ -1,7 +1,7 @@
 package teamlewischess;
 
 /**
- * Description pending...
+ * @see Piece
  */
 public class Queen extends Piece {
     static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam)

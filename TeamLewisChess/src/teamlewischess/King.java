@@ -1,7 +1,7 @@
 package teamlewischess;
 
 /**
- * Description pending...
+ * @see Piece
  */
 public class King extends Piece {
     private boolean hasMoved;
