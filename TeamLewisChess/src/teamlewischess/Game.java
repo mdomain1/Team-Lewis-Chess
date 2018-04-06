@@ -76,10 +76,24 @@ public class Game {
         return gameStatus;
     }
     
+    //This method is only used in class Board's updateGameStatus method.
+    static public void setTargetedSquare(int fTargetedSquare)
+    {
+        targetedSquare = fTargetedSquare;
+    }
+    
+    //This method is only used in class Board's updateGameStatus method.
+    static public void setCurrentTeamsTurn(int fCurrentTeamsTurn)
+    {
+        currentTeamsTurn = fCurrentTeamsTurn;
+    }
+    
     static public void setGameStatus(int fGameStatus)
     {
         gameStatus = fGameStatus;
     }
+    
+
     
     public Game()
     {

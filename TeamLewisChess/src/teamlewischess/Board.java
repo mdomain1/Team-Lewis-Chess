@@ -1,10 +1,13 @@
 package teamlewischess;
 
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
- * 
  * Board class.
+ * 
+ * All sounds played in this class: in methods resetBoardForNewGame and updateBoard,
+ * at the beginning and end in each, respectively.
  */
 public class Board {
     PromotionWindow onePromotionWindow; //For promoting pawns
@@ -65,6 +68,11 @@ public class Board {
      */
     public void resetBoardForNewGame()
     {
+        //Playing these two sounds together to make it sound like a lot of pieces are
+        //being moved at once as the board is being reset:
+        TeamLewisChess.playSoundMove();
+        TeamLewisChess.playSoundCapture();
+                
         //White pieces' starting positions:
         wK.setLocation(60);
         wQ.setLocation(59);
@@ -588,14 +596,11 @@ public class Board {
      */
     public void updateBoard() throws IOException
     {
-        //When audio files play will be updated after this method is complete.
-        TeamLewisChess.playSoundMove();
-        
-        int targetedSquareRow = getRowFromLocation(Game.getTargetedSquare());
-        int targetedSquareColumn = getColumnFromLocation(Game.getTargetedSquare());
-        
-        int squareClickedRow = getRowFromLocation(TeamLewisChessController.getSquareClicked());
-        int squareClickedColumn = getColumnFromLocation(TeamLewisChessController.getSquareClicked());
+        //For readability and efficiency:
+        int targetedRow = getRowFromLocation(Game.getTargetedSquare());
+        int targetedColumn = getColumnFromLocation(Game.getTargetedSquare());        
+        int rowClicked = getRowFromLocation(TeamLewisChessController.getSquareClicked());
+        int columnClicked = getColumnFromLocation(TeamLewisChessController.getSquareClicked());
         
         isBeingPromoted = false;
         isBeingPromotedToKnight = false;
@@ -603,15 +608,220 @@ public class Board {
         isBeingPromotedToRook = false;
         isBeingPromotedToQueen = false;
         
+        //Boolean flags used for choosing which sound to play at the end of this method:
+        boolean moveIsANormalMove = false;
+        boolean capturing = false;
+        
         //Step 1
         if (isACastlingMove())
-        {
+        {            
+            //Step 1-A. Update static square and image values for controller class.
+            //Step 1-B. Update the King and Rook objects' location and hasMoved variables.
+            //Step 1-C. Update the pieceTypeLocationsOnBoard double array.
+            TeamLewisChessController.setSquareToWipe(Game.getTargetedSquare());
+            TeamLewisChessController.setSquareMovedTo(TeamLewisChessController.getSquareClicked());
+            TeamLewisChessController.setImageToUpdateSquareMovedTo(pieceTypeLocationsOnBoard[targetedRow][targetedColumn]);
             
+            if (Game.getCurrentTeamsTurn() == 0 && targetedColumn == columnClicked - 2) //White castling king-side
+            {
+                TeamLewisChessController.setSpecialSquareToWipe(63);
+                TeamLewisChessController.setSpecialSquareMovedTo(61);
+                TeamLewisChessController.setImageToUpdateSpecialSquareMovedTo(2);
+                
+                wK.setHasMoved(true);
+                wR_2.setHasMoved(true);
+                
+                wK.setLocation(62);
+                wR_2.setLocation(61);
+                
+                pieceTypeLocationsOnBoard[7][4] = 0;
+                pieceTypeLocationsOnBoard[7][5] = 2;
+                pieceTypeLocationsOnBoard[7][6] = 6;
+                pieceTypeLocationsOnBoard[7][7] = 0;
+            }
+            else if (Game.getCurrentTeamsTurn() == 0 && targetedColumn == columnClicked + 2) //White castling queen-side
+            {
+                TeamLewisChessController.setSpecialSquareToWipe(56);
+                TeamLewisChessController.setSpecialSquareMovedTo(59);
+                TeamLewisChessController.setImageToUpdateSpecialSquareMovedTo(2);
+                
+                wK.setHasMoved(true);
+                wR_1.setHasMoved(true);
+                
+                wK.setLocation(58);
+                wR_1.setLocation(59);
+                
+                pieceTypeLocationsOnBoard[7][0] = 0;
+                pieceTypeLocationsOnBoard[7][2] = 6;
+                pieceTypeLocationsOnBoard[7][3] = 2;
+                pieceTypeLocationsOnBoard[7][4] = 0;
+            }
+            else if (Game.getCurrentTeamsTurn() == 1 && targetedColumn == columnClicked - 2) //Black castling king-side
+            {
+                TeamLewisChessController.setSpecialSquareToWipe(7);
+                TeamLewisChessController.setSpecialSquareMovedTo(5);
+                TeamLewisChessController.setImageToUpdateSpecialSquareMovedTo(8);
+                
+                bK.setHasMoved(true);
+                bR_2.setHasMoved(true);
+                
+                bK.setLocation(6);
+                bR_2.setLocation(5);
+                
+                pieceTypeLocationsOnBoard[0][4] = 0;
+                pieceTypeLocationsOnBoard[0][5] = 8;
+                pieceTypeLocationsOnBoard[0][6] = 12;
+                pieceTypeLocationsOnBoard[0][7] = 0;
+            }
+            else if (Game.getCurrentTeamsTurn() == 1 && targetedColumn == columnClicked + 2) //Black castling queen-side
+            {
+                TeamLewisChessController.setSpecialSquareToWipe(0);
+                TeamLewisChessController.setSpecialSquareMovedTo(3);
+                TeamLewisChessController.setImageToUpdateSpecialSquareMovedTo(8);
+                
+                bK.setHasMoved(true);
+                bR_1.setHasMoved(true);
+                
+                bK.setLocation(2);
+                bR_1.setLocation(3);
+                
+                pieceTypeLocationsOnBoard[0][0] = 0;
+                pieceTypeLocationsOnBoard[0][2] = 12;
+                pieceTypeLocationsOnBoard[0][3] = 8;
+                pieceTypeLocationsOnBoard[0][4] = 0;
+            }
+                        
+            //Step 1-D. Update the pawnMovedTwoSpacesLastMove of the team whose turn is the current
+            //turn to false.
+            //Step 1-E. Increment numOfMovesNoCaptureOrPawnMoves by one for the Team whose
+            //currentTeamsTurn it is.            
+            if (Game.getCurrentTeamsTurn() == 0) {
+                white.pawnMovedTwoSpacesLastMove = false;
+                white.numOfMovesNoCaptureOrPawnMoves += 1;
+            } else {
+                black.pawnMovedTwoSpacesLastMove = false;
+                black.numOfMovesNoCaptureOrPawnMoves += 1;
+            }
         }
         //Step 2
         else if (isAnEnPassantMove())
-        {
+        {   
+            capturing = true;
             
+            //Step 2-A. Update the square and image values for controller class.
+            TeamLewisChessController.setSquareToWipe(Game.getTargetedSquare());
+            TeamLewisChessController.setSquareMovedTo(TeamLewisChessController.getSquareClicked());
+            TeamLewisChessController.setImageToUpdateSquareMovedTo(pieceTypeLocationsOnBoard[targetedRow][targetedColumn]);
+            TeamLewisChessController.setSpecialSquareToWipe(getLocationFromRowAndColumn(targetedRow, columnClicked));
+            TeamLewisChessController.setSpecialSquareMovedTo(-1);
+            TeamLewisChessController.setImageToUpdateSpecialSquareMovedTo(-1);
+            
+            //Step 2-B. Update the Pawn object's location variable.
+            if (wP_1.getLocation() == Game.getTargetedSquare()) {
+                wP_1.setLocation(TeamLewisChessController.getSquareClicked());
+            } else if (wP_2.getLocation() == Game.getTargetedSquare()) {
+                wP_2.setLocation(TeamLewisChessController.getSquareClicked());
+            } else if (wP_3.getLocation() == Game.getTargetedSquare()) {
+                wP_3.setLocation(TeamLewisChessController.getSquareClicked());
+            } else if (wP_4.getLocation() == Game.getTargetedSquare()) {
+                wP_4.setLocation(TeamLewisChessController.getSquareClicked());
+            } else if (wP_5.getLocation() == Game.getTargetedSquare()) {
+                wP_5.setLocation(TeamLewisChessController.getSquareClicked());
+            } else if (wP_6.getLocation() == Game.getTargetedSquare()) {
+                wP_6.setLocation(TeamLewisChessController.getSquareClicked());
+            } else if (wP_7.getLocation() == Game.getTargetedSquare()) {
+                wP_7.setLocation(TeamLewisChessController.getSquareClicked());
+            } else if (wP_8.getLocation() == Game.getTargetedSquare()) {
+                wP_8.setLocation(TeamLewisChessController.getSquareClicked());
+            } if (bP_1.getLocation() == Game.getTargetedSquare()) {
+                bP_1.setLocation(TeamLewisChessController.getSquareClicked());
+            } else if (bP_2.getLocation() == Game.getTargetedSquare()) {
+                bP_2.setLocation(TeamLewisChessController.getSquareClicked());
+            } else if (bP_3.getLocation() == Game.getTargetedSquare()) {
+                bP_3.setLocation(TeamLewisChessController.getSquareClicked());
+            } else if (bP_4.getLocation() == Game.getTargetedSquare()) {
+                bP_4.setLocation(TeamLewisChessController.getSquareClicked());
+            } else if (bP_5.getLocation() == Game.getTargetedSquare()) {
+                bP_5.setLocation(TeamLewisChessController.getSquareClicked());
+            } else if (bP_6.getLocation() == Game.getTargetedSquare()) {
+                bP_6.setLocation(TeamLewisChessController.getSquareClicked());
+            } else if (bP_7.getLocation() == Game.getTargetedSquare()) {
+                bP_7.setLocation(TeamLewisChessController.getSquareClicked());
+            } else if (bP_8.getLocation() == Game.getTargetedSquare()) {
+                bP_8.setLocation(TeamLewisChessController.getSquareClicked());
+            }
+            
+            //Step 2-C. Set the location variable of the Pawn object being captured to -1
+            //and its captured boolean variable to true.
+            //The captured pawn, for efficiency, and readability:
+            int capturedPawnLocation = getLocationFromRowAndColumn(targetedRow, columnClicked);
+            
+            if (wP_1.getLocation() == capturedPawnLocation) {
+                wP_1.setLocation(-1);
+                wP_1.setCaptured(true);
+            } else if (wP_2.getLocation() == capturedPawnLocation) {
+                wP_2.setLocation(-1);
+                wP_2.setCaptured(true);
+            } else if (wP_3.getLocation() == capturedPawnLocation) {
+                wP_3.setLocation(-1);
+                wP_3.setCaptured(true);
+            } else if (wP_4.getLocation() == capturedPawnLocation) {
+                wP_4.setLocation(-1);
+                wP_4.setCaptured(true);
+            } else if (wP_5.getLocation() == capturedPawnLocation) {
+                wP_5.setLocation(-1);
+                wP_5.setCaptured(true);
+            } else if (wP_6.getLocation() == capturedPawnLocation) {
+                wP_6.setLocation(-1);
+                wP_6.setCaptured(true);
+            } else if (wP_7.getLocation() == capturedPawnLocation) {
+                wP_7.setLocation(-1);
+                wP_7.setCaptured(true);
+            } else if (wP_8.getLocation() == capturedPawnLocation) {
+                wP_8.setLocation(-1);
+                wP_8.setCaptured(true);
+            } else if (bP_1.getLocation() == capturedPawnLocation) {
+                bP_1.setLocation(-1);
+                bP_1.setCaptured(true);
+            } else if (bP_2.getLocation() == capturedPawnLocation) {
+                bP_2.setLocation(-1);
+                bP_2.setCaptured(true);
+            } else if (bP_3.getLocation() == capturedPawnLocation) {
+                bP_3.setLocation(-1);
+                bP_3.setCaptured(true);
+            } else if (bP_4.getLocation() == capturedPawnLocation) {
+                bP_4.setLocation(-1);
+                bP_4.setCaptured(true);
+            } else if (bP_5.getLocation() == capturedPawnLocation) {
+                bP_5.setLocation(-1);
+                bP_5.setCaptured(true);
+            } else if (bP_6.getLocation() == capturedPawnLocation) {
+                bP_6.setLocation(-1);
+                bP_6.setCaptured(true);
+            } else if (bP_7.getLocation() == capturedPawnLocation) {
+                bP_7.setLocation(-1);
+                bP_7.setCaptured(true);
+            } else if (bP_8.getLocation() == capturedPawnLocation) {
+                bP_8.setLocation(-1);
+                bP_8.setCaptured(true);
+            }
+            
+            //Step 2-D. Update the pieceTypeLocationsOnBoard double array.
+            pieceTypeLocationsOnBoard[rowClicked][columnClicked] = pieceTypeLocationsOnBoard[targetedRow][targetedColumn];
+            pieceTypeLocationsOnBoard[targetedRow][targetedColumn] = 0;
+            pieceTypeLocationsOnBoard[targetedRow][columnClicked] = 0;
+            
+            //Step 2-E. Update the pawnMovedTwoSpacesLastMove of the team whose turn is
+            //the current turn to false.
+            //Step 2-F. Update numOfMovesNoCaptureOrPawnMoves = 0 for the Team whose
+            //currentTeamsTurn it is.            
+            if (Game.getCurrentTeamsTurn() == 0) {
+                white.pawnMovedTwoSpacesLastMove = false;
+                white.numOfMovesNoCaptureOrPawnMoves = 0;
+            } else {
+                black.pawnMovedTwoSpacesLastMove = false;
+                black.numOfMovesNoCaptureOrPawnMoves = 0;
+            }
         }
         //Step 3
         else //is a normal move where, if a piece is being captured, that piece is always
@@ -724,97 +934,97 @@ public class Board {
             //the current team's pawnMovedTwoSpacesLastMove variabe to true and set the
             //squarePawnMovedTwoLastMovedTo to the squareClicked.
             if (wP_1.getLocation() == Game.getTargetedSquare()) {
-                if (wP_1.promoted() == false && targetedSquareRow == squareClickedRow + 2)
+                if (wP_1.promoted() == false && targetedRow == rowClicked + 2)
                 {
                     white.pawnMovedTwoSpacesLastMove = true;
                     white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
                 } 
             } else if (wP_2.getLocation() == Game.getTargetedSquare()) {
-                if (wP_2.promoted() == false && targetedSquareRow == squareClickedRow + 2)
+                if (wP_2.promoted() == false && targetedRow == rowClicked + 2)
                 {
                     white.pawnMovedTwoSpacesLastMove = true;
                     white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
                 }
             } else if (wP_3.getLocation() == Game.getTargetedSquare()) {
-                if (wP_3.promoted() == false && targetedSquareRow == squareClickedRow + 2)
+                if (wP_3.promoted() == false && targetedRow == rowClicked + 2)
                 {
                     white.pawnMovedTwoSpacesLastMove = true;
                     white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
                 }
             } else if (wP_4.getLocation() == Game.getTargetedSquare()) {
-                if (wP_4.promoted() == false && targetedSquareRow == squareClickedRow + 2)
+                if (wP_4.promoted() == false && targetedRow == rowClicked + 2)
                 {
                     white.pawnMovedTwoSpacesLastMove = true;
                     white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
                 }
             } else if (wP_5.getLocation() == Game.getTargetedSquare()) {
-                if (wP_5.promoted() == false && targetedSquareRow == squareClickedRow + 2)
+                if (wP_5.promoted() == false && targetedRow == rowClicked + 2)
                 {
                     white.pawnMovedTwoSpacesLastMove = true;
                     white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
                 }
             } else if (wP_6.getLocation() == Game.getTargetedSquare()) {
-                if (wP_6.promoted() == false && targetedSquareRow == squareClickedRow + 2)
+                if (wP_6.promoted() == false && targetedRow == rowClicked + 2)
                 {
                     white.pawnMovedTwoSpacesLastMove = true;
                     white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
                 }
             } else if (wP_7.getLocation() == Game.getTargetedSquare()) {
-                if (wP_7.promoted() == false && targetedSquareRow == squareClickedRow + 2)
+                if (wP_7.promoted() == false && targetedRow == rowClicked + 2)
                 {
                     white.pawnMovedTwoSpacesLastMove = true;
                     white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
                 }
             } else if (wP_8.getLocation() == Game.getTargetedSquare()) {
-                if (wP_8.promoted() == false && targetedSquareRow == squareClickedRow + 2)
+                if (wP_8.promoted() == false && targetedRow == rowClicked + 2)
                 {
                     white.pawnMovedTwoSpacesLastMove = true;
                     white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
                 }
             } else if (bP_1.getLocation() == Game.getTargetedSquare()) {
-                if (bP_1.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                if (bP_1.promoted() == false && targetedRow == rowClicked - 2)
                 {
                     black.pawnMovedTwoSpacesLastMove = true;
                     black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
                 }
             } else if (bP_2.getLocation() == Game.getTargetedSquare()) {
-                if (bP_2.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                if (bP_2.promoted() == false && targetedRow == rowClicked - 2)
                 {
                     black.pawnMovedTwoSpacesLastMove = true;
                     black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
                 }
             } else if (bP_3.getLocation() == Game.getTargetedSquare()) {
-                if (bP_3.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                if (bP_3.promoted() == false && targetedRow == rowClicked - 2)
                 {
                     black.pawnMovedTwoSpacesLastMove = true;
                     black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
                 }
             } else if (bP_4.getLocation() == Game.getTargetedSquare()) {
-                if (bP_4.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                if (bP_4.promoted() == false && targetedRow == rowClicked - 2)
                 {
                     black.pawnMovedTwoSpacesLastMove = true;
                     black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
                 }
             } else if (bP_5.getLocation() == Game.getTargetedSquare()) {
-                if (bP_5.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                if (bP_5.promoted() == false && targetedRow == rowClicked - 2)
                 {
                     black.pawnMovedTwoSpacesLastMove = true;
                     black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
                 }
             } else if (bP_6.getLocation() == Game.getTargetedSquare()) {
-                if (bP_6.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                if (bP_6.promoted() == false && targetedRow == rowClicked - 2)
                 {
                     black.pawnMovedTwoSpacesLastMove = true;
                     black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
                 }
             } else if (bP_7.getLocation() == Game.getTargetedSquare()) {
-                if (bP_7.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                if (bP_7.promoted() == false && targetedRow == rowClicked - 2)
                 {
                     black.pawnMovedTwoSpacesLastMove = true;
                     black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
                 }
             } else if (bP_8.getLocation() == Game.getTargetedSquare()) {
-                if (bP_8.promoted() == false && targetedSquareRow == squareClickedRow - 2)
+                if (bP_8.promoted() == false && targetedRow == rowClicked - 2)
                 {
                     black.pawnMovedTwoSpacesLastMove = true;
                     black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
@@ -829,8 +1039,10 @@ public class Board {
             
             //Step 3-C. If a piece was captured, find the piece that is located on squareClicked.
             //Set that Piece's location variable to -1 and captured boolean variable to true.
-            if (pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn] != 0)
-            {
+            if (pieceTypeLocationsOnBoard[rowClicked][columnClicked] != 0)
+            {   
+                capturing = true;
+                
                 if (wK.getLocation() == TeamLewisChessController.getSquareClicked()) {
                     wK.setLocation(-1);
                     wK.setCaptured(true);
@@ -928,6 +1140,8 @@ public class Board {
                     bP_8.setLocation(-1);
                     bP_8.setCaptured(true);
                 }
+            } else {
+                moveIsANormalMove = true;
             }
             
             //Step 3-D. Update the location variable of the piece on the targetedSquare to the
@@ -960,7 +1174,7 @@ public class Board {
                 wN_2.setLocation(TeamLewisChessController.getSquareClicked());
             } else if (wP_1.getLocation() == Game.getTargetedSquare()) {
                 wP_1.setLocation(TeamLewisChessController.getSquareClicked());
-                if (squareClickedRow == 0 && wP_1.promoted() == false)
+                if (rowClicked == 0 && wP_1.promoted() == false)
                 {
                     onePromotionWindow.displayPromotionWindow();
                     
@@ -979,7 +1193,7 @@ public class Board {
                 }
             } else if (wP_2.getLocation() == Game.getTargetedSquare()) {
                 wP_2.setLocation(TeamLewisChessController.getSquareClicked());
-                if (squareClickedRow == 0 && wP_2.promoted() == false)
+                if (rowClicked == 0 && wP_2.promoted() == false)
                 {
                     onePromotionWindow.displayPromotionWindow();
                     
@@ -998,7 +1212,7 @@ public class Board {
                 }
             } else if (wP_3.getLocation() == Game.getTargetedSquare()) {
                 wP_3.setLocation(TeamLewisChessController.getSquareClicked());
-                if (squareClickedRow == 0 && wP_3.promoted() == false)
+                if (rowClicked == 0 && wP_3.promoted() == false)
                 {
                     onePromotionWindow.displayPromotionWindow();
                     
@@ -1017,7 +1231,7 @@ public class Board {
                 }
             } else if (wP_4.getLocation() == Game.getTargetedSquare()) {
                 wP_4.setLocation(TeamLewisChessController.getSquareClicked());
-                if (squareClickedRow == 0 && wP_4.promoted() == false)
+                if (rowClicked == 0 && wP_4.promoted() == false)
                 {
                     onePromotionWindow.displayPromotionWindow();
                     
@@ -1036,7 +1250,7 @@ public class Board {
                 }
             } else if (wP_5.getLocation() == Game.getTargetedSquare()) {
                 wP_5.setLocation(TeamLewisChessController.getSquareClicked());
-                if (squareClickedRow == 0 && wP_5.promoted() == false)
+                if (rowClicked == 0 && wP_5.promoted() == false)
                 {
                     onePromotionWindow.displayPromotionWindow();
                     
@@ -1055,7 +1269,7 @@ public class Board {
                 }
             } else if (wP_6.getLocation() == Game.getTargetedSquare()) {
                 wP_6.setLocation(TeamLewisChessController.getSquareClicked());
-                if (squareClickedRow == 0 && wP_6.promoted() == false)
+                if (rowClicked == 0 && wP_6.promoted() == false)
                 {
                     onePromotionWindow.displayPromotionWindow();
                     
@@ -1074,7 +1288,7 @@ public class Board {
                 }
             } else if (wP_7.getLocation() == Game.getTargetedSquare()) {
                 wP_7.setLocation(TeamLewisChessController.getSquareClicked());
-                if (squareClickedRow == 0 && wP_7.promoted() == false)
+                if (rowClicked == 0 && wP_7.promoted() == false)
                 {
                     onePromotionWindow.displayPromotionWindow();
                     
@@ -1093,7 +1307,7 @@ public class Board {
                 }
             } else if (wP_8.getLocation() == Game.getTargetedSquare()) {
                 wP_8.setLocation(TeamLewisChessController.getSquareClicked());
-                if (squareClickedRow == 0 && wP_8.promoted() == false)
+                if (rowClicked == 0 && wP_8.promoted() == false)
                 {
                     onePromotionWindow.displayPromotionWindow();
                     
@@ -1131,7 +1345,7 @@ public class Board {
                 bN_2.setLocation(TeamLewisChessController.getSquareClicked());
             } else if (bP_1.getLocation() == Game.getTargetedSquare()) {
                 bP_1.setLocation(TeamLewisChessController.getSquareClicked());
-                if (squareClickedRow == 7 && bP_1.promoted() == false)
+                if (rowClicked == 7 && bP_1.promoted() == false)
                 {
                     onePromotionWindow.displayPromotionWindow();
                     
@@ -1150,7 +1364,7 @@ public class Board {
                 }
             } else if (bP_2.getLocation() == Game.getTargetedSquare()) {
                 bP_2.setLocation(TeamLewisChessController.getSquareClicked());
-                if (squareClickedRow == 7 && bP_2.promoted() == false)
+                if (rowClicked == 7 && bP_2.promoted() == false)
                 {
                     onePromotionWindow.displayPromotionWindow();
                     
@@ -1169,7 +1383,7 @@ public class Board {
                 }
             } else if (bP_3.getLocation() == Game.getTargetedSquare()) {
                 bP_3.setLocation(TeamLewisChessController.getSquareClicked());
-                if (squareClickedRow == 7 && bP_3.promoted() == false)
+                if (rowClicked == 7 && bP_3.promoted() == false)
                 {
                     onePromotionWindow.displayPromotionWindow();
                     
@@ -1188,7 +1402,7 @@ public class Board {
                 }
             } else if (bP_4.getLocation() == Game.getTargetedSquare()) {
                 bP_4.setLocation(TeamLewisChessController.getSquareClicked());
-                if (squareClickedRow == 7 && bP_4.promoted() == false)
+                if (rowClicked == 7 && bP_4.promoted() == false)
                 {
                     onePromotionWindow.displayPromotionWindow();
                     
@@ -1207,7 +1421,7 @@ public class Board {
                 }
             } else if (bP_5.getLocation() == Game.getTargetedSquare()) {
                 bP_5.setLocation(TeamLewisChessController.getSquareClicked());
-                if (squareClickedRow == 7 && bP_5.promoted() == false)
+                if (rowClicked == 7 && bP_5.promoted() == false)
                 {
                     onePromotionWindow.displayPromotionWindow();
                     
@@ -1226,7 +1440,7 @@ public class Board {
                 }
             } else if (bP_6.getLocation() == Game.getTargetedSquare()) {
                 bP_6.setLocation(TeamLewisChessController.getSquareClicked());
-                if (squareClickedRow == 7 && bP_6.promoted() == false)
+                if (rowClicked == 7 && bP_6.promoted() == false)
                 {
                     onePromotionWindow.displayPromotionWindow();
                     
@@ -1245,7 +1459,7 @@ public class Board {
                 }
             } else if (bP_7.getLocation() == Game.getTargetedSquare()) {
                 bP_7.setLocation(TeamLewisChessController.getSquareClicked());
-                if (squareClickedRow == 7 && bP_7.promoted() == false)
+                if (rowClicked == 7 && bP_7.promoted() == false)
                 {
                     onePromotionWindow.displayPromotionWindow();
                     
@@ -1264,7 +1478,7 @@ public class Board {
                 }
             } else if (bP_8.getLocation() == Game.getTargetedSquare()) {
                 bP_8.setLocation(TeamLewisChessController.getSquareClicked());
-                if (squareClickedRow == 7 && bP_8.promoted() == false)
+                if (rowClicked == 7 && bP_8.promoted() == false)
                 {
                     onePromotionWindow.displayPromotionWindow();
                     
@@ -1286,7 +1500,7 @@ public class Board {
             //Step 3-G. Update the square and image values for controller class.
             TeamLewisChessController.setSquareToWipe(Game.getTargetedSquare());
             TeamLewisChessController.setSquareMovedTo(TeamLewisChessController.getSquareClicked());
-            TeamLewisChessController.setImageToUpdateSquareMovedTo(pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn]);
+            TeamLewisChessController.setImageToUpdateSquareMovedTo(pieceTypeLocationsOnBoard[targetedRow][targetedColumn]);
             TeamLewisChessController.setSpecialSquareToWipe(-1);
             TeamLewisChessController.setSpecialSquareMovedTo(-1);
             TeamLewisChessController.setImageToUpdateSpecialSquareMovedTo(-1);
@@ -1295,37 +1509,67 @@ public class Board {
             //And reupdate imageToUpdateSquareMovedTo if a promotion was made.
             if (isBeingPromoted && Game.getCurrentTeamsTurn() == 0) {
                 if (isBeingPromotedToKnight) {
-                    pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn] = 3;
+                    pieceTypeLocationsOnBoard[rowClicked][columnClicked] = 3;
                     TeamLewisChessController.setImageToUpdateSquareMovedTo(3);
                 } else if (isBeingPromotedToBishop) {
-                    pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn] = 4;
+                    pieceTypeLocationsOnBoard[rowClicked][columnClicked] = 4;
                     TeamLewisChessController.setImageToUpdateSquareMovedTo(4);
                 } else if (isBeingPromotedToRook) {
-                    pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn] = 2;
+                    pieceTypeLocationsOnBoard[rowClicked][columnClicked] = 2;
                     TeamLewisChessController.setImageToUpdateSquareMovedTo(2);
                 } else if (isBeingPromotedToQueen) {
-                    pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn] = 5;
+                    pieceTypeLocationsOnBoard[rowClicked][columnClicked] = 5;
                     TeamLewisChessController.setImageToUpdateSquareMovedTo(5);
                 }
             } else if (isBeingPromoted && Game.getCurrentTeamsTurn() == 1) {
                 if (isBeingPromotedToKnight) {
-                    pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn] = 9;
+                    pieceTypeLocationsOnBoard[rowClicked][columnClicked] = 9;
                     TeamLewisChessController.setImageToUpdateSquareMovedTo(9);
                 } else if (isBeingPromotedToBishop) {
-                    pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn] = 10;
+                    pieceTypeLocationsOnBoard[rowClicked][columnClicked] = 10;
                     TeamLewisChessController.setImageToUpdateSquareMovedTo(10);
                 } else if (isBeingPromotedToRook) {
-                    pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn] = 8;
+                    pieceTypeLocationsOnBoard[rowClicked][columnClicked] = 8;
                     TeamLewisChessController.setImageToUpdateSquareMovedTo(8);
                 } else if (isBeingPromotedToQueen) {
-                    pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn] = 11;
+                    pieceTypeLocationsOnBoard[rowClicked][columnClicked] = 11;
                     TeamLewisChessController.setImageToUpdateSquareMovedTo(11);
                 }
             } else {
-                pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn] = pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn];
+                pieceTypeLocationsOnBoard[rowClicked][columnClicked] = pieceTypeLocationsOnBoard[targetedRow][targetedColumn];
             }
             
-            pieceTypeLocationsOnBoard[targetedSquareRow][targetedSquareColumn] = 0;
+            pieceTypeLocationsOnBoard[targetedRow][targetedColumn] = 0;
+        }
+        
+        //The check sound takes precedence over the castling, move, and capture sounds.
+        //Can check while castling, while moving, and while capturing.
+        //The castling sound takes precedence over the move sound, but
+        //castling is a distinct move and sound apart from moving or capturing,
+        //so there is no decision that has to be made between the castling sound and
+        //the move and capture sounds. Same with the move and capture sounds. Hence,
+        //They are all on the same tier.
+        //Note: Capturing en passant plays the capture sound.
+        //
+        //If the resulting move places the enemy king in check,
+        //      Play the check sound.
+        //Else if the move is normal move,
+        //      Play the move sound.
+        //Else if capturing,
+        //      Play the capture sound.
+        //Else,
+        //      Play the castle sound.
+
+        if (Game.getCurrentTeamsTurn() == 0 && bK.isInCheck(pieceTypeLocationsOnBoard)) {
+            TeamLewisChess.playSoundCheck();
+        } else if (Game.getCurrentTeamsTurn() == 1 && wK.isInCheck(pieceTypeLocationsOnBoard)) {
+            TeamLewisChess.playSoundCheck();
+        } else if (moveIsANormalMove) {
+            TeamLewisChess.playSoundMove();
+        } else if (capturing) {
+            TeamLewisChess.playSoundCapture();
+        } else {
+            TeamLewisChess.playSoundCastle();
         }
         
         //Step 4
@@ -1371,7 +1615,19 @@ public class Board {
      */
     private boolean isACastlingMove()
     {
-        //Just to satisfy program and to be updated with algorithm:
+        //For readability:
+        //int rowClicked = getRowFromLocation(TeamLewisChessController.getSquareClicked());
+        int columnClicked = getColumnFromLocation(TeamLewisChessController.getSquareClicked());
+        int targetedRow = getRowFromLocation(Game.getTargetedSquare());
+        int targetedColumn = getColumnFromLocation(Game.getTargetedSquare());
+        
+        if (pieceTypeLocationsOnBoard[targetedRow][targetedColumn] == 6 || pieceTypeLocationsOnBoard[targetedRow][targetedColumn] == 12) {
+            if (columnClicked == targetedColumn + 2 || columnClicked == targetedColumn - 2) {
+                return true;
+            }
+        }
+        
+        //Else,
         return false;
     }
     
@@ -1381,17 +1637,19 @@ public class Board {
      */
     private boolean isAnEnPassantMove()
     {
-        //Just to satisfy program and to be updated with algorithm:
-        return false;
-    }
-    
-    /**
-     * 
-     * @return boolean from piece pawn promoted
-     */
-    private boolean isBeingPromoted()
-    {
-        //Just to satisfy program and to be updated with algorithm:
+        //For readability:
+        int rowClicked = getRowFromLocation(TeamLewisChessController.getSquareClicked());
+        int columnClicked = getColumnFromLocation(TeamLewisChessController.getSquareClicked());
+        int targetedRow = getRowFromLocation(Game.getTargetedSquare());
+        int targetedColumn = getColumnFromLocation(Game.getTargetedSquare());
+        
+        if (columnClicked != targetedColumn && pieceTypeLocationsOnBoard[rowClicked][columnClicked] == 0) {
+            if (pieceTypeLocationsOnBoard[targetedRow][targetedColumn] == 1 || pieceTypeLocationsOnBoard[targetedRow][targetedColumn] == 7) {
+                return true;
+            }
+        }
+        
+        //Else,
         return false;
     }
     
@@ -1400,7 +1658,645 @@ public class Board {
      */
     private void updateGameStatus()
     {
+        //Store these for isValidMove method calls. Restore at end of this method.
+        int targetedSquareTemp = Game.getTargetedSquare();
+        int squareClickedTemp = TeamLewisChessController.getSquareClicked();
         
+        //Checking for Game Statuses 1 & 2.
+        //If black is put in check, check for if black is checkmated: are there any valid moves a black
+        //piece can make? Else, check for the same thing if it is white's turn. Thus, the only way that
+        //this could happen is if white just placed black in check--black couldn't have moved and
+        //remained in check; and vice versa.
+        if (Game.getCurrentTeamsTurn() == 0 && bK.isInCheck(pieceTypeLocationsOnBoard) == true) {
+            //Preserving currentTeamsTurn and restoring at the end of this if control structure, as we are
+            //looking a move ahead to see if black, who is in check now, can get out of check on his turn.
+            Game.setCurrentTeamsTurn(1);
+            
+            boolean validMoveFound = false;
+            boolean allMovesHaveBeenChecked = false;
+            
+            int row = 0;
+            
+            while (validMoveFound == false && row <= 7)
+            {
+                int column = 0;
+                
+                while (validMoveFound == false && column <= 7)
+                {
+                    switch (pieceTypeLocationsOnBoard[row][column]) {
+                        case 7:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Pawn.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 8:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Rook.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 9:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Knight.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 10:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Bishop.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 11:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Queen.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 12:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (King.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        default:
+                            
+                            break;
+                    }
+                    
+                    column += 1;
+                }
+                
+                row += 1;
+                
+                if (row == 8)
+                {
+                    allMovesHaveBeenChecked = true;
+                }
+            }
+            
+            //Restoring currentTeamsTurn.
+            Game.setCurrentTeamsTurn(0);
+            
+            if (allMovesHaveBeenChecked == true && validMoveFound == false)
+            {
+                Game.setGameStatus(1);
+            }
+        } else if (Game.getCurrentTeamsTurn() == 1 && wK.isInCheck(pieceTypeLocationsOnBoard) == true) {
+            //Preserving currentTeamsTurn and restoring at the end of this if control structure, as we are
+            //looking a move ahead to see if white, who is in check now, can get out of check on his turn.
+            Game.setCurrentTeamsTurn(0);
+            
+            boolean validMoveFound = false;
+            boolean allMovesHaveBeenChecked = false;
+            
+            int row = 0;
+            
+            while (validMoveFound == false && row <= 7)
+            {
+                int column = 0;
+                
+                while (validMoveFound == false && column <= 7)
+                {
+                    switch (pieceTypeLocationsOnBoard[row][column]) {
+                        case 1:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Pawn.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 2:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Rook.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 3:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Knight.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 4:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Bishop.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 5:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Queen.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 6:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (King.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        default:
+                            
+                            break;
+                    }
+                    
+                    column += 1;
+                }
+                
+                row += 1;
+                
+                if (row == 8)
+                {
+                    allMovesHaveBeenChecked = true;
+                }
+            }
+            
+            //Restoring currentTeamsTurn.
+            Game.setCurrentTeamsTurn(1);
+            
+            if (allMovesHaveBeenChecked == true && validMoveFound == false)
+            {
+                Game.setGameStatus(2);
+            }
+        }
+        
+        //Checking for Game Status 3: Draw by stalemate.
+        //If Game Status equals 0, then it was not set to 1 or 2 in the previous check.
+        //Game Status will only ever equal 0 until it is found to be a new result, in which
+        //it must be reset back to 0 before a new game, and therefore this method, is ever
+        //reached again.
+        //If neither player is in check, check to make sure a valid move still exists.
+        //Else, it is stalemate.
+        if (Game.getGameStatus() == 0 && wK.isInCheck(pieceTypeLocationsOnBoard) == false && bK.isInCheck(pieceTypeLocationsOnBoard) == false)
+        {
+            //Preserving currentTeamsTurn and restoring at the end of this if control structure.
+            int currentTeamsTurnTemp = Game.getCurrentTeamsTurn();
+            
+            boolean validMoveFound = false;
+            boolean allMovesHaveBeenChecked = false;
+            
+            int row = 0;
+            
+            while (validMoveFound == false && row <= 7)
+            {
+                int column = 0;
+                
+                while (validMoveFound == false && column <= 7)
+                {
+                    switch (pieceTypeLocationsOnBoard[row][column]) {
+                        case 1:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            Game.setCurrentTeamsTurn(0);
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Pawn.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            break;
+                        case 2:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            Game.setCurrentTeamsTurn(0);
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Rook.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            break;
+                        case 3:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            Game.setCurrentTeamsTurn(0);
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Knight.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 4:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            Game.setCurrentTeamsTurn(0);
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Bishop.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 5:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            Game.setCurrentTeamsTurn(0);
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Queen.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 6:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            Game.setCurrentTeamsTurn(0);
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (King.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 7:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            Game.setCurrentTeamsTurn(1);
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Pawn.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 8:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            Game.setCurrentTeamsTurn(1);
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Rook.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 9:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            Game.setCurrentTeamsTurn(1);
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Knight.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 10:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            Game.setCurrentTeamsTurn(1);
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Bishop.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 11:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            Game.setCurrentTeamsTurn(1);
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Queen.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 12:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            Game.setCurrentTeamsTurn(1);
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (King.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        default:
+                            
+                            break;
+                    }
+                    
+                    column += 1;
+                }
+                
+                row += 1;
+                
+                if (row == 8)
+                {
+                    allMovesHaveBeenChecked = true;
+                }
+            }
+            
+            //Restoring currentTeamsTurn.
+            Game.setCurrentTeamsTurn(currentTeamsTurnTemp);
+            
+            if (allMovesHaveBeenChecked == true && validMoveFound == false)
+            {
+                Game.setGameStatus(3);
+            }
+        }
+        
+        //Checking for Game Status 4: Draw by threefold repetition.
+        //If Game Status equals 0, then it was not set from the previous steps. See more details
+        //on why in the comments for Game Status check 3 above.
+        //This method is not solved yet.
+        if (Game.getGameStatus() == 0)
+        {
+            //Extra feature
+        }
+        
+        //Checking for Game Status 5: Draw by 50-Move Rule.
+        //If Game Status equals 0, then it was not set from the previous steps. See more details
+        //on why in the comments for Game Status check 3 above.
+        //...
+        if (Game.getGameStatus() == 0)
+        {
+            if (white.numOfMovesNoCaptureOrPawnMoves >= 50 && black.numOfMovesNoCaptureOrPawnMoves >= 50)
+            {
+                Game.setGameStatus(5);
+            }
+        }
+        
+        //Checking for Game Status 6: Draw by perpetual check.
+        //If Game Status equals 0, then it was not set from the previous steps. See more details
+        //on why in the comments for Game Status check 3 above.
+        //This method is not solved yet.
+        if (Game.getGameStatus() == 0)
+        {
+            //Extra feature
+        }
+        
+        //Checking for Game Status 7: Draw by insufficient material.
+        //If Game Status equals 0, then it was not set from the previous steps. See more details
+        //on why in the comments for Game Status check 3 above.
+        //This method is not solved yet.
+        if (Game.getGameStatus() == 0)
+        {
+            //Extra feature
+        }
+        
+        //Restoring:
+        Game.setTargetedSquare(targetedSquareTemp);
+        TeamLewisChessController.setSquareClicked(squareClickedTemp);
+        
+        //Display appropriate message.
+        switch (Game.getGameStatus())
+        {
+            case 1: //White wins (Black is checkmated.).
+                String gameResult1 = "White wins! Black is checkmated.";
+                JOptionPane.showMessageDialog(null, gameResult1);
+                
+                break;
+            case 2: //Black wins (White is checkmated.).
+                String gameResult2 = "Black wins! White is checkmated.";
+                JOptionPane.showMessageDialog(null, gameResult2);
+                
+                break;
+            case 3: //Draw by stalemate.
+                String gameResult3 = "Draw by stalemate.";
+                JOptionPane.showMessageDialog(null, gameResult3);
+                
+                break;
+            case 4: //Draw by threefold repetition.
+                    //Not solved yet.
+                String gameResult4 = "Draw by threefold repetition.";
+                JOptionPane.showMessageDialog(null, gameResult4);
+                
+                break;
+            case 5: //Draw by 50-Move Rule
+                
+                String gameResult5 = "Draw by the Fifty Move Rule.";
+                JOptionPane.showMessageDialog(null, gameResult5);
+                break;
+            case 6: //Draw by perpetual check.
+                    //Not solved yet.
+                
+                String gameResult6 = "Draw by perpetual check.";
+                JOptionPane.showMessageDialog(null, gameResult6);
+                
+                break;
+            case 7: //Draw by insufficient material.
+                    //Not solved yet.
+                
+                String gameResult7 = "Draw by insufficient material.";
+                JOptionPane.showMessageDialog(null, gameResult7);
+                
+                break;
+        }
     }
     
     /**

@@ -8,13 +8,17 @@ public class King extends Piece {
     
     private boolean canCastle(int[][] fPieceTypeLocationsOnBoard)
     {
+        //Note: Have to make sure that the rook that the king is castling with is an original rook
+        //and not a pawn promoted to a rook.
+        
         //Just to satisfy program and to be updated with algorithm:
         return false;
     }
     
     public boolean isInCheck(int[][] fPieceTypeLocationsOnBoard)
     {
-        return true;
+        //Just to satisfy program and to be updated with algorithm:
+        return false;
     }
     
     static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam)

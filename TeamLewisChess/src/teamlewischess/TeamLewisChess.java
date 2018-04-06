@@ -7,6 +7,8 @@ package teamlewischess;
  * 
  * @author TeamLewisChess Isaiah Gregov, Leana Tran, Adam Perry, Marcus Page, Peggy Haeger
  * 
+ * Credits: The picture of the board and the piece movement sounds are taken from chess.com.
+ * The pieces are free images taken from a free images website.
  */
 
 //Imported to play piece move sounds:

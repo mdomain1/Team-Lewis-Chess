@@ -1553,11 +1553,6 @@ public class TeamLewisChessController  {
         H5_ImageView.setImage(null);
         H6_ImageView.setImage(null);
         
-        //Playing these two sounds together to make it sound like a lot of pieces are
-        //being moved at once as the board is being reset:
-        TeamLewisChess.playSoundMove();
-        TeamLewisChess.playSoundCapture();
-        
         Image imageOne;
         imageOne = new Image("/teamlewischess/images/whitepawn.png");
         A2_ImageView.setImage(imageOne);
@@ -2916,6 +2911,12 @@ public class TeamLewisChessController  {
     static public int getSquareClicked()
     {
         return squareClicked;
+    }
+    
+    //This method is only used in class Board's updateGameStatus method.
+    static public void setSquareClicked(int fSquareClicked)
+    {
+        squareClicked = fSquareClicked;
     }
     
     /**
