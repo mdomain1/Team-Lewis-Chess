@@ -13,13 +13,111 @@ public class Pawn extends Piece {
     
     static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam)
     {
-        //Just to satisfy program and to be updated with algorithm:
-        return true;
+        if(Pawn.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
+            if(Pawn.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
+                if(Pawn.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
     
     static private boolean withinRangeOfPieceMobility(int[][] fPieceTypeLocationsOnBoard)
     {
-        //Just to satisfy program and to be updated with algorithm:
+        int rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
+        int columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
+        
+        int rowClicked = Board.getRowFromLocation(TeamLewisChessController.getSquareClicked());
+        int columnClicked = Board.getColumnFromLocation(TeamLewisChessController.getSquareClicked());
+        
+        int pawn;
+       
+        int whitePawn = 1;      int blackPawn = 7;
+        int whiteRook = 2;      int blackRook = 8;
+        int whiteKnight = 3;    int blackKnight = 9;
+        int whiteBishop = 4;    int blackBishop = 10;
+        int whiteQueen = 5;     int blackQueen = 11;
+        
+        pawn = fPieceTypeLocationsOnBoard[rowTargeted][columnTargeted];
+        
+        if (pawn != whitePawn || pawn != blackPawn){
+            if (pawn != whiteKnight || pawn != blackKnight){
+                // rook's cross
+                if(rowTargeted == rowClicked)
+                    return true;
+                else if(columnTargeted == columnClicked)
+                    return true;
+
+                // bishop's diagonal
+                int displacement = Game.getTargetedSquare() - TeamLewisChessController.getSquareClicked();
+                if (displacement % 7 == 0 || displacement % 9 == 0)
+                    return true;
+            }
+            else{ // pawn is a knight
+                
+                int[] rowKnight = new int[8];
+                int[] columnKnight= new int[8];
+
+                rowKnight[0]= -1  ; columnKnight[0]=2;
+                rowKnight[1]= -2  ; columnKnight[1]=1;      
+                rowKnight[2]= -2  ; columnKnight[2]=-1;
+                rowKnight[3]= -1  ; columnKnight[3]=-2;
+                rowKnight[4]= 1   ; columnKnight[4]=-2;
+                rowKnight[5]= 2   ; columnKnight[5]=-1;
+                rowKnight[6]= 2   ; columnKnight[6]=1;
+                rowKnight[7]= 1   ; columnKnight[7]=2;
+
+                int nextRow;
+                int nextColumn;
+
+                for(int i = 0; i <= 7; i++){
+
+                   nextRow = rowTargeted + rowKnight[i];
+                   nextColumn = columnTargeted + columnKnight[i];
+
+                    if( nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 &&  nextColumn <= 7){
+                         if(nextRow == rowClicked && nextColumn == columnClicked)
+                             return true;
+                    }
+                }
+            }
+        }
+        else{ // if pawn = pawn
+            
+            int[] rowPawnMove = new int[4];
+            int[] columnPawnMove = new int[4];
+
+            if(Game.getCurrentTeamsTurn() == 0){
+
+                rowPawnMove[0] = -1; columnPawnMove[0] = 1;
+                rowPawnMove[1] = -1; columnPawnMove[1] = -1;
+                rowPawnMove[2] = -1; columnPawnMove[2] = 0;
+                rowPawnMove[3] = -2; columnPawnMove[3] = 0; // currently an unrestricted move
+
+                for(int i = 0; i < 4; i++){
+                    if(rowTargeted + rowPawnMove[i] >= 0 && rowTargeted + rowPawnMove[i] <= 7 && columnTargeted + columnPawnMove[i] >= 0 && columnTargeted + columnPawnMove[i] <= 7)
+                        if(rowTargeted + rowPawnMove[i] == rowClicked)
+                            if(columnTargeted + columnPawnMove[i] == columnClicked)
+                                return true;
+                }
+            }
+            else if(Game.getCurrentTeamsTurn() != 0){
+
+                rowPawnMove[0] = 1; columnPawnMove[0] = 1;
+                rowPawnMove[1] = 1; columnPawnMove[1] = -1;
+                rowPawnMove[2] = 1; columnPawnMove[2] = 0;
+                rowPawnMove[3] = 2; columnPawnMove[3] = 0; // currently an unrestricted move
+
+                for(int i = 0; i < 4; i++){
+                    if(rowTargeted + rowPawnMove[i] >= 0 && rowTargeted + rowPawnMove[i] <= 7 && columnTargeted + columnPawnMove[i] >= 0 && columnTargeted + columnPawnMove[i] <= 7)
+                        if(rowTargeted + rowPawnMove[i] == rowClicked)
+                            if(columnTargeted + columnPawnMove[i] == columnClicked)
+                                return true;
+                }
+            }
+        }
+        // withinRangeOfPieceMobility
         return false;
     }
     
