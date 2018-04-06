@@ -73,8 +73,82 @@ public class Rook extends Piece {
     
     static private boolean noPieceBlocksPathToSquare(int[][] fPieceTypeLocationsOnBoard)
     {
-        //Just to satisfy program and to be updated with algorithm:
-        //return false;
+         int rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
+        int columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
+        
+        int rowClicked = Board.getRowFromLocation(TeamLewisChessController.getSquareClicked());
+        int columnClicked = Board.getColumnFromLocation(TeamLewisChessController.getSquareClicked());
+
+        if(fPieceTypeLocationsOnBoard[rowTargeted][columnTargeted] >= 1 && fPieceTypeLocationsOnBoard[rowTargeted][columnTargeted] <= 6){
+            if(fPieceTypeLocationsOnBoard[rowClicked][columnClicked] >= 1 && fPieceTypeLocationsOnBoard[rowClicked][columnClicked] <= 6)
+                return false; 
+        }
+        else if(fPieceTypeLocationsOnBoard[rowTargeted][columnTargeted] >= 7 && fPieceTypeLocationsOnBoard[rowTargeted][columnTargeted] <= 12){
+            if(fPieceTypeLocationsOnBoard[rowClicked][columnClicked] >= 7 && fPieceTypeLocationsOnBoard[rowClicked][columnClicked] <= 12)
+                return false;
+        }
+        
+        int displacement = Game.getTargetedSquare() - TeamLewisChessController.getSquareClicked();
+        int numSquaresInBetweenTargetedSquareAndSquareClicked  = 0;
+        
+        int i = 0;
+        int row = rowTargeted;
+        int col = columnTargeted;
+        
+        // check if path is blocked
+        if( columnTargeted == columnClicked ){
+                if ( displacement > 0){ // north
+
+                    numSquaresInBetweenTargetedSquareAndSquareClicked  = displacement / 8 - 1;
+
+                    while( i < numSquaresInBetweenTargetedSquareAndSquareClicked  ){
+                        row = row - 1;
+                        col = col + 0;
+                        if(fPieceTypeLocationsOnBoard[row][col] != 0)
+                            return false;
+                        i++;
+                    }
+                }
+                else{ // south
+
+                    numSquaresInBetweenTargetedSquareAndSquareClicked  = Math.abs(displacement) / 8 - 1;
+
+                    while( i < numSquaresInBetweenTargetedSquareAndSquareClicked){
+                        row = row + 1;
+                        col = col + 0;
+                        if(fPieceTypeLocationsOnBoard[row][col] != 0)
+                            return false;
+                        i++;
+                    }
+                }
+            }     
+            else {
+                if (displacement > 0){ // west
+
+                    numSquaresInBetweenTargetedSquareAndSquareClicked = displacement - 1;
+
+                    while( i < numSquaresInBetweenTargetedSquareAndSquareClicked  ){
+                        row = row - 0;
+                        col = col - 1;
+                        if(fPieceTypeLocationsOnBoard[row][col] != 0)
+                            return false;
+                        i++;
+                    }
+                }
+                else{ // east
+
+                    numSquaresInBetweenTargetedSquareAndSquareClicked  = Math.abs(displacement) - 1;
+
+                    while( i < numSquaresInBetweenTargetedSquareAndSquareClicked  ){
+                        row = row + 0;
+                        col = col + 1;
+                        if(fPieceTypeLocationsOnBoard[row][col] != 0)
+                            return false;
+                        i++;
+                    }
+                }
+            }
+        // noPieceBlocksPathToSquare
         return true;
     }
     
