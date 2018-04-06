@@ -962,65 +962,153 @@ public class Board {
                 wP_1.setLocation(TeamLewisChessController.getSquareClicked());
                 if (squareClickedRow == 0 && wP_1.promoted() == false)
                 {
-                    isBeingPromoted = true;
-                    
                     onePromotionWindow.displayPromotionWindow();
+                    
+                    isBeingPromoted = true;
+                    wP_1.setPromoted(true);
+                    
+                    if (isBeingPromotedToQueen) {
+                        wP_1.setPromotedToQueen(true);
+                    } else if (isBeingPromotedToRook) {
+                        wP_1.setPromotedToRook(true);
+                    } else if (isBeingPromotedToBishop) {
+                        wP_1.setPromotedToBishop(true);
+                    } else if (isBeingPromotedToKnight) {
+                        wP_1.setPromotedToKnight(true);
+                    }
                 }
             } else if (wP_2.getLocation() == Game.getTargetedSquare()) {
                 wP_2.setLocation(TeamLewisChessController.getSquareClicked());
                 if (squareClickedRow == 0 && wP_2.promoted() == false)
                 {
-                    isBeingPromoted = true;
-                    
                     onePromotionWindow.displayPromotionWindow();
+                    
+                    isBeingPromoted = true;
+                    wP_2.setPromoted(true);
+                    
+                    if (isBeingPromotedToQueen) {
+                        wP_2.setPromotedToQueen(true);
+                    } else if (isBeingPromotedToRook) {
+                        wP_2.setPromotedToRook(true);
+                    } else if (isBeingPromotedToBishop) {
+                        wP_2.setPromotedToBishop(true);
+                    } else if (isBeingPromotedToKnight) {
+                        wP_2.setPromotedToKnight(true);
+                    }
                 }
             } else if (wP_3.getLocation() == Game.getTargetedSquare()) {
                 wP_3.setLocation(TeamLewisChessController.getSquareClicked());
                 if (squareClickedRow == 0 && wP_3.promoted() == false)
                 {
-                    isBeingPromoted = true;
-                    
                     onePromotionWindow.displayPromotionWindow();
+                    
+                    isBeingPromoted = true;
+                    wP_3.setPromoted(true);
+                    
+                    if (isBeingPromotedToQueen) {
+                        wP_3.setPromotedToQueen(true);
+                    } else if (isBeingPromotedToRook) {
+                        wP_3.setPromotedToRook(true);
+                    } else if (isBeingPromotedToBishop) {
+                        wP_3.setPromotedToBishop(true);
+                    } else if (isBeingPromotedToKnight) {
+                        wP_3.setPromotedToKnight(true);
+                    }
                 }
             } else if (wP_4.getLocation() == Game.getTargetedSquare()) {
                 wP_4.setLocation(TeamLewisChessController.getSquareClicked());
                 if (squareClickedRow == 0 && wP_4.promoted() == false)
                 {
-                    isBeingPromoted = true;
-                    
                     onePromotionWindow.displayPromotionWindow();
+                    
+                    isBeingPromoted = true;
+                    wP_4.setPromoted(true);
+                    
+                    if (isBeingPromotedToQueen) {
+                        wP_4.setPromotedToQueen(true);
+                    } else if (isBeingPromotedToRook) {
+                        wP_4.setPromotedToRook(true);
+                    } else if (isBeingPromotedToBishop) {
+                        wP_4.setPromotedToBishop(true);
+                    } else if (isBeingPromotedToKnight) {
+                        wP_4.setPromotedToKnight(true);
+                    }
                 }
             } else if (wP_5.getLocation() == Game.getTargetedSquare()) {
                 wP_5.setLocation(TeamLewisChessController.getSquareClicked());
                 if (squareClickedRow == 0 && wP_5.promoted() == false)
                 {
-                    isBeingPromoted = true;
-                    
                     onePromotionWindow.displayPromotionWindow();
+                    
+                    isBeingPromoted = true;
+                    wP_5.setPromoted(true);
+                    
+                    if (isBeingPromotedToQueen) {
+                        wP_5.setPromotedToQueen(true);
+                    } else if (isBeingPromotedToRook) {
+                        wP_5.setPromotedToRook(true);
+                    } else if (isBeingPromotedToBishop) {
+                        wP_5.setPromotedToBishop(true);
+                    } else if (isBeingPromotedToKnight) {
+                        wP_5.setPromotedToKnight(true);
+                    }
                 }
             } else if (wP_6.getLocation() == Game.getTargetedSquare()) {
                 wP_6.setLocation(TeamLewisChessController.getSquareClicked());
                 if (squareClickedRow == 0 && wP_6.promoted() == false)
                 {
-                    isBeingPromoted = true;
-                    
                     onePromotionWindow.displayPromotionWindow();
+                    
+                    isBeingPromoted = true;
+                    wP_6.setPromoted(true);
+                    
+                    if (isBeingPromotedToQueen) {
+                        wP_6.setPromotedToQueen(true);
+                    } else if (isBeingPromotedToRook) {
+                        wP_6.setPromotedToRook(true);
+                    } else if (isBeingPromotedToBishop) {
+                        wP_6.setPromotedToBishop(true);
+                    } else if (isBeingPromotedToKnight) {
+                        wP_6.setPromotedToKnight(true);
+                    }
                 }
             } else if (wP_7.getLocation() == Game.getTargetedSquare()) {
                 wP_7.setLocation(TeamLewisChessController.getSquareClicked());
                 if (squareClickedRow == 0 && wP_7.promoted() == false)
                 {
-                    isBeingPromoted = true;
-                    
                     onePromotionWindow.displayPromotionWindow();
+                    
+                    isBeingPromoted = true;
+                    wP_7.setPromoted(true);
+                    
+                    if (isBeingPromotedToQueen) {
+                        wP_7.setPromotedToQueen(true);
+                    } else if (isBeingPromotedToRook) {
+                        wP_7.setPromotedToRook(true);
+                    } else if (isBeingPromotedToBishop) {
+                        wP_7.setPromotedToBishop(true);
+                    } else if (isBeingPromotedToKnight) {
+                        wP_7.setPromotedToKnight(true);
+                    }
                 }
             } else if (wP_8.getLocation() == Game.getTargetedSquare()) {
                 wP_8.setLocation(TeamLewisChessController.getSquareClicked());
                 if (squareClickedRow == 0 && wP_8.promoted() == false)
                 {
-                    isBeingPromoted = true;
-                    
                     onePromotionWindow.displayPromotionWindow();
+                    
+                    isBeingPromoted = true;
+                    wP_8.setPromoted(true);
+                    
+                    if (isBeingPromotedToQueen) {
+                        wP_8.setPromotedToQueen(true);
+                    } else if (isBeingPromotedToRook) {
+                        wP_8.setPromotedToRook(true);
+                    } else if (isBeingPromotedToBishop) {
+                        wP_8.setPromotedToBishop(true);
+                    } else if (isBeingPromotedToKnight) {
+                        wP_8.setPromotedToKnight(true);
+                    }
                 }
             } else if (bK.getLocation() == Game.getTargetedSquare()) {
                 bK.setLocation(TeamLewisChessController.getSquareClicked());
@@ -1045,65 +1133,153 @@ public class Board {
                 bP_1.setLocation(TeamLewisChessController.getSquareClicked());
                 if (squareClickedRow == 7 && bP_1.promoted() == false)
                 {
-                    isBeingPromoted = true;
-                    
                     onePromotionWindow.displayPromotionWindow();
+                    
+                    isBeingPromoted = true;
+                    bP_1.setPromoted(true);
+                    
+                    if (isBeingPromotedToQueen) {
+                        bP_1.setPromotedToQueen(true);
+                    } else if (isBeingPromotedToRook) {
+                        bP_1.setPromotedToRook(true);
+                    } else if (isBeingPromotedToBishop) {
+                        bP_1.setPromotedToBishop(true);
+                    } else if (isBeingPromotedToKnight) {
+                        bP_1.setPromotedToKnight(true);
+                    }
                 }
             } else if (bP_2.getLocation() == Game.getTargetedSquare()) {
                 bP_2.setLocation(TeamLewisChessController.getSquareClicked());
                 if (squareClickedRow == 7 && bP_2.promoted() == false)
                 {
-                    isBeingPromoted = true;
-                    
                     onePromotionWindow.displayPromotionWindow();
+                    
+                    isBeingPromoted = true;
+                    bP_2.setPromoted(true);
+                    
+                    if (isBeingPromotedToQueen) {
+                        bP_2.setPromotedToQueen(true);
+                    } else if (isBeingPromotedToRook) {
+                        bP_2.setPromotedToRook(true);
+                    } else if (isBeingPromotedToBishop) {
+                        bP_2.setPromotedToBishop(true);
+                    } else if (isBeingPromotedToKnight) {
+                        bP_2.setPromotedToKnight(true);
+                    }
                 }
             } else if (bP_3.getLocation() == Game.getTargetedSquare()) {
                 bP_3.setLocation(TeamLewisChessController.getSquareClicked());
                 if (squareClickedRow == 7 && bP_3.promoted() == false)
                 {
-                    isBeingPromoted = true;
-                    
                     onePromotionWindow.displayPromotionWindow();
+                    
+                    isBeingPromoted = true;
+                    bP_3.setPromoted(true);
+                    
+                    if (isBeingPromotedToQueen) {
+                        bP_3.setPromotedToQueen(true);
+                    } else if (isBeingPromotedToRook) {
+                        bP_3.setPromotedToRook(true);
+                    } else if (isBeingPromotedToBishop) {
+                        bP_3.setPromotedToBishop(true);
+                    } else if (isBeingPromotedToKnight) {
+                        bP_3.setPromotedToKnight(true);
+                    }
                 }
             } else if (bP_4.getLocation() == Game.getTargetedSquare()) {
                 bP_4.setLocation(TeamLewisChessController.getSquareClicked());
                 if (squareClickedRow == 7 && bP_4.promoted() == false)
                 {
-                    isBeingPromoted = true;
-                    
                     onePromotionWindow.displayPromotionWindow();
+                    
+                    isBeingPromoted = true;
+                    bP_4.setPromoted(true);
+                    
+                    if (isBeingPromotedToQueen) {
+                        bP_4.setPromotedToQueen(true);
+                    } else if (isBeingPromotedToRook) {
+                        bP_4.setPromotedToRook(true);
+                    } else if (isBeingPromotedToBishop) {
+                        bP_4.setPromotedToBishop(true);
+                    } else if (isBeingPromotedToKnight) {
+                        bP_4.setPromotedToKnight(true);
+                    }
                 }
             } else if (bP_5.getLocation() == Game.getTargetedSquare()) {
                 bP_5.setLocation(TeamLewisChessController.getSquareClicked());
                 if (squareClickedRow == 7 && bP_5.promoted() == false)
                 {
-                    isBeingPromoted = true;
-                    
                     onePromotionWindow.displayPromotionWindow();
+                    
+                    isBeingPromoted = true;
+                    bP_5.setPromoted(true);
+                    
+                    if (isBeingPromotedToQueen) {
+                        bP_5.setPromotedToQueen(true);
+                    } else if (isBeingPromotedToRook) {
+                        bP_5.setPromotedToRook(true);
+                    } else if (isBeingPromotedToBishop) {
+                        bP_5.setPromotedToBishop(true);
+                    } else if (isBeingPromotedToKnight) {
+                        bP_5.setPromotedToKnight(true);
+                    }
                 }
             } else if (bP_6.getLocation() == Game.getTargetedSquare()) {
                 bP_6.setLocation(TeamLewisChessController.getSquareClicked());
                 if (squareClickedRow == 7 && bP_6.promoted() == false)
                 {
-                    isBeingPromoted = true;
-                    
                     onePromotionWindow.displayPromotionWindow();
+                    
+                    isBeingPromoted = true;
+                    bP_6.setPromoted(true);
+                    
+                    if (isBeingPromotedToQueen) {
+                        bP_6.setPromotedToQueen(true);
+                    } else if (isBeingPromotedToRook) {
+                        bP_6.setPromotedToRook(true);
+                    } else if (isBeingPromotedToBishop) {
+                        bP_6.setPromotedToBishop(true);
+                    } else if (isBeingPromotedToKnight) {
+                        bP_6.setPromotedToKnight(true);
+                    }
                 }
             } else if (bP_7.getLocation() == Game.getTargetedSquare()) {
                 bP_7.setLocation(TeamLewisChessController.getSquareClicked());
                 if (squareClickedRow == 7 && bP_7.promoted() == false)
                 {
-                    isBeingPromoted = true;
-                    
                     onePromotionWindow.displayPromotionWindow();
+                    
+                    isBeingPromoted = true;
+                    bP_7.setPromoted(true);
+                    
+                    if (isBeingPromotedToQueen) {
+                        bP_7.setPromotedToQueen(true);
+                    } else if (isBeingPromotedToRook) {
+                        bP_7.setPromotedToRook(true);
+                    } else if (isBeingPromotedToBishop) {
+                        bP_7.setPromotedToBishop(true);
+                    } else if (isBeingPromotedToKnight) {
+                        bP_7.setPromotedToKnight(true);
+                    }
                 }
             } else if (bP_8.getLocation() == Game.getTargetedSquare()) {
                 bP_8.setLocation(TeamLewisChessController.getSquareClicked());
                 if (squareClickedRow == 7 && bP_8.promoted() == false)
                 {
-                    isBeingPromoted = true;
-                    
                     onePromotionWindow.displayPromotionWindow();
+                    
+                    isBeingPromoted = true;
+                    bP_8.setPromoted(true);
+                    
+                    if (isBeingPromotedToQueen) {
+                        bP_8.setPromotedToQueen(true);
+                    } else if (isBeingPromotedToRook) {
+                        bP_8.setPromotedToRook(true);
+                    } else if (isBeingPromotedToBishop) {
+                        bP_8.setPromotedToBishop(true);
+                    } else if (isBeingPromotedToKnight) {
+                        bP_8.setPromotedToKnight(true);
+                    }
                 }
             }
             
@@ -1140,7 +1316,7 @@ public class Board {
                     TeamLewisChessController.setImageToUpdateSquareMovedTo(10);
                 } else if (isBeingPromotedToRook) {
                     pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn] = 8;
-                    TeamLewisChessController.setImageToUpdateSquareMovedTo(9);
+                    TeamLewisChessController.setImageToUpdateSquareMovedTo(8);
                 } else if (isBeingPromotedToQueen) {
                     pieceTypeLocationsOnBoard[squareClickedRow][squareClickedColumn] = 11;
                     TeamLewisChessController.setImageToUpdateSquareMovedTo(11);
