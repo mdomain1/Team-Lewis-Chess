@@ -159,6 +159,6 @@ public class TeamLewisChess extends Application {
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.showAndWait();     
-    }   
+    }       
 }
 
