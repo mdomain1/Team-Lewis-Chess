@@ -13,6 +13,10 @@ import javafx.stage.StageStyle;
  */
 public class WelcomeScreen {
     
+    /**
+     *
+     * @throws IOException
+     */
     public void displayWelcomeScreen() throws IOException
     {
         Parent root = FXMLLoader.load(getClass().getResource("welcomeScreen.fxml"));

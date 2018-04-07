@@ -1,23 +1,18 @@
 package teamlewischess;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-
-/*
- * Description pending...
- */
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class WelcomeScreenController {
 
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
-    void initialize() {
-
+   // @FXML private ImageView WelcomeScreen;
+    
+    @FXML public ImageView startGame;
+    
+    @FXML void startGame(MouseEvent event) {
+       Stage stage = (Stage) startGame.getScene().getWindow();
+       stage.close();
     }
 }

@@ -13,6 +13,9 @@ package teamlewischess;
 
 //Imported to play piece move sounds:
 import java.io.File;
+import java.io.IOException;
+import java.time.Duration;
+import javafx.animation.PauseTransition;
 //import java.io.FileInputStream;
 //import java.io.InputStream;
 import javax.swing.JOptionPane;
@@ -25,7 +28,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 public class TeamLewisChess extends Application {
@@ -37,6 +42,9 @@ public class TeamLewisChess extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
+        
+        displayWelcomeScreen();
+     
         Parent root = FXMLLoader.load(getClass().getResource("TeamLewisChess.fxml"));
 
         Scene scene = new Scene(root); // attach scene graph to scene
@@ -137,4 +145,20 @@ public class TeamLewisChess extends Application {
             JOptionPane.showMessageDialog(null, ex);
         }
    }
+    
+    public void displayWelcomeScreen() throws IOException
+    {
+        Parent root = FXMLLoader.load(getClass().getResource("welcomeScreen.fxml"));
+
+        Scene scene = new Scene(root); // attach scene graph to scene
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        
+        //stage.setTitle("Team Lewis Chess"); // displayed in window's title bar
+        stage.setScene(scene); // attach scene to stage
+        stage.setResizable(false);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.showAndWait();     
+    }   
 }
+
