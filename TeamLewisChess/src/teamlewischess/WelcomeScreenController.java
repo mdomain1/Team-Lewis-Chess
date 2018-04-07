@@ -11,9 +11,7 @@ public class WelcomeScreenController {
     
     @FXML public ImageView startGame;
     
-    @FXML void startGame(MouseEvent event) {
-       TeamLewisChess.playSoundMove();
-        
+    @FXML void startGame(MouseEvent event) {        
        Stage stage = (Stage) startGame.getScene().getWindow();
        stage.close();
     }
