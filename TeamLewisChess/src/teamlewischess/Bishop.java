@@ -216,7 +216,7 @@ public class Bishop extends Piece {
            
            ///// check area for black Rook and Queen                 
             
-           int blackRook = 10;
+           int blackRook = 8;
            
            int[] rookRowMove = new int[4];
            int[] rookColumnMove = new int[4];
@@ -283,7 +283,7 @@ public class Bishop extends Piece {
            rowPawn[0]= -1 ; columnPawn[0] = 1;
            rowPawn[1]= -1 ; columnPawn[1] = -1;      
             
-           for(int i = 0; i <= 7 ;i++){
+           for(int i = 0; i <= 1 ;i++){
                
               nextRow = rowKing + rowPawn[i];
               nextColumn = columnKing + columnPawn[i];
@@ -347,7 +347,7 @@ public class Bishop extends Piece {
            
            ///// check area for Rook and Queen (white)                
             
-           int whiteRook = 10;
+           int whiteRook = 2;
            
            int[] rookRowMove = new int[4];
            int[] rookColumnMove = new int[4];
