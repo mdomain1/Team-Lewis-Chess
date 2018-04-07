@@ -15,7 +15,7 @@ public class King extends Piece {
         return false;
     }
     
-    static public boolean isInCheck(int[][] fPieceTypeLocationsOnBoard)
+    public boolean isInCheck(int[][] fPieceTypeLocationsOnBoard)
     {
         return false;
     }
