@@ -20,8 +20,8 @@ public class Knight extends Piece {
                  Knight.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
          System.out.println("noPieceBlocksPathToSquare: " + 
                  Knight.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
-       //  System.out.println("moveDoesNotPlaceKingInCheck:  " + 
-         //        Knight.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
+         System.out.println("moveDoesNotPlaceKingInCheck:  " + 
+                 Knight.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
                  
         if(Knight.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
             

@@ -11,8 +11,8 @@ public class Bishop extends Piece {
                  Bishop.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
          System.out.println("noPieceBlocksPathToSquare: " + 
                  Bishop.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
-        // System.out.println("moveDoesNotPlaceKingInCheck:  " + 
-          //       Bishop.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
+         System.out.println("moveDoesNotPlaceKingInCheck:  " + 
+                 Bishop.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
          
         if(Bishop.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
             if(Bishop.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){

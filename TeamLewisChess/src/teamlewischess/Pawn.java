@@ -17,12 +17,12 @@ public class Pawn extends Piece {
                  Pawn.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
          System.out.println("noPieceBlocksPathToSquare: " + 
                  Pawn.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
-         //System.out.println("moveDoesNotPlaceKingInCheck:  " + 
-           //      Pawn.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
+         System.out.println("moveDoesNotPlaceKingInCheck:  " + 
+                Pawn.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
          
         if(Pawn.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
             if(Pawn.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
-                //if(Pawn.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
+              //  if(Pawn.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
                     return true;
                 //}
             }
@@ -251,7 +251,7 @@ public class Pawn extends Piece {
                         }
                         else{
                             nextRow += bishopRowMove[i];
-                            nextColumn += bishopRowMove[i];
+                            nextColumn += bishopColumnMove[i];
                         }
                     }
                 }

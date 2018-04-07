@@ -10,8 +10,8 @@ public class Queen extends Piece {
                  Queen.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
          System.out.println("noPieceBlocksPathToSquare: " + 
                  Queen.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
-         //System.out.println("moveDoesNotPlaceKingInCheck:  " + 
-           //      Queen.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
+         System.out.println("moveDoesNotPlaceKingInCheck:  " + 
+                 Queen.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
          
         if(Queen.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
             if(Queen.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
@@ -160,7 +160,7 @@ public class Queen extends Piece {
                     }
                     else{
                         nextRow += bishopRowMove[i];
-                        nextColumn += bishopRowMove[i];
+                        nextColumn += bishopColumnMove[i];
                     }
                 }
             }

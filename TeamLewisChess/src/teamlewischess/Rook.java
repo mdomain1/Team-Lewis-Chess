@@ -14,10 +14,10 @@ public class Rook extends Piece {
         System.out.println("Rook withinRange of PieceMobility: " + 
                  Rook.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
          System.out.println("noPieceBlocksPathToSquare: " + 
-                 Rook.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
-         
-      //  System.out.println("moveDoesNotPlaceKingInCheck:  " + 
-        //         Rook.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
+                 Rook.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));         
+        System.out.println("moveDoesNotPlaceKingInCheck:  " + 
+                 Rook.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
+        
         if(Rook.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
             
             if(Rook.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
