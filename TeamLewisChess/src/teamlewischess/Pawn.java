@@ -17,8 +17,8 @@ public class Pawn extends Piece {
                  Pawn.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
          System.out.println("noPieceBlocksPathToSquare: " + 
                  Pawn.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
-         System.out.println("moveDoesNotPlaceKingInCheck:  " + 
-                 Pawn.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
+         //System.out.println("moveDoesNotPlaceKingInCheck:  " + 
+           //      Pawn.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
          
         if(Pawn.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
             if(Pawn.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){

@@ -24,19 +24,19 @@ public class King extends Piece {
     {
         System.out.println("King withinRange of PieceMobility: " + 
                  King.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
-         //System.out.println("noPieceBlocksPathToSquare: " + 
-           //      King.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
+         System.out.println("noPieceBlocksPathToSquare: " + 
+                 King.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
          //System.out.println("moveDoesNotPlaceKingInCheck:  " + 
            //      King.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
          
-        //if(King.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
-          //  if(King.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
+        if(King.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
+            if(King.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
             //    if(King.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
                     return true;
             //    }
-          //  }
-        //}
-       // return false;
+            }
+        }
+        return false;
     }
     
     static private boolean withinRangeOfPieceMobility(int[][] fPieceTypeLocationsOnBoard)

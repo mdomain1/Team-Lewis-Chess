@@ -116,10 +116,11 @@ public class Bishop extends Piece {
                     }
                     else{
                         nextRow += bishopRowMove[i];
-                        nextColumn += bishopRowMove[i];
+                        nextColumn += bishopColumnMove[i];
                     }
                 }
             }
+            System.out.println("fallen through");
             return false; // just to satisfy the algorithm
     }
     

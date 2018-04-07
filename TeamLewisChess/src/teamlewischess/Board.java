@@ -1573,7 +1573,7 @@ public class Board {
         }
         
         //Step 4
-        updateGameStatus();
+        //updateGameStatus();
     }
     
     /**
