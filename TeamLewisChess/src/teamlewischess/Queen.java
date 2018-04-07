@@ -15,9 +15,9 @@ public class Queen extends Piece {
          
         if(Queen.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
             if(Queen.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
-           //     if(Queen.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){ 
-                return true;
-             //   }
+                if(Queen.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){ 
+                    return true;
+                }
             }
         }
         return false;

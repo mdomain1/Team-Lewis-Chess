@@ -27,10 +27,10 @@ public class Knight extends Piece {
             
             if(Knight.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
             
-                //if(Knight.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
+                if(Knight.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
                     
                     return true;
-                //}
+                }
             }
         }
         //Just to satisfy program and to be updated with algorithm:

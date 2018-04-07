@@ -7,7 +7,7 @@ import java.util.List;
  * @see Piece
  */
 public class Rook extends Piece {
-    private boolean hasMoved;
+    static public boolean hasMoved;
 
     static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam) {
 
@@ -22,10 +22,10 @@ public class Rook extends Piece {
             
             if(Rook.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
             
-            //    if(Rook.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
+                if(Rook.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
                     
                     return true;
-              //  }
+                }
             }
         }
         return false;

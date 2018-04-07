@@ -22,9 +22,9 @@ public class Pawn extends Piece {
          
         if(Pawn.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
             if(Pawn.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
-              //  if(Pawn.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
+                if(Pawn.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
                     return true;
-                //}
+                }
             }
         }       
         return false;

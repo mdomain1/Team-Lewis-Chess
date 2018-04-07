@@ -16,9 +16,9 @@ public class Bishop extends Piece {
          
         if(Bishop.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
             if(Bishop.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
-           //     if(Bishop.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
+                if(Bishop.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
                     return true;
-             //   }
+                }
             }
         }
         return false;

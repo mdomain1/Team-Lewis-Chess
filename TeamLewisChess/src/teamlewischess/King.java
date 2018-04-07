@@ -4,7 +4,7 @@ package teamlewischess;
  * Description pending...
  */
 public class King extends Piece {
-    private boolean hasMoved;
+    static public boolean hasMoved;
     
     private boolean canCastle(int[][] fPieceTypeLocationsOnBoard)
     {
@@ -15,9 +15,9 @@ public class King extends Piece {
         return false;
     }
     
-    public boolean isInCheck(int[][] fPieceTypeLocationsOnBoard)
+    static public boolean isInCheck(int[][] fPieceTypeLocationsOnBoard)
     {
-        return true;
+        return false;
     }
     
     static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam)
@@ -31,9 +31,9 @@ public class King extends Piece {
          
         if(King.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
             if(King.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
-            //    if(King.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
+                if(King.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
                     return true;
-            //    }
+                }
             }
         }
         return false;
