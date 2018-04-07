@@ -251,7 +251,7 @@ public class Queen extends Piece {
            System.out.println("black bishop and black queen not found");
            ///// check area for black Rook and Queen                 
             
-           int blackRook = 10;
+           int blackRook = 8;
            
            int[] rookRowMove = new int[4];
            int[] rookColumnMove = new int[4];
