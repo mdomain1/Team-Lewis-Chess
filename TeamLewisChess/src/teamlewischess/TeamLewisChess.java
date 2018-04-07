@@ -43,7 +43,22 @@ public class TeamLewisChess extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         
+        String uri = new File("ANGL-FireBurst_(Copyright_Free_Dubstep)_{FT Release}.wav").toURI().toString();
+        MediaPlayer mySound = new MediaPlayer(new Media(uri));       
+        
+        try {
+            //JFXPanel j = new JFXPanel();
+
+            mySound.play();
+            
+            //JOptionPane.showMessageDialog(null, uri);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+                
         displayWelcomeScreen();
+        
+        mySound.stop();
      
         Parent root = FXMLLoader.load(getClass().getResource("TeamLewisChess.fxml"));
 
@@ -159,6 +174,19 @@ public class TeamLewisChess extends Application {
         stage.setResizable(false);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.showAndWait();     
-    }       
+    }
+    
+    public static void playSoundOpeningMusic()
+    {
+        try {
+            //JFXPanel j = new JFXPanel();
+            String uri = new File("ANGL-FireBurst_(Copyright_Free_Dubstep)_{FT Release}.wav").toURI().toString();
+            MediaPlayer mySound = new MediaPlayer(new Media(uri));
+            mySound.play();
+            
+            //JOptionPane.showMessageDialog(null, uri);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
 }
-
