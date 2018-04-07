@@ -13,13 +13,20 @@ public class Pawn extends Piece {
     
     static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam)
     {
+        System.out.println("Pawn withinRange of PieceMobility: " + 
+                 Pawn.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
+         System.out.println("noPieceBlocksPathToSquare: " + 
+                 Pawn.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
+         System.out.println("moveDoesNotPlaceKingInCheck:  " + 
+                 Pawn.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
+         
         if(Pawn.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
             if(Pawn.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
-                if(Pawn.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
+                //if(Pawn.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
                     return true;
-                }
+                //}
             }
-        }
+        }       
         return false;
     }
     
@@ -34,15 +41,12 @@ public class Pawn extends Piece {
         int pawn;
        
         int whitePawn = 1;      int blackPawn = 7;
-        int whiteRook = 2;      int blackRook = 8;
         int whiteKnight = 3;    int blackKnight = 9;
-        int whiteBishop = 4;    int blackBishop = 10;
-        int whiteQueen = 5;     int blackQueen = 11;
         
         pawn = fPieceTypeLocationsOnBoard[rowTargeted][columnTargeted];
         
-        if (pawn != whitePawn || pawn != blackPawn){
-            if (pawn != whiteKnight || pawn != blackKnight){
+        if (pawn != whitePawn && pawn != blackPawn){
+            if (pawn != whiteKnight && pawn != blackKnight){
                 // rook's cross
                 if(rowTargeted == rowClicked)
                     return true;
@@ -50,9 +54,30 @@ public class Pawn extends Piece {
                     return true;
 
                 // bishop's diagonal
-                int displacement = Game.getTargetedSquare() - TeamLewisChessController.getSquareClicked();
-                if (displacement % 7 == 0 || displacement % 9 == 0)
-                    return true;
+                int[] bishopRowMove = new int[4];
+                int[] bishopColumnMove = new int[4];
+
+                bishopRowMove[0] = 1  ; bishopColumnMove[0] = -1;
+                bishopRowMove[1] = 1  ; bishopColumnMove[1] = 1;
+                bishopRowMove[2] = -1 ; bishopColumnMove[2] = -1;
+                bishopRowMove[3] = -1 ; bishopColumnMove[3] = 1;
+
+                int nextRow = 0;
+                int nextColumn = 0;
+
+                for (int i = 0; i < 4; i++){
+                    nextRow = rowTargeted + bishopRowMove[i];
+                    nextColumn = columnTargeted + bishopColumnMove[i];
+
+                    while(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                        if(nextRow == rowClicked && nextColumn == columnClicked)
+                             return true; // withinRangeofPieceMobility
+                        else{
+                            nextRow += bishopRowMove[i];
+                            nextColumn += bishopColumnMove[i];
+                        }
+                    }
+                }
             }
             else{ // pawn is a knight
                 
@@ -77,8 +102,9 @@ public class Pawn extends Piece {
                    nextColumn = columnTargeted + columnKnight[i];
 
                     if( nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 &&  nextColumn <= 7){
-                         if(nextRow == rowClicked && nextColumn == columnClicked)
+                         if(nextRow == rowClicked && nextColumn == columnClicked){
                              return true;
+                         }
                     }
                 }
             }
@@ -97,9 +123,9 @@ public class Pawn extends Piece {
 
                 for(int i = 0; i < 4; i++){
                     if(rowTargeted + rowPawnMove[i] >= 0 && rowTargeted + rowPawnMove[i] <= 7 && columnTargeted + columnPawnMove[i] >= 0 && columnTargeted + columnPawnMove[i] <= 7)
-                        if(rowTargeted + rowPawnMove[i] == rowClicked)
-                            if(columnTargeted + columnPawnMove[i] == columnClicked)
+                        if(rowTargeted + rowPawnMove[i] == rowClicked && columnTargeted + columnPawnMove[i] == columnClicked){
                                 return true;
+                            }
                 }
             }
             else if(Game.getCurrentTeamsTurn() != 0){
@@ -112,8 +138,9 @@ public class Pawn extends Piece {
                 for(int i = 0; i < 4; i++){
                     if(rowTargeted + rowPawnMove[i] >= 0 && rowTargeted + rowPawnMove[i] <= 7 && columnTargeted + columnPawnMove[i] >= 0 && columnTargeted + columnPawnMove[i] <= 7)
                         if(rowTargeted + rowPawnMove[i] == rowClicked)
-                            if(columnTargeted + columnPawnMove[i] == columnClicked)
+                            if(columnTargeted + columnPawnMove[i] == columnClicked){
                                 return true;
+                            }
                 }
             }
         }
@@ -139,130 +166,98 @@ public class Pawn extends Piece {
                 return false;
         }
         int pawn;
-       
         int whitePawn = 1;      int blackPawn = 7;
-        int whiteRook = 2;      int blackRook = 8;
-        int whiteKnight = 3;    int blackKnight = 9;
-        int whiteBishop = 4;    int blackBishop = 10;
-        int whiteQueen = 5;     int blackQueen = 11;
         
         pawn = fPieceTypeLocationsOnBoard[rowTargeted][columnTargeted];
         
-        if (pawn != whitePawn || pawn != blackPawn){
+        if (pawn != whitePawn && pawn != blackPawn){
             
-            int displacement = Game.getTargetedSquare() - TeamLewisChessController.getSquareClicked();
-            int numSquaresInBetweenTargetedSquareAndSquareClicked;
+            int nextRow;
+            int nextColumn;
+            int previousRow;
+            int previousColumn;
+            
+            // if pawn is a rook
+            if(rowTargeted == rowClicked || columnTargeted == columnClicked){
 
-            int i = 0;
-            int row = rowTargeted;
-            int col = columnTargeted;
+                int[] rookRowMove = new int[4];
+                int[] rookColumnMove = new int[4];
 
-            // bishop pattern
-            if( displacement % 7 == 0 ){ 
-                if ( displacement > 0){ // quad I
+                rookRowMove[0] = 1  ; rookColumnMove[0] = 0;
+                rookRowMove[1] = -1 ; rookColumnMove[1] = 0;
+                rookRowMove[2] = 0  ; rookColumnMove[2] = -1;
+                rookRowMove[3] = 0  ; rookColumnMove[3] = 1;
 
-                    numSquaresInBetweenTargetedSquareAndSquareClicked  = displacement / 7 - 1;
+                for (int i = 0; i < 4; i++){
 
-                    while( i < numSquaresInBetweenTargetedSquareAndSquareClicked  ){
-                        row = row - 1;
-                        col = col + 1;
-                        if(fPieceTypeLocationsOnBoard[row][col] != 0)
-                            return false;
-                        i++;
-                    }
-                }
-                else{ // quad III
+                    nextRow = rowTargeted + rookRowMove[i];
+                    nextColumn = columnTargeted + rookColumnMove[i];
 
-                    numSquaresInBetweenTargetedSquareAndSquareClicked  = Math.abs(displacement / 7) - 1;
+                    while(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                        if(nextRow == rowClicked && nextColumn == columnClicked){
 
-                    while( i < numSquaresInBetweenTargetedSquareAndSquareClicked  ){
-                        row = row + 1;
-                        col = col - 1;
-                        if(fPieceTypeLocationsOnBoard[row][col] != 0)
-                            return false;
-                        i++;
-                    }
-                }
-            }     
-            else if (displacement % 9 == 0) {
-                if ( displacement > 0){ // quad II
+                            previousRow = nextRow - rookRowMove[i];
+                            previousColumn = nextColumn - rookColumnMove[i];
 
-                    numSquaresInBetweenTargetedSquareAndSquareClicked  = displacement / 9 - 1;
+                            while(previousRow != rowTargeted && previousColumn != columnTargeted){
 
-                    while( i < numSquaresInBetweenTargetedSquareAndSquareClicked  ){
-                        row = row - 1;
-                        col = col - 1;
-                        if(fPieceTypeLocationsOnBoard[row][col] != 0)
-                            return false;
-                        i++;
-                    }
-                }
-                else{ // quad IV
-
-                    numSquaresInBetweenTargetedSquareAndSquareClicked  = Math.abs(displacement / 9) - 1;
-
-                    while( i < numSquaresInBetweenTargetedSquareAndSquareClicked  ){
-                        row = row + 1;
-                        col = col + 1;
-                        if(fPieceTypeLocationsOnBoard[row][col] != 0)
-                            return false;
-                        i++;
+                                if(fPieceTypeLocationsOnBoard[previousRow][previousColumn] != 0)
+                                    return false; // noPieceBlocksPathToSquare
+                                else{
+                                    previousRow -= rookRowMove[i];
+                                    previousColumn -= rookColumnMove[i];
+                                }
+                            }
+                            return true; // noPieceBlocksPathToSquare
+                        }
+                        else{
+                            nextRow += rookRowMove[i];
+                            nextColumn += rookColumnMove[i];
+                        }
                     }
                 }
             }
-            // rook pattern
-            else if( columnTargeted == columnClicked ){
-                if ( displacement > 0){ // north
+            else{ // pawn is a bishop
+                
+                int[] bishopRowMove = new int[4];
+                int[] bishopColumnMove = new int[4];
 
-                    numSquaresInBetweenTargetedSquareAndSquareClicked  = displacement / 8 - 1;
+                bishopRowMove[0] = 1  ; bishopColumnMove[0] = -1;
+                bishopRowMove[1] = 1  ; bishopColumnMove[1] = 1;
+                bishopRowMove[2] = -1 ; bishopColumnMove[2] = -1;
+                bishopRowMove[3] = -1 ; bishopColumnMove[3] = 1;
 
-                    while( i < numSquaresInBetweenTargetedSquareAndSquareClicked  ){
-                        row = row - 1;
-                        col = col + 0;
-                        if(fPieceTypeLocationsOnBoard[row][col] != 0)
-                            return false;
-                        i++;
-                    }
-                }
-                else{ // south
+                for (int i = 0; i < 4; i++){
 
-                    numSquaresInBetweenTargetedSquareAndSquareClicked  = Math.abs(displacement) / 8 - 1;
+                    nextRow = rowTargeted + bishopRowMove[i];
+                    nextColumn = columnTargeted + bishopColumnMove[i];
 
-                    while( i < numSquaresInBetweenTargetedSquareAndSquareClicked){
-                        row = row + 1;
-                        col = col + 0;
-                        if(fPieceTypeLocationsOnBoard[row][col] != 0)
-                            return false;
-                        i++;
-                    }
-                }
-            }     
-            else {
-                if (displacement > 0){ // west
+                    while(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                        if(nextRow == rowClicked && nextColumn == columnClicked){
 
-                    numSquaresInBetweenTargetedSquareAndSquareClicked = displacement - 1;
+                            previousRow = nextRow - bishopRowMove[i];
+                            previousColumn = nextColumn - bishopColumnMove[i];
 
-                    while( i < numSquaresInBetweenTargetedSquareAndSquareClicked  ){
-                        row = row - 0;
-                        col = col - 1;
-                        if(fPieceTypeLocationsOnBoard[row][col] != 0)
-                            return false;
-                        i++;
-                    }
-                }
-                else{ // east
+                            while(previousRow != rowTargeted && previousColumn != columnTargeted){
 
-                    numSquaresInBetweenTargetedSquareAndSquareClicked  = Math.abs(displacement) - 1;
-
-                    while( i < numSquaresInBetweenTargetedSquareAndSquareClicked  ){
-                        row = row + 0;
-                        col = col + 1;
-                        if(fPieceTypeLocationsOnBoard[row][col] != 0)
-                            return false;
-                        i++;
+                                if(fPieceTypeLocationsOnBoard[previousRow][previousColumn] != 0)
+                                    return false; // noPieceBlocksPathToSquare
+                                else{
+                                    previousRow -= bishopRowMove[i];
+                                    previousColumn -= bishopColumnMove[i];
+                                }
+                            }
+                            return true; // noPieceBlocksPathToSquare
+                        }
+                        else{
+                            nextRow += bishopRowMove[i];
+                            nextColumn += bishopRowMove[i];
+                        }
                     }
                 }
             }
+            // noPieceBlocksQueenPathToSquare
+            return false;  
         }
         else { // pawn is a pawn
             
@@ -280,7 +275,7 @@ public class Pawn extends Piece {
                     if(rowTargeted + rowPawnMove[i] == rowClicked){
                         if(columnTargeted + columnPawnMove[i] == columnClicked){
                             if(i == 0 || i == 1){
-                                if(fPieceTypeLocationsOnBoard[rowClicked][columnClicked] >= 1 && fPieceTypeLocationsOnBoard[rowClicked][columnClicked] <= 6)
+                                if(fPieceTypeLocationsOnBoard[rowClicked][columnClicked] == 0 || fPieceTypeLocationsOnBoard[rowClicked][columnClicked] >= 1 && fPieceTypeLocationsOnBoard[rowClicked][columnClicked] <= 6)
                                     return false;
                             }
                             else if(i == 2 || i == 3){
@@ -302,7 +297,7 @@ public class Pawn extends Piece {
                     if(rowTargeted + rowPawnMove[i] == rowClicked){
                         if(columnTargeted + columnPawnMove[i] == columnClicked){
                             if(i == 0 || i == 1){
-                                if(fPieceTypeLocationsOnBoard[rowClicked][columnClicked] >= 7 && fPieceTypeLocationsOnBoard[rowClicked][columnClicked] <= 12)
+                                if(fPieceTypeLocationsOnBoard[rowClicked][columnClicked] == 0 || fPieceTypeLocationsOnBoard[rowClicked][columnClicked] >= 7 && fPieceTypeLocationsOnBoard[rowClicked][columnClicked] <= 12)
                                     return false;
                             }
                             else if(i == 2 || i == 3){
@@ -334,6 +329,7 @@ public class Pawn extends Piece {
                 tempArray[i][j] = fPieceTypeLocationsOnBoard[i][j];
             }
         }
+        System.out.println("temp array created");
         rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
         columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
         
@@ -343,7 +339,7 @@ public class Pawn extends Piece {
         // update temporary board with hypothetical move
         tempArray[rowClicked][columnClicked] = tempArray[rowTargeted][columnTargeted];
         tempArray[rowTargeted][columnTargeted] = 0;
-        
+        System.out.println("move made");
         if (Game.getCurrentTeamsTurn() == 0){
             
             // find the white king 
@@ -358,7 +354,7 @@ public class Pawn extends Piece {
                     }                    
                 }
             }
-            
+            System.out.println("white king found");
             ///// check area for black Bishop and Queen                 
             
            int blackBishop = 10;
@@ -395,10 +391,10 @@ public class Pawn extends Piece {
                    }
                }
            }
-           
+           System.out.println("black bishop and black queen not found");
            ///// check area for black Rook and Queen                 
             
-           int blackRook = 10;
+           int blackRook = 8;
            
            int[] rookRowMove = new int[4];
            int[] rookColumnMove = new int[4];
@@ -427,6 +423,7 @@ public class Pawn extends Piece {
                    }
                }
            }
+           System.out.println("black rook and black queen not found");
            
             ///// check area for blackknight
             
@@ -454,7 +451,7 @@ public class Pawn extends Piece {
                        return false; // moveDoesNotPlaceKingInCheck
                }          
            }               
-           
+           System.out.println("black knight not found");
            // check area for black pawn
            
            int blackPawn = 7;
@@ -465,7 +462,7 @@ public class Pawn extends Piece {
            rowPawn[0]= -1 ; columnPawn[0] = 1;
            rowPawn[1]= -1 ; columnPawn[1] = -1;      
             
-           for(int i = 0; i <= 7 ;i++){
+           for(int i = 0; i < 2 ;i++){
                
               nextRow = rowKing + rowPawn[i];
               nextColumn = columnKing + columnPawn[i];
@@ -473,6 +470,7 @@ public class Pawn extends Piece {
               if(tempArray[nextRow][nextColumn] == blackPawn)
                     return false; // moveDoesNotPlaceKingInCheck
            }
+           System.out.println("black pawn not found");
         }
         
         else { // black's turn
@@ -489,7 +487,7 @@ public class Pawn extends Piece {
                     }                    
                 }
             }
-            
+            System.out.println("black king found");
             ///// check area for white Bishop and Queen                 
             
            int whiteBishop = 4;
@@ -526,10 +524,10 @@ public class Pawn extends Piece {
                    }
                }
            }
-           
+           System.out.println("white bishop and queen not found");
            ///// check area for Rook and Queen (white)                
             
-           int whiteRook = 10;
+           int whiteRook = 2;
            
            int[] rookRowMove = new int[4];
            int[] rookColumnMove = new int[4];
@@ -558,7 +556,7 @@ public class Pawn extends Piece {
                    }
                }
            }
-           
+           System.out.println("white rook and queen not found");
            ///// check area for whiteknight
             
            int whiteKnight = 3;
@@ -587,7 +585,7 @@ public class Pawn extends Piece {
                     }
                 }          
            }
-           
+           System.out.println("white knight not found");
             // check area for white pawn
             
             int whitePawn = 1;
@@ -606,6 +604,7 @@ public class Pawn extends Piece {
               if(tempArray[nextRow][nextColumn] == whitePawn)
                   return false; // moveDoesNotPlaceKingInCheck
            }
+            System.out.println("white pawn not found");
         }
         // moveDoesNotPlaceKingInCheck
         return true;

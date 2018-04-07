@@ -15,21 +15,21 @@ public class Knight extends Piece {
      * @return 
      */
     static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam) {
-//         System.out.println("Knight withinRange of PieceMobility: " + 
-//                 Knight.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
-//         System.out.println("noPieceBlocksPathToSquare: " + 
-//                 Knight.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
-//         System.out.println("moveDoesNotPlaceKingInCheck:  " + 
-//                 Knight.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
+         System.out.println("Knight withinRange of PieceMobility: " + 
+                 Knight.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
+         System.out.println("noPieceBlocksPathToSquare: " + 
+                 Knight.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
+       //  System.out.println("moveDoesNotPlaceKingInCheck:  " + 
+         //        Knight.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
                  
         if(Knight.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
             
             if(Knight.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
             
-                if(Knight.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
+                //if(Knight.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
                     
                     return true;
-                }
+                //}
             }
         }
         //Just to satisfy program and to be updated with algorithm:
@@ -42,67 +42,42 @@ public class Knight extends Piece {
      * @return 
      */
     static private boolean withinRangeOfPieceMobility(int[][] fPieceTypeLocationsOnBoard) {
-        final int SIZE = 8;
-        final int MAX_ROW = 7;
-        final int MIN_ROW = 0;
-        final int MAX_COL = 7;
-        final int MIN_COL = 0;
-        final List<String> legalMoves = new ArrayList<>();
-        final List<Integer> legalSquares = new ArrayList<>();
-
-        int squareTargeted = Game.getTargetedSquare();
-        int squareClicked = TeamLewisChessController.getSquareClicked();
-         //System.out.println("squareTargeted = " + squareTargeted);
-         //System.out.println("squareClicked = " + squareClicked);
-         int cindx = Board.getColumnFromLocation(squareTargeted);
-         int rindx = Board.getRowFromLocation(squareTargeted);
-         String moveString;
-         int squareNum=-1;
-         //Just to satisfy program and to be updated with algorithm:
-        for ( int r = rindx - 2; r < rindx +3 ; r=r+4) {
-           
-            for (int c = cindx -1; c < cindx +2; c+=2) {
-                //System.out.print("rindx, cindx = " + rindx + "," + cindx + ": =  " + r + ", " +c);
-                if(r >=MIN_ROW && r <= MAX_ROW && c >= MIN_COL && c <= MAX_COL) {
-                    //System.out.println("");
-                    moveString = "r"+r+"c"+c;
-                    legalMoves.add(moveString);
-                    squareNum=c+(r*SIZE);
-                   
-                    
-                    legalSquares.add(c+(r*SIZE));
-
-                } else {
-                    //System.out.println(" illegal move");
-                
-                }
-            }
-        }
-        for ( int r = rindx -1; r< rindx +2; r+=2) {
-            for (int c = cindx-2; c < cindx + 3; c+=4) {
-                //System.out.print("rindx, cindx = " + rindx + "," + cindx + ": =  " + r + ", " +c);
-                if(r >=MIN_ROW && r <= MAX_ROW && c >= MIN_COL && c <= MAX_COL) {
-                    //System.out.println("");
-                    moveString = "r"+r+"c"+c;
-                    legalMoves.add(moveString);
-                    legalSquares.add(c+(r*SIZE));
-                    
-                } else {
-                    //System.out.println(" illegal move");
-                
-                }
-            }
-            
-        }
+        int rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
+        int columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
         
-        for (int lm : legalSquares) {
-            //System.out.println("Legal Square = " + lm);
-            if(squareClicked==lm) {
-                //System.out.println("match found, can move if empty or opponent on square");
-                return true;
-            }
-        }
-        return false;
+        int rowClicked = Board.getRowFromLocation(TeamLewisChessController.getSquareClicked());
+        int columnClicked = Board.getColumnFromLocation(TeamLewisChessController.getSquareClicked());
+        
+        int[] rowKnight = new int[8];
+        int[] columnKnight= new int[8];
+
+        rowKnight[0]= -1  ; columnKnight[0]=2;
+        rowKnight[1]= -2  ; columnKnight[1]=1;      
+        rowKnight[2]= -2  ; columnKnight[2]=-1;
+        rowKnight[3]= -1  ; columnKnight[3]=-2;
+        rowKnight[4]= 1   ; columnKnight[4]=-2;
+        rowKnight[5]= 2   ; columnKnight[5]=-1;
+        rowKnight[6]= 2   ; columnKnight[6]=1;
+        rowKnight[7]= 1   ; columnKnight[7]=2;
+
+        int nextRow = 0;
+        int nextColumn = 0;
+        
+       for(int i = 0; i <= 7; i++){
+           
+           nextRow = rowTargeted + rowKnight[i];
+           nextColumn = columnTargeted + columnKnight[i];
+           
+           // boundary check
+            if( nextRow>= 0 && nextRow <= 7 && nextColumn >= 0 &&  nextColumn<= 7){
+                // is next position equal to squareClicked?
+                 if(Board.getLocationFromRowAndColumn(nextRow, nextColumn) == TeamLewisChessController.getSquareClicked())
+                     return true;
+            }          
+       }
+       
+       // withinRangeOfPieceMobility
+       return false;
     }
     
     /**
@@ -167,6 +142,7 @@ public class Knight extends Piece {
                 tempArray[i][j] = fPieceTypeLocationsOnBoard[i][j];
             }
         }
+        System.out.println("temp array created");
         rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
         columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
         
@@ -176,7 +152,7 @@ public class Knight extends Piece {
         // update temporary board with hypothetical move
         tempArray[rowClicked][columnClicked] = tempArray[rowTargeted][columnTargeted];
         tempArray[rowTargeted][columnTargeted] = 0;
-        
+        System.out.println("move made");
         if (Game.getCurrentTeamsTurn() == 0){
             
             // find the white king 
@@ -191,7 +167,7 @@ public class Knight extends Piece {
                     }                    
                 }
             }
-            
+            System.out.println("white king found");
             ///// check area for black Bishop and Queen                 
             
            int blackBishop = 10;
@@ -228,10 +204,10 @@ public class Knight extends Piece {
                    }
                }
            }
-           
+           System.out.println("black bishop and black queen not found");
            ///// check area for black Rook and Queen                 
             
-           int blackRook = 8;
+           int blackRook = 10;
            
            int[] rookRowMove = new int[4];
            int[] rookColumnMove = new int[4];
@@ -260,6 +236,7 @@ public class Knight extends Piece {
                    }
                }
            }
+           System.out.println("black rook and black queen not found");
            
             ///// check area for blackknight
             
@@ -287,7 +264,7 @@ public class Knight extends Piece {
                        return false; // moveDoesNotPlaceKingInCheck
                }          
            }               
-           
+           System.out.println("black knight not found");
            // check area for black pawn
            
            int blackPawn = 7;
@@ -298,7 +275,7 @@ public class Knight extends Piece {
            rowPawn[0]= -1 ; columnPawn[0] = 1;
            rowPawn[1]= -1 ; columnPawn[1] = -1;      
             
-           for(int i = 0; i <= 1 ;i++){
+           for(int i = 0; i < 2 ;i++){
                
               nextRow = rowKing + rowPawn[i];
               nextColumn = columnKing + columnPawn[i];
@@ -306,6 +283,7 @@ public class Knight extends Piece {
               if(tempArray[nextRow][nextColumn] == blackPawn)
                     return false; // moveDoesNotPlaceKingInCheck
            }
+           System.out.println("black pawn not found");
         }
         
         else { // black's turn
@@ -322,7 +300,7 @@ public class Knight extends Piece {
                     }                    
                 }
             }
-            
+            System.out.println("black king found");
             ///// check area for white Bishop and Queen                 
             
            int whiteBishop = 4;
@@ -359,7 +337,7 @@ public class Knight extends Piece {
                    }
                }
            }
-           
+           System.out.println("white bishop and queen not found");
            ///// check area for Rook and Queen (white)                
             
            int whiteRook = 2;
@@ -391,7 +369,7 @@ public class Knight extends Piece {
                    }
                }
            }
-           
+           System.out.println("white rook and queen not found");
            ///// check area for whiteknight
             
            int whiteKnight = 3;
@@ -420,7 +398,7 @@ public class Knight extends Piece {
                     }
                 }          
            }
-           
+           System.out.println("white knight not found");
             // check area for white pawn
             
             int whitePawn = 1;
@@ -439,6 +417,7 @@ public class Knight extends Piece {
               if(tempArray[nextRow][nextColumn] == whitePawn)
                   return false; // moveDoesNotPlaceKingInCheck
            }
+            System.out.println("white pawn not found");
         }
         // moveDoesNotPlaceKingInCheck
         return true;

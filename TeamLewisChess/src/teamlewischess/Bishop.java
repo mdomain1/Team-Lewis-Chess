@@ -6,26 +6,57 @@ package teamlewischess;
 public class Bishop extends Piece {
     static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam)
     {
+        System.out.println("Bishop withinRange of PieceMobility: " + 
+                 Bishop.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
+         System.out.println("noPieceBlocksPathToSquare: " + 
+                 Bishop.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
+        // System.out.println("moveDoesNotPlaceKingInCheck:  " + 
+          //       Bishop.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
+         
         if(Bishop.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
             if(Bishop.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
-                if(Bishop.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
+           //     if(Bishop.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
                     return true;
-                }
+             //   }
             }
         }
         return false;
     }
     
     static private boolean withinRangeOfPieceMobility(int[][] fPieceTypeLocationsOnBoard)
-    {        
-     	int displacement = Game.getTargetedSquare() - TeamLewisChessController.getSquareClicked();
+    {   
+        int rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
+        int columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
         
-        // does the landingPos lie on the same diagonal line as the bishop?
-        if (displacement % 7 == 0 || displacement % 9 == 0)
-            return true;
+        int rowClicked = Board.getRowFromLocation(TeamLewisChessController.getSquareClicked());
+        int columnClicked = Board.getColumnFromLocation(TeamLewisChessController.getSquareClicked());
+        
+     	// bishop's diagonal
+        int[] bishopRowMove = new int[4];
+        int[] bishopColumnMove = new int[4];
 
-        else
-            return false;
+        bishopRowMove[0] = 1  ; bishopColumnMove[0] = -1;
+        bishopRowMove[1] = 1  ; bishopColumnMove[1] = 1;
+        bishopRowMove[2] = -1 ; bishopColumnMove[2] = -1;
+        bishopRowMove[3] = -1 ; bishopColumnMove[3] = 1;
+
+        int nextRow = 0;
+        int nextColumn = 0;
+
+        for (int i = 0; i < 4; i++){
+            nextRow = rowTargeted + bishopRowMove[i];
+            nextColumn = columnTargeted + bishopColumnMove[i];
+
+            while(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                if(nextRow == rowClicked && nextColumn == columnClicked)
+                     return true; // withinRangeofPieceMobility
+                else{
+                    nextRow += bishopRowMove[i];
+                    nextColumn += bishopColumnMove[i];
+                }
+            }
+        }
+        return false;
     }
     
     static private boolean noPieceBlocksPathToSquare(int[][] fPieceTypeLocationsOnBoard)
@@ -46,94 +77,49 @@ public class Bishop extends Piece {
             if(fPieceTypeLocationsOnBoard[rowClicked][columnClicked] >= 7 && fPieceTypeLocationsOnBoard[rowClicked][columnClicked] <= 12)
                 return false;
         }
-        
-        // variables used for checking if path is blocked
-        int displacement = Game.getTargetedSquare() - TeamLewisChessController.getSquareClicked();
-        int numSquaresInBetweenBishopAndLandingPos = 0;
-        
-        int i = 0;
-        int row = rowTargeted;
-        int col = columnTargeted;
-        
-        // check if path is blocked
-        if( displacement % 7 == 0 ){ //is the bishop moving along a positive slope?
+        // bishop pattern
+            int[] bishopRowMove = new int[4];
+            int[] bishopColumnMove = new int[4];
 
-            //  then bishop moving to Quad I?
-            if ( displacement > 0){
+            bishopRowMove[0] = 1  ; bishopColumnMove[0] = -1;
+            bishopRowMove[1] = 1  ; bishopColumnMove[1] = 1;
+            bishopRowMove[2] = -1 ; bishopColumnMove[2] = -1;
+            bishopRowMove[3] = -1 ; bishopColumnMove[3] = 1;
+            
+            int nextRow;
+            int nextColumn;
+            int previousRow;
+            int previousColumn;
+            
+            for (int i = 0; i < 4; i++){
 
-                numSquaresInBetweenBishopAndLandingPos = displacement / 7 - 1;
+                nextRow = rowTargeted + bishopRowMove[i];
+                nextColumn = columnTargeted + bishopColumnMove[i];
 
-                // then examine the squares in the direction of the upper-right corner of the board
-                while( i < numSquaresInBetweenBishopAndLandingPos ){
+                while(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                    if(nextRow == rowClicked && nextColumn == columnClicked){
 
-                    // get coordinates of next location
-                    row = row - 1;
-                    col = col + 1;
+                        previousRow = nextRow - bishopRowMove[i];
+                        previousColumn = nextColumn - bishopColumnMove[i];
 
-                    // is this location NOT empty?
-                    if(fPieceTypeLocationsOnBoard[row][col] != 0)
-                        return false;
+                        while(previousRow != rowTargeted && previousColumn != columnTargeted){
 
-                    i++;
+                            if(fPieceTypeLocationsOnBoard[previousRow][previousColumn] != 0)
+                                return false; // noPieceBlocksPathToSquare
+                            else{
+                                previousRow -= bishopRowMove[i];
+                                previousColumn -= bishopColumnMove[i];
+                            }
+                        }
+                        return true; // noPieceBlocksPathToSquare
+                    }
+                    else{
+                        nextRow += bishopRowMove[i];
+                        nextColumn += bishopRowMove[i];
+                    }
                 }
             }
-            else{ //( bishop is moving to Quad III )
-
-                numSquaresInBetweenBishopAndLandingPos = Math.abs(displacement / 7) - 1;
-
-                // line of examination is in the direction of bottom-left corner of the board
-                while( i < numSquaresInBetweenBishopAndLandingPos ){
-
-                    row = row + 1;
-                    col = col - 1;
-
-                    // is this location NOT empty?
-                    if(fPieceTypeLocationsOnBoard[row][col] != 0)
-                        return false;
-
-                    i++;
-                }
-            }
-        }     
-        else { // the bishop is moving along a negative slope
-
-            if ( displacement > 0){ //is bishop moving to Quad II?
-
-                numSquaresInBetweenBishopAndLandingPos = displacement / 9 - 1;
-
-                // yes? then examine squares in the direction towards upper-left corner of board
-                while( i < numSquaresInBetweenBishopAndLandingPos ){
-
-                    row = row - 1;
-                    col = col - 1;
-
-                    // is this location NOT empty?
-                    if(fPieceTypeLocationsOnBoard[row][col] != 0)
-                        return false;
-
-                    i++;
-                }
-            }
-            else{ //( bishop is moving to Quad IV )
-
-                numSquaresInBetweenBishopAndLandingPos = Math.abs(displacement / 9) - 1;
-
-                // line of examination is in the direction of bottom-right corner of the board
-                while( i < numSquaresInBetweenBishopAndLandingPos ){
-
-                    row = row + 1;
-                    col = col + 1;
-
-                    // is this location NOT empty?
-                    if(fPieceTypeLocationsOnBoard[row][col] != 0)
-                        return false;
-
-                    i++;
-                }
-            }
-        }
-        // noPieceBlocksPathToSquare
-        return true;
+            return false; // just to satisfy the algorithm
     }
     
     static private boolean moveDoesNotPlaceKingInCheck(int[][] fPieceTypeLocationsOnBoard)
@@ -152,6 +138,7 @@ public class Bishop extends Piece {
                 tempArray[i][j] = fPieceTypeLocationsOnBoard[i][j];
             }
         }
+        System.out.println("temp array created");
         rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
         columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
         
@@ -161,7 +148,7 @@ public class Bishop extends Piece {
         // update temporary board with hypothetical move
         tempArray[rowClicked][columnClicked] = tempArray[rowTargeted][columnTargeted];
         tempArray[rowTargeted][columnTargeted] = 0;
-        
+        System.out.println("move made");
         if (Game.getCurrentTeamsTurn() == 0){
             
             // find the white king 
@@ -176,7 +163,7 @@ public class Bishop extends Piece {
                     }                    
                 }
             }
-            
+            System.out.println("white king found");
             ///// check area for black Bishop and Queen                 
             
            int blackBishop = 10;
@@ -213,10 +200,10 @@ public class Bishop extends Piece {
                    }
                }
            }
-           
+           System.out.println("black bishop and black queen not found");
            ///// check area for black Rook and Queen                 
             
-           int blackRook = 8;
+           int blackRook = 10;
            
            int[] rookRowMove = new int[4];
            int[] rookColumnMove = new int[4];
@@ -245,6 +232,7 @@ public class Bishop extends Piece {
                    }
                }
            }
+           System.out.println("black rook and black queen not found");
            
             ///// check area for blackknight
             
@@ -272,7 +260,7 @@ public class Bishop extends Piece {
                        return false; // moveDoesNotPlaceKingInCheck
                }          
            }               
-           
+           System.out.println("black knight not found");
            // check area for black pawn
            
            int blackPawn = 7;
@@ -283,7 +271,7 @@ public class Bishop extends Piece {
            rowPawn[0]= -1 ; columnPawn[0] = 1;
            rowPawn[1]= -1 ; columnPawn[1] = -1;      
             
-           for(int i = 0; i <= 1 ;i++){
+           for(int i = 0; i < 2 ;i++){
                
               nextRow = rowKing + rowPawn[i];
               nextColumn = columnKing + columnPawn[i];
@@ -291,6 +279,7 @@ public class Bishop extends Piece {
               if(tempArray[nextRow][nextColumn] == blackPawn)
                     return false; // moveDoesNotPlaceKingInCheck
            }
+           System.out.println("black pawn not found");
         }
         
         else { // black's turn
@@ -307,7 +296,7 @@ public class Bishop extends Piece {
                     }                    
                 }
             }
-            
+            System.out.println("black king found");
             ///// check area for white Bishop and Queen                 
             
            int whiteBishop = 4;
@@ -344,7 +333,7 @@ public class Bishop extends Piece {
                    }
                }
            }
-           
+           System.out.println("white bishop and queen not found");
            ///// check area for Rook and Queen (white)                
             
            int whiteRook = 2;
@@ -376,7 +365,7 @@ public class Bishop extends Piece {
                    }
                }
            }
-           
+           System.out.println("white rook and queen not found");
            ///// check area for whiteknight
             
            int whiteKnight = 3;
@@ -405,7 +394,7 @@ public class Bishop extends Piece {
                     }
                 }          
            }
-           
+           System.out.println("white knight not found");
             // check area for white pawn
             
             int whitePawn = 1;
@@ -424,6 +413,7 @@ public class Bishop extends Piece {
               if(tempArray[nextRow][nextColumn] == whitePawn)
                   return false; // moveDoesNotPlaceKingInCheck
            }
+            System.out.println("white pawn not found");
         }
         // moveDoesNotPlaceKingInCheck
         return true;

@@ -10,15 +10,22 @@ public class Rook extends Piece {
     private boolean hasMoved;
 
     static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam) {
-               
+
+        System.out.println("Rook withinRange of PieceMobility: " + 
+                 Rook.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
+         System.out.println("noPieceBlocksPathToSquare: " + 
+                 Rook.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
+         
+      //  System.out.println("moveDoesNotPlaceKingInCheck:  " + 
+        //         Rook.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
         if(Rook.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
             
             if(Rook.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
             
-                if(Rook.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
+            //    if(Rook.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
                     
                     return true;
-                }
+              //  }
             }
         }
         return false;
@@ -26,49 +33,18 @@ public class Rook extends Piece {
     
     static private boolean withinRangeOfPieceMobility(int[][] fPieceTypeLocationsOnBoard) {
     
-        final int MAX_ROW = 7;
-        final int MIN_ROW = 0;
-        final int MAX_COL = 7;
-        final int MIN_COL = 0;
-        final int SIZE = 8;
-        final List<Integer> possibleMoves = new ArrayList<>();
-        final List<Integer> legalMoves = new ArrayList<>();
-
-        int squareTargeted = Game.getTargetedSquare();
-        int squareClicked = TeamLewisChessController.getSquareClicked();
-        int cindx = Board.getColumnFromLocation(squareTargeted);
-        int rindx = Board.getRowFromLocation(squareTargeted);
-        int square = -1;
-        for (int c = cindx - 1; c >= MIN_COL; c--) {
-            square = c + (rindx) * SIZE;
-            possibleMoves.add(square);
-
-        }
-        for (int c = cindx + 1; c <= MAX_COL; c++) {
-            square = c + rindx * SIZE;
-            possibleMoves.add(square);
-        }
-
-        for (int r = rindx - 1; r >= MIN_ROW; r--) {
-            square = cindx + r * SIZE;
-            possibleMoves.add(square);
-
-        }
-        for (int r = rindx + 1; r <= MAX_ROW; r++) {
-            square = cindx + r * SIZE;
-            possibleMoves.add(square);
-        }
-
+        int rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
+        int columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
         
-        for (int lm : possibleMoves) {
-           
-            if (squareClicked == lm) {
-                //System.out.println("Match lm = " + lm );
-                return true;
-            }
-        }
-
-        return false;
+        int rowClicked = Board.getRowFromLocation(TeamLewisChessController.getSquareClicked());
+        int columnClicked = Board.getColumnFromLocation(TeamLewisChessController.getSquareClicked());
+        
+        if(rowTargeted == rowClicked)
+            return true;
+        else if(columnTargeted == columnClicked)
+            return true;
+        else // withinRangeOfPieceMobility
+            return false; 
     }
     
     static private boolean noPieceBlocksPathToSquare(int[][] fPieceTypeLocationsOnBoard)
@@ -88,68 +64,48 @@ public class Rook extends Piece {
                 return false;
         }
         
-        int displacement = Game.getTargetedSquare() - TeamLewisChessController.getSquareClicked();
-        int numSquaresInBetweenTargetedSquareAndSquareClicked  = 0;
-        
-        int i = 0;
-        int row = rowTargeted;
-        int col = columnTargeted;
-        
-        // check if path is blocked
-        if( columnTargeted == columnClicked ){
-                if ( displacement > 0){ // north
+        int nextRow;
+        int nextColumn;
+        int previousRow;
+        int previousColumn;
+            
+        int[] rookRowMove = new int[4];
+        int[] rookColumnMove = new int[4];
 
-                    numSquaresInBetweenTargetedSquareAndSquareClicked  = displacement / 8 - 1;
+        rookRowMove[0] = 1  ; rookColumnMove[0] = 0;
+        rookRowMove[1] = -1 ; rookColumnMove[1] = 0;
+        rookRowMove[2] = 0  ; rookColumnMove[2] = -1;
+        rookRowMove[3] = 0  ; rookColumnMove[3] = 1;
 
-                    while( i < numSquaresInBetweenTargetedSquareAndSquareClicked  ){
-                        row = row - 1;
-                        col = col + 0;
-                        if(fPieceTypeLocationsOnBoard[row][col] != 0)
-                            return false;
-                        i++;
+        for (int i = 0; i < 4; i++){
+
+            nextRow = rowTargeted + rookRowMove[i];
+            nextColumn = columnTargeted + rookColumnMove[i];
+
+            while(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                if(nextRow == rowClicked && nextColumn == columnClicked){
+
+                    previousRow = nextRow - rookRowMove[i];
+                    previousColumn = nextColumn - rookColumnMove[i];
+
+                    while(previousRow != rowTargeted && previousColumn != columnTargeted){
+
+                        if(fPieceTypeLocationsOnBoard[previousRow][previousColumn] != 0)
+                            return false; // noPieceBlocksPathToSquare
+                        else{
+                            previousRow -= rookRowMove[i];
+                            previousColumn -= rookColumnMove[i];
+                        }
                     }
+                    return true; // noPieceBlocksPathToSquare
                 }
-                else{ // south
-
-                    numSquaresInBetweenTargetedSquareAndSquareClicked  = Math.abs(displacement) / 8 - 1;
-
-                    while( i < numSquaresInBetweenTargetedSquareAndSquareClicked){
-                        row = row + 1;
-                        col = col + 0;
-                        if(fPieceTypeLocationsOnBoard[row][col] != 0)
-                            return false;
-                        i++;
-                    }
-                }
-            }     
-            else {
-                if (displacement > 0){ // west
-
-                    numSquaresInBetweenTargetedSquareAndSquareClicked = displacement - 1;
-
-                    while( i < numSquaresInBetweenTargetedSquareAndSquareClicked  ){
-                        row = row - 0;
-                        col = col - 1;
-                        if(fPieceTypeLocationsOnBoard[row][col] != 0)
-                            return false;
-                        i++;
-                    }
-                }
-                else{ // east
-
-                    numSquaresInBetweenTargetedSquareAndSquareClicked  = Math.abs(displacement) - 1;
-
-                    while( i < numSquaresInBetweenTargetedSquareAndSquareClicked  ){
-                        row = row + 0;
-                        col = col + 1;
-                        if(fPieceTypeLocationsOnBoard[row][col] != 0)
-                            return false;
-                        i++;
-                    }
+                else{
+                    nextRow += rookRowMove[i];
+                    nextColumn += rookColumnMove[i];
                 }
             }
-        // noPieceBlocksPathToSquare
-        return true;
+        }
+        return false; // just to satisfy algorithm
     }
     
     static private boolean moveDoesNotPlaceKingInCheck(int[][] fPieceTypeLocationsOnBoard)
@@ -168,6 +124,7 @@ public class Rook extends Piece {
                 tempArray[i][j] = fPieceTypeLocationsOnBoard[i][j];
             }
         }
+        System.out.println("temp array created");
         rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
         columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
         
@@ -177,7 +134,7 @@ public class Rook extends Piece {
         // update temporary board with hypothetical move
         tempArray[rowClicked][columnClicked] = tempArray[rowTargeted][columnTargeted];
         tempArray[rowTargeted][columnTargeted] = 0;
-        
+        System.out.println("move made");
         if (Game.getCurrentTeamsTurn() == 0){
             
             // find the white king 
@@ -192,7 +149,7 @@ public class Rook extends Piece {
                     }                    
                 }
             }
-            
+            System.out.println("white king found");
             ///// check area for black Bishop and Queen                 
             
            int blackBishop = 10;
@@ -229,10 +186,10 @@ public class Rook extends Piece {
                    }
                }
            }
-           
+           System.out.println("black bishop and black queen not found");
            ///// check area for black Rook and Queen                 
             
-           int blackRook = 8;
+           int blackRook = 10;
            
            int[] rookRowMove = new int[4];
            int[] rookColumnMove = new int[4];
@@ -261,6 +218,7 @@ public class Rook extends Piece {
                    }
                }
            }
+           System.out.println("black rook and black queen not found");
            
             ///// check area for blackknight
             
@@ -288,7 +246,7 @@ public class Rook extends Piece {
                        return false; // moveDoesNotPlaceKingInCheck
                }          
            }               
-           
+           System.out.println("black knight not found");
            // check area for black pawn
            
            int blackPawn = 7;
@@ -299,7 +257,7 @@ public class Rook extends Piece {
            rowPawn[0]= -1 ; columnPawn[0] = 1;
            rowPawn[1]= -1 ; columnPawn[1] = -1;      
             
-           for(int i = 0; i <= 2 ;i++){
+           for(int i = 0; i < 2 ;i++){
                
               nextRow = rowKing + rowPawn[i];
               nextColumn = columnKing + columnPawn[i];
@@ -307,6 +265,7 @@ public class Rook extends Piece {
               if(tempArray[nextRow][nextColumn] == blackPawn)
                     return false; // moveDoesNotPlaceKingInCheck
            }
+           System.out.println("black pawn not found");
         }
         
         else { // black's turn
@@ -323,7 +282,7 @@ public class Rook extends Piece {
                     }                    
                 }
             }
-            
+            System.out.println("black king found");
             ///// check area for white Bishop and Queen                 
             
            int whiteBishop = 4;
@@ -360,7 +319,7 @@ public class Rook extends Piece {
                    }
                }
            }
-           
+           System.out.println("white bishop and queen not found");
            ///// check area for Rook and Queen (white)                
             
            int whiteRook = 2;
@@ -392,7 +351,7 @@ public class Rook extends Piece {
                    }
                }
            }
-           
+           System.out.println("white rook and queen not found");
            ///// check area for whiteknight
             
            int whiteKnight = 3;
@@ -421,7 +380,7 @@ public class Rook extends Piece {
                     }
                 }          
            }
-           
+           System.out.println("white knight not found");
             // check area for white pawn
             
             int whitePawn = 1;
@@ -440,6 +399,7 @@ public class Rook extends Piece {
               if(tempArray[nextRow][nextColumn] == whitePawn)
                   return false; // moveDoesNotPlaceKingInCheck
            }
+            System.out.println("white pawn not found");
         }
         // moveDoesNotPlaceKingInCheck
         return true;
