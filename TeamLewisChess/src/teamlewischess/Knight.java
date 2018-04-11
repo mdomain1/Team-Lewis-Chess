@@ -281,8 +281,10 @@ public class Knight extends Piece {
               nextRow = rowKing + rowPawn[i];
               nextColumn = columnKing + columnPawn[i];
               
-              if(tempArray[nextRow][nextColumn] == blackPawn)
+               if(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                    if(tempArray[nextRow][nextColumn] == blackPawn)
                     return false; // moveDoesNotPlaceKingInCheck
+               }
            }
            System.out.println("black pawn not found");
         }
@@ -415,8 +417,10 @@ public class Knight extends Piece {
               nextRow = rowKing + rowPawn[i];
               nextColumn = columnKing + columnPawn[i];
               
-              if(tempArray[nextRow][nextColumn] == whitePawn)
+              if(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                    if(tempArray[nextRow][nextColumn] == whitePawn)
                   return false; // moveDoesNotPlaceKingInCheck
+              }
            }
             System.out.println("white pawn not found");
         }
