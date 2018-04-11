@@ -1,476 +1,1157 @@
 package teamlewischess;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * @see Piece
  */
 public class Queen extends Piece {
-    static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam)
-    {
-        System.out.println("Queen withinRange of PieceMobility: " + 
-                 Queen.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
-         System.out.println("noPieceBlocksPathToSquare: " + 
-                 Queen.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
-         System.out.println("moveDoesNotPlaceKingInCheck:  " + 
-                 Queen.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
-         
-        if(Queen.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
-            if(Queen.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
-                if(Queen.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){ 
+
+    static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam) {
+        //System.out.println("Queen withinRange of PieceMobility: " + 
+        //         Queen.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
+        // System.out.println("noPieceBlocksPathToSquare: " + 
+        //         Queen.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
+        // System.out.println("moveDoesNotPlaceKingInCheck:  " + 
+        //         Queen.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
+
+        if (Queen.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)) {
+            if (Queen.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)) {
+                if (Queen.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)) {
                     return true;
                 }
             }
         }
         return false;
     }
-    
-    static private boolean withinRangeOfPieceMobility(int[][] fPieceTypeLocationsOnBoard)
-    {
+
+    static private boolean withinRangeOfPieceMobility(int[][] fPieceTypeLocationsOnBoard) {
         int rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
         int columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
-        
+
         int rowClicked = Board.getRowFromLocation(TeamLewisChessController.getSquareClicked());
         int columnClicked = Board.getColumnFromLocation(TeamLewisChessController.getSquareClicked());
-        
-        // rook's cross
-        if(rowTargeted == rowClicked)
-            return true;
-        else if(columnTargeted == columnClicked)
-            return true;
-   
-        // bishop's diagonal
-        int[] bishopRowMove = new int[4];
-        int[] bishopColumnMove = new int[4];
+        final List<Integer> legalMoves = new ArrayList<>();
+        final List<String> legalSquareStrings = new ArrayList<>();
+        final List<Integer> possibleMoves = new ArrayList<>();
+        final List<Integer> movePP = new ArrayList<>();
+        final List<Integer> movePM = new ArrayList<>();
+        final List<Integer> moveMP = new ArrayList<>();
+        final List<Integer> moveMM = new ArrayList<>();
+        final List<Integer> moveUP = new ArrayList<>();
+        final List<Integer> moveDN = new ArrayList<>();
+        final List<Integer> moveRT = new ArrayList<>();
+        final List<Integer> moveLF = new ArrayList<>();
+        final List<String> boardList = new ArrayList<>();
 
-        bishopRowMove[0] = 1  ; bishopColumnMove[0] = -1;
-        bishopRowMove[1] = 1  ; bishopColumnMove[1] = 1;
-        bishopRowMove[2] = -1 ; bishopColumnMove[2] = -1;
-        bishopRowMove[3] = -1 ; bishopColumnMove[3] = 1;
+        final int SIZE = 8;
+        final int MAX_ROW = 7;
+        final int MIN_ROW = 0;
+        final int MAX_COL = 7;
+        final int MIN_COL = 0;
 
-        int nextRow = 0;
-        int nextColumn = 0;
+        int rindx = Board.getRowFromLocation(Game.getTargetedSquare());
+        int cindx = Board.getColumnFromLocation(Game.getTargetedSquare());
+        int square = cindx + (rindx * 8);
+        int squareClicked = (rowClicked * 8) + columnClicked;
 
-        for (int i = 0; i < 4; i++){
-            nextRow = rowTargeted + bishopRowMove[i];
-            nextColumn = columnTargeted + bishopColumnMove[i];
+        int row = rindx;
+        int col = cindx;
 
-            while(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
-                if(nextRow == rowClicked && nextColumn == columnClicked)
-                     return true; // withinRangeofPieceMobility
-                else{
-                    nextRow += bishopRowMove[i];
-                    nextColumn += bishopColumnMove[i];
+        // Go left first   
+        int squareNum = row * SIZE + col;
+        int team = Game.getCurrentTeamsTurn();
+
+        // rook behavior for queen look left
+        System.out.println("\nWithinRange ....");
+        System.out.println("Looking for valid moves, row = " + row + ", col = " + col + ", square = " + square);
+        int c = cindx;
+        int r = rindx;
+        boolean slide = true;
+        System.out.println("\nplus Row && plus column");
+        if (rindx + 1 <= MAX_ROW && cindx + 1 <= MAX_COL) { // ++
+            for (r = rindx + 1, c = cindx + 1; c <= MAX_COL && r <= MAX_ROW; c++, r++) {
+                if(slide) {
+                square = r * SIZE + c;
+                if (fPieceTypeLocationsOnBoard[r][c] != 0) {
+                    if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                        System.out.println("1. there is a white piece on this square " + square);
+                    } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
+                        System.out.println("1. There is black piece at this square = " + square);
+                    }
+                    slide = false;
+                }
+                if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                    slide = false;
+                } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                    slide = false;
+                } else if (team == 0 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                    slide = false;
+                    possibleMoves.add(square);
+                    movePP.add(square);
+                } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                    slide = false;
+                    possibleMoves.add(square);
+                    movePP.add(square);
+                } else {
+                    possibleMoves.add(square);
+                    movePP.add(square);
+                }
+            }else {
+                    break;
+            }
+            }
+        }
+          movePP.forEach((mv) -> {
+                System.out.println("movePP " + mv);
+            });
+
+        slide = true;
+        System.out.println("\nminus row && minus column");
+        if (rindx - 1 >= MIN_ROW && cindx - 1 >= MIN_COL) {  // --
+            for (r = rindx - 1, c = cindx - 1; c >= MIN_COL && r >= MIN_ROW; c--, r--) {
+                if(slide) {
+                square = r * SIZE + c;
+               
+                if (fPieceTypeLocationsOnBoard[r][c] != 0) {
+                    if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                        System.out.println("2. there is a white piece on this square " + square);
+                    } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
+                        System.out.println("2. There is black piece at this square = " + square);
+                    }
+                slide = false;
+                }
+                if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                    slide = false;
+                } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                    slide = false;
+                } else if (team == 0 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                    slide = false;
+                    possibleMoves.add(square);
+                    moveMM.add(square);
+                } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                    slide = false;
+                    possibleMoves.add(square);
+                    moveMM.add(square);
+                } else {
+                    possibleMoves.add(square);
+                    moveMM.add(square);
+                }
+            }else {
+                    break;
                 }
             }
         }
+            moveMM.forEach((mv) -> {
+                System.out.println("moveMM " + mv);
+            });
+
+            slide = true;
+            System.out.println("\nminus row && plus column");
+            if (rindx - 1 >= MIN_ROW && cindx + 1 <= MAX_COL) {    // -+
+                for (r = rindx - 1, c = cindx + 1; c <= MAX_COL && r >= MIN_ROW; c++, r--) {
+                    if(slide) {
+                    square = r * SIZE + c;
+                 
+                    if (fPieceTypeLocationsOnBoard[r][c] != 0) {
+                        if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                            System.out.println("3. there is a white piece on this square " + square);
+                        } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
+                            System.out.println("3. There is black piece at this square = " + square);
+                        }
+                slide = false;
+                    }
+                    if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                        slide = false;
+                    } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                        slide = false;
+                    } else if (team == 0 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                        slide = false;
+                        possibleMoves.add(square);
+                        moveMP.add(square);
+                    } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                        slide = false;
+                        possibleMoves.add(square);
+                        moveMP.add(square);
+                    } else {
+                        possibleMoves.add(square);
+                        moveMP.add(square);
+                    }
+                }else {
+                        break;
+                    }
+                }
+            }
+
+                moveMP.forEach((mv) -> {
+                    System.out.println("moveMP " + mv);
+                });
+
+                slide = true;
+                System.out.println("\nplus row &&  minus column");
+               if (rindx +1 <= MAX_ROW && cindx - 1 >= MIN_COL) {    // +-
+                     for (r = rindx + 1, c = cindx - 1; c >= MIN_COL && r <=MAX_ROW; c--, r++) {
+                    if(slide) {
+                         square = r * SIZE + c;
+                        if (fPieceTypeLocationsOnBoard[r][c] != 0) {
+                            if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                System.out.println("4. there is a white piece on this square " + square);
+                            } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
+                                System.out.println("4. There is black piece at this square = " + square);
+                            }
+                            slide = false;
+                        }
+               
+                        if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                            slide = false;
+                        } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                            slide = false;
+                        } else if (team == 0 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                            slide = false;
+                            possibleMoves.add(square);
+                            movePM.add(square);
+                        } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                            slide = false;
+                            possibleMoves.add(square);
+                            movePM.add(square);
+                        } else {
+
+                            possibleMoves.add(square);
+                            movePM.add(square);
+                        }
+                    }else {
+                        break;
+                    }
+                     }
+               }
+                    movePM.forEach((mv) -> {
+                        System.out.println("movePM " + mv);
+                    });
+
+                    slide = true;
+                    System.out.println("\nUP");
+                    if (rindx - 1 >= MIN_ROW) {  // up
+                        for (r = rindx - 1, c = cindx; r >= MIN_ROW; r--) {
+                            if(slide) {
+                            square = r * SIZE + c;
+
+                            if (fPieceTypeLocationsOnBoard[r][c] != 0) {
+                                if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                    System.out.println("5. there is a white piece on this square " + square);
+                                } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
+                                    System.out.println("5. There is black piece at this square = " + square);
+                                }
+                                slide = false;
+                            }
+                            if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                slide = false;
+                            } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                                slide = false;
+                            } else if (team == 0 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                                slide = false;
+                                possibleMoves.add(square);
+                                moveUP.add(square);
+                            } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                slide = false;
+                                possibleMoves.add(square);
+                                moveUP.add(square);
+                            } else if (fPieceTypeLocationsOnBoard[r][c] == 0) {
+                                possibleMoves.add(square);
+                                moveUP.add(square);
+                            
+                            }else {
+                                possibleMoves.add(square);
+                                moveUP.add(square);
+                            }
+                            
+                        }else {
+                                break;
+                            }
+                        }                            
+                    }
+
+                    moveUP.forEach((mv) -> {
+                        System.out.println("moveUP " + mv);
+                    });
+
+                    slide = true;
+                    System.out.println("\nDOWN");
+                    if (rindx + 1 <= MAX_ROW) {  // down
+                        for (r = rindx + 1, c = cindx; r <= MAX_ROW; r++) {
+                            if(slide) {
+                            square = r * SIZE + c;
+                            if (fPieceTypeLocationsOnBoard[r][c] != 0) {
+                                if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) { //whilte's own
+                                    System.out.println("6. there is a white piece on this square " + square);
+                                    slide = false;
+                                } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
+                                    System.out.println("6. There is black piece at this square = " + square);   // black's own 
+                                    slide = false;
+                                }
+                            }
+                            if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {  // own piece
+                                slide = false;
+                            } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                                slide = false;
+                            } else if (team == 0 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                                slide = false;
+                                possibleMoves.add(square);
+                                moveDN.add(square);
+                            } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                slide = false;
+                                possibleMoves.add(square);
+                                moveDN.add(square);
+                            }else {
+                          
+                                possibleMoves.add(square);
+                                moveDN.add(square);
+                               
+                            }
+
+                        }else {
+                                break;
+                            }
+                        }
+                    }
+                    moveDN.forEach((mv) -> {
+                        System.out.println("moveDN " + mv);
+                    });
+
+                    slide = true;
+                    System.out.println("\nRIGHT");
+                    if (cindx + 1 <= MAX_COL) {  // right
+                        for (c = cindx + 1, r = rindx; c <= MAX_COL; c++) {
+                            if(slide) {
+                            square = r * SIZE + c;
+
+                            if (fPieceTypeLocationsOnBoard[r][c] != 0) {
+                                if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                    System.out.println("7. there is a white piece on this square " + square);
+                                } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
+                                    System.out.println("7. There is black piece at this square = " + square);
+                                }
+                                slide = false;
+                            }
+                            if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                slide = false;
+                            } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                                slide = false;
+                            } else if (team == 0 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                                slide = false;
+                                possibleMoves.add(square);
+                                moveRT.add(square);
+                            } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                slide = false;
+                                possibleMoves.add(square);
+                                moveRT.add(square);
+                            } else {
+                                possibleMoves.add(square);
+                                moveRT.add(square);
+                               
+                            }
+
+                        }else {
+                                break;
+                            }
+                        }
+                    }
+
+                    moveRT.forEach((mv) -> {
+                        System.out.println("moveRT " + mv);
+                    });
+
+                    slide = true;
+                    System.out.println("\nLEFT");
+                    if (cindx - 1 >= MIN_COL) {  // left
+                        for (c = cindx - 1, r = rindx; c >= MIN_COL; c--) {
+                            if(slide) {
+                            square = r * SIZE + c;
+
+                            if (fPieceTypeLocationsOnBoard[r][c] != 0) {
+                                if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                    System.out.println("8. there is a white piece on this square " + square);
+                                } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
+                                    System.out.println("8. There is black piece at this square = " + square);
+                                }
+                              slide = false;
+                            }
+                            if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                System.out.println("!first +7 white team, white square, row = " + r + ", col = " + c);
+                                slide = false;
+                            } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                                System.out.println("!first +7 black team, black square, row = " + r + ", col = " + c);
+                                slide = false;
+                            } else if (team == 0 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                                System.out.println("!first +7 white team, black square, row = " + r + ", col = " + c);
+                                slide = false;
+                                possibleMoves.add(square);
+                                moveLF.add(square);
+                            } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                System.out.println("!first + 7 black team, white sqaure, row = " + r + ", col = " + c);
+                                slide = false;
+                                possibleMoves.add(square);
+                                moveLF.add(square);
+                            } else {
+                                possibleMoves.add(square);
+                                moveLF.add(square);
+                              
+                            }
+
+                        }else {
+                                break;
+                            }
+                        }
+
+                    }
+
+                    moveLF.forEach((mv) -> {
+                        System.out.println("moveLF " + mv);
+                    });
+
+                    for (int pm : possibleMoves) {
+                        legalMoves.add(pm);
+                    }
+                    for (int lm : legalMoves) {
+                        System.out.println("legal moves from range: lm = " + lm);
+                        if (squareClicked == lm) {
+                            System.out.println("valid moves: Match lm = " + lm);
+                            System.out.println("valid moves: return true ");
+                            return true;
+                        }
+                    }
+   
+      return false;
+    }
+    
+    
+
+    static private boolean noPieceBlocksPathToSquare(int[][] fPieceTypeLocationsOnBoard) {
+        int rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
+        int columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
+
+        int rowClicked = Board.getRowFromLocation(TeamLewisChessController.getSquareClicked());
+        int columnClicked = Board.getColumnFromLocation(TeamLewisChessController.getSquareClicked());
+         final List<Integer> legalMoves = new ArrayList<>();
+        final List<String> legalSquareStrings = new ArrayList<>();
+        final List<Integer> possibleMoves = new ArrayList<>();
+        final List<Integer> movePP = new ArrayList<>();
+        final List<Integer> movePM = new ArrayList<>();
+        final List<Integer> moveMP = new ArrayList<>();
+        final List<Integer> moveMM = new ArrayList<>();
+        final List<Integer> moveUP = new ArrayList<>();
+        final List<Integer> moveDN = new ArrayList<>();
+        final List<Integer> moveRT = new ArrayList<>();
+        final List<Integer> moveLF = new ArrayList<>();
+        final List<String> boardList = new ArrayList<>();
+
+        final int SIZE = 8;
+        final int MAX_ROW = 7;
+        final int MIN_ROW = 0;
+        final int MAX_COL = 7;
+        final int MIN_COL = 0;
+
+        int rindx = Board.getRowFromLocation(Game.getTargetedSquare());
+        int cindx = Board.getColumnFromLocation(Game.getTargetedSquare());
+        int square = cindx + (rindx * 8);
+        int squareClicked = (rowClicked * 8) + columnClicked;
+
+        int row = rindx;
+        int col = cindx;
+
+        // Go left first   
+        int squareNum = row * SIZE + col;
+        int team = Game.getCurrentTeamsTurn();
+
+        // rook behavior for queen look left
+        System.out.println("\nWithinRange ....");
+        System.out.println("Looking for valid moves, row = " + row + ", col = " + col + ", square = " + square);
+        int c = cindx;
+        int r = rindx;
+        boolean slide = true;
+        System.out.println("\nplus Row && plus column");
+        if (rindx + 1 <= MAX_ROW && cindx + 1 <= MAX_COL) { // ++
+            for (r = rindx + 1, c = cindx + 1; c <= MAX_COL && r <= MAX_ROW; c++, r++) {
+                if(slide) {
+                square = r * SIZE + c;
+                if (fPieceTypeLocationsOnBoard[r][c] != 0) {
+                    if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                        System.out.println("1. there is a white piece on this square " + square);
+                    } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
+                        System.out.println("1. There is black piece at this square = " + square);
+                    }
+                    slide = false;
+                }
+                if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                    slide = false;
+                } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                    slide = false;
+                } else if (team == 0 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                    slide = false;
+                    possibleMoves.add(square);
+                    movePP.add(square);
+                } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                    slide = false;
+                    possibleMoves.add(square);
+                    movePP.add(square);
+                } else {
+                    possibleMoves.add(square);
+                    movePP.add(square);
+                }
+            }else {
+                    break;
+            }
+            }
+        }
+          movePP.forEach((mv) -> {
+                System.out.println("movePP " + mv);
+            });
+
+        slide = true;
+        System.out.println("\nminus row && minus column");
+        if (rindx - 1 >= MIN_ROW && cindx - 1 >= MIN_COL) {  // --
+            for (r = rindx - 1, c = cindx - 1; c >= MIN_COL && r >= MIN_ROW; c--, r--) {
+                if(slide) {
+                square = r * SIZE + c;
+               
+                if (fPieceTypeLocationsOnBoard[r][c] != 0) {
+                    if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                        System.out.println("2. there is a white piece on this square " + square);
+                    } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
+                        System.out.println("2. There is black piece at this square = " + square);
+                    }
+                slide = false;
+                }
+                if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                    slide = false;
+                } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                    slide = false;
+                } else if (team == 0 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                    slide = false;
+                    possibleMoves.add(square);
+                    moveMM.add(square);
+                } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                    slide = false;
+                    possibleMoves.add(square);
+                    moveMM.add(square);
+                } else {
+                    possibleMoves.add(square);
+                    moveMM.add(square);
+                }
+            }else {
+                    break;
+                }
+            }
+        }
+            moveMM.forEach((mv) -> {
+                System.out.println("moveMM " + mv);
+            });
+
+            slide = true;
+            System.out.println("\nminus row && plus column");
+            if (rindx - 1 >= MIN_ROW && cindx + 1 <= MAX_COL) {    // -+
+                for (r = rindx - 1, c = cindx + 1; c <= MAX_COL && r >= MIN_ROW; c++, r--) {
+                    if(slide) {
+                    square = r * SIZE + c;
+                 
+                    if (fPieceTypeLocationsOnBoard[r][c] != 0) {
+                        if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                            System.out.println("3. there is a white piece on this square " + square);
+                        } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
+                            System.out.println("3. There is black piece at this square = " + square);
+                        }
+                slide = false;
+                    }
+                    if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                        slide = false;
+                    } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                        slide = false;
+                    } else if (team == 0 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                        slide = false;
+                        possibleMoves.add(square);
+                        moveMP.add(square);
+                    } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                        slide = false;
+                        possibleMoves.add(square);
+                        moveMP.add(square);
+                    } else {
+                        possibleMoves.add(square);
+                        moveMP.add(square);
+                    }
+                }else {
+                        break;
+                    }
+                }
+            }
+
+                moveMP.forEach((mv) -> {
+                    System.out.println("moveMP " + mv);
+                });
+
+                slide = true;
+                System.out.println("\nplus row &&  minus column");
+               if (rindx +1 <= MAX_ROW && cindx - 1 >= MIN_COL) {    // +-
+                     for (r = rindx + 1, c = cindx - 1; c >= MIN_COL && r <=MAX_ROW; c--, r++) {
+                    if(slide) {
+                         square = r * SIZE + c;
+                        if (fPieceTypeLocationsOnBoard[r][c] != 0) {
+                            if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                System.out.println("4. there is a white piece on this square " + square);
+                            } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
+                                System.out.println("4. There is black piece at this square = " + square);
+                            }
+                            slide = false;
+                        }
+               
+                        if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                            slide = false;
+                        } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                            slide = false;
+                        } else if (team == 0 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                            slide = false;
+                            possibleMoves.add(square);
+                            movePM.add(square);
+                        } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                            slide = false;
+                            possibleMoves.add(square);
+                            movePM.add(square);
+                        } else {
+
+                            possibleMoves.add(square);
+                            movePM.add(square);
+                        }
+                    }else {
+                        break;
+                    }
+                     }
+               }
+                    movePM.forEach((mv) -> {
+                        System.out.println("movePM " + mv);
+                    });
+
+                    slide = true;
+                    System.out.println("\nUP");
+                    if (rindx - 1 >= MIN_ROW) {  // up
+                        for (r = rindx - 1, c = cindx; r >= MIN_ROW; r--) {
+                            if(slide) {
+                            square = r * SIZE + c;
+
+                            if (fPieceTypeLocationsOnBoard[r][c] != 0) {
+                                if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                    System.out.println("5. there is a white piece on this square " + square);
+                                } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
+                                    System.out.println("5. There is black piece at this square = " + square);
+                                }
+                                slide = false;
+                            }
+                            if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                slide = false;
+                            } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                                slide = false;
+                            } else if (team == 0 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                                slide = false;
+                                possibleMoves.add(square);
+                                moveUP.add(square);
+                            } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                slide = false;
+                                possibleMoves.add(square);
+                                moveUP.add(square);
+                            } else if (fPieceTypeLocationsOnBoard[r][c] == 0) {
+                                possibleMoves.add(square);
+                                moveUP.add(square);
+                            
+                            }else {
+                                possibleMoves.add(square);
+                                moveUP.add(square);
+                            }
+                            
+                        }else {
+                                break;
+                            }
+                        }                            
+                    }
+
+                    moveUP.forEach((mv) -> {
+                        System.out.println("moveUP " + mv);
+                    });
+
+                    slide = true;
+                    System.out.println("\nDOWN");
+                    if (rindx + 1 <= MAX_ROW) {  // down
+                        for (r = rindx + 1, c = cindx; r <= MAX_ROW; r++) {
+                            if(slide) {
+                            square = r * SIZE + c;
+                            if (fPieceTypeLocationsOnBoard[r][c] != 0) {
+                                if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) { //whilte's own
+                                    System.out.println("6. there is a white piece on this square " + square);
+                                    slide = false;
+                                } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
+                                    System.out.println("6. There is black piece at this square = " + square);   // black's own 
+                                    slide = false;
+                                }
+                            }
+                            if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {  // own piece
+                                slide = false;
+                            } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                                slide = false;
+                            } else if (team == 0 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                                slide = false;
+                                possibleMoves.add(square);
+                                moveDN.add(square);
+                            } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                slide = false;
+                                possibleMoves.add(square);
+                                moveDN.add(square);
+                            }else {
+                          
+                                possibleMoves.add(square);
+                                moveDN.add(square);
+                               
+                            }
+
+                        }else {
+                                break;
+                            }
+                        }
+                    }
+                    moveDN.forEach((mv) -> {
+                        System.out.println("moveDN " + mv);
+                    });
+
+                    slide = true;
+                    System.out.println("\nRIGHT");
+                    if (cindx + 1 <= MAX_COL) {  // right
+                        for (c = cindx + 1, r = rindx; c <= MAX_COL; c++) {
+                            if(slide) {
+                            square = r * SIZE + c;
+
+                            if (fPieceTypeLocationsOnBoard[r][c] != 0) {
+                                if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                    System.out.println("7. there is a white piece on this square " + square);
+                                } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
+                                    System.out.println("7. There is black piece at this square = " + square);
+                                }
+                                slide = false;
+                            }
+                            if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                slide = false;
+                            } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                                slide = false;
+                            } else if (team == 0 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                                slide = false;
+                                possibleMoves.add(square);
+                                moveRT.add(square);
+                            } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                slide = false;
+                                possibleMoves.add(square);
+                                moveRT.add(square);
+                            } else {
+                                possibleMoves.add(square);
+                                moveRT.add(square);
+                               
+                            }
+
+                        }else {
+                                break;
+                            }
+                        }
+                    }
+
+                    moveRT.forEach((mv) -> {
+                        System.out.println("moveRT " + mv);
+                    });
+
+                    slide = true;
+                    System.out.println("\nLEFT");
+                    if (cindx - 1 >= MIN_COL) {  // left
+                        for (c = cindx - 1, r = rindx; c >= MIN_COL; c--) {
+                            if(slide) {
+                            square = r * SIZE + c;
+
+                            if (fPieceTypeLocationsOnBoard[r][c] != 0) {
+                                if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                    System.out.println("8. there is a white piece on this square " + square);
+                                } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
+                                    System.out.println("8. There is black piece at this square = " + square);
+                                }
+                              slide = false;
+                            }
+                            if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                System.out.println("!first +7 white team, white square, row = " + r + ", col = " + c);
+                                slide = false;
+                            } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                                System.out.println("!first +7 black team, black square, row = " + r + ", col = " + c);
+                                slide = false;
+                            } else if (team == 0 && fPieceTypeLocationsOnBoard[r][c] >= 7) {
+                                System.out.println("!first +7 white team, black square, row = " + r + ", col = " + c);
+                                slide = false;
+                                possibleMoves.add(square);
+                                moveLF.add(square);
+                            } else if (team == 1 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
+                                System.out.println("!first + 7 black team, white sqaure, row = " + r + ", col = " + c);
+                                slide = false;
+                                possibleMoves.add(square);
+                                moveLF.add(square);
+                            } else {
+                                possibleMoves.add(square);
+                                moveLF.add(square);
+                              
+                            }
+
+                        }else {
+                                break;
+                            }
+                        }
+
+                    }
+
+                    moveLF.forEach((mv) -> {
+                        System.out.println("moveLF " + mv);
+                    });
+
+                    for (int pm : possibleMoves) {
+                        legalMoves.add(pm);
+                    }
+                    for (int lm : legalMoves) {
+                        System.out.println("legal moves from range: lm = " + lm);
+                        if (squareClicked == lm) {
+                            System.out.println("valid moves: Match lm = " + lm);
+                            System.out.println("valid moves: return true ");
+                            return true;
+                        }
+                    }
+   
         return false;
     }
-    
-    static private boolean noPieceBlocksPathToSquare(int[][] fPieceTypeLocationsOnBoard)
-    {
-        int rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
-        int columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
-        
-        int rowClicked = Board.getRowFromLocation(TeamLewisChessController.getSquareClicked());
-        int columnClicked = Board.getColumnFromLocation(TeamLewisChessController.getSquareClicked());
 
-        if(fPieceTypeLocationsOnBoard[rowTargeted][columnTargeted] >= 1 && fPieceTypeLocationsOnBoard[rowTargeted][columnTargeted] <= 6){
-            if(fPieceTypeLocationsOnBoard[rowClicked][columnClicked] >= 1 && fPieceTypeLocationsOnBoard[rowClicked][columnClicked] <= 6)
-                return false;
-        }
-        else if(fPieceTypeLocationsOnBoard[rowTargeted][columnTargeted] >= 7 && fPieceTypeLocationsOnBoard[rowTargeted][columnTargeted] <= 12){
-            if(fPieceTypeLocationsOnBoard[rowClicked][columnClicked] >= 7 && fPieceTypeLocationsOnBoard[rowClicked][columnClicked] <= 12)
-                return false;
-        }
-        
-        int nextRow;
-        int nextColumn;
-        int previousRow;
-        int previousColumn;
-        
-        if(rowTargeted == rowClicked || columnTargeted == columnClicked){
-            
-            int[] rookRowMove = new int[4];
-            int[] rookColumnMove = new int[4];
-
-            rookRowMove[0] = 1  ; rookColumnMove[0] = 0;
-            rookRowMove[1] = -1 ; rookColumnMove[1] = 0;
-            rookRowMove[2] = 0  ; rookColumnMove[2] = -1;
-            rookRowMove[3] = 0  ; rookColumnMove[3] = 1;
-
-            for (int i = 0; i < 4; i++){
-
-                nextRow = rowTargeted + rookRowMove[i];
-                nextColumn = columnTargeted + rookColumnMove[i];
-
-                while(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
-                    if(nextRow == rowClicked && nextColumn == columnClicked){
-
-                        previousRow = nextRow - rookRowMove[i];
-                        previousColumn = nextColumn - rookColumnMove[i];
-
-                        while(previousRow != rowTargeted && previousColumn != columnTargeted){
-
-                            if(fPieceTypeLocationsOnBoard[previousRow][previousColumn] != 0)
-                                return false; // noPieceBlocksPathToSquare
-                            else{
-                                previousRow -= rookRowMove[i];
-                                previousColumn -= rookColumnMove[i];
-                            }
-                        }
-                        return true; // noPieceBlocksPathToSquare
-                    }
-                    else{
-                        nextRow += rookRowMove[i];
-                        nextColumn += rookColumnMove[i];
-                    }
-                }
-            }
-        }
-        else{
-            // bishop pattern
-            int[] bishopRowMove = new int[4];
-            int[] bishopColumnMove = new int[4];
-
-            bishopRowMove[0] = 1  ; bishopColumnMove[0] = -1;
-            bishopRowMove[1] = 1  ; bishopColumnMove[1] = 1;
-            bishopRowMove[2] = -1 ; bishopColumnMove[2] = -1;
-            bishopRowMove[3] = -1 ; bishopColumnMove[3] = 1;
-
-            for (int i = 0; i < 4; i++){
-
-                nextRow = rowTargeted + bishopRowMove[i];
-                nextColumn = columnTargeted + bishopColumnMove[i];
-
-                while(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
-                    if(nextRow == rowClicked && nextColumn == columnClicked){
-
-                        previousRow = nextRow - bishopRowMove[i];
-                        previousColumn = nextColumn - bishopColumnMove[i];
-
-                        while(previousRow != rowTargeted && previousColumn != columnTargeted){
-
-                            if(fPieceTypeLocationsOnBoard[previousRow][previousColumn] != 0)
-                                return false; // noPieceBlocksPathToSquare
-                            else{
-                                previousRow -= bishopRowMove[i];
-                                previousColumn -= bishopColumnMove[i];
-                            }
-                        }
-                        return true; // noPieceBlocksPathToSquare
-                    }
-                    else{
-                        nextRow += bishopRowMove[i];
-                        nextColumn += bishopColumnMove[i];
-                    }
-                }
-            }
-        }
-        
-        // noPieceBlocksQueenPathToSquare
-        return false;  
-    }
-    
-    static private boolean moveDoesNotPlaceKingInCheck(int[][] fPieceTypeLocationsOnBoard)
-    {
+    static private boolean moveDoesNotPlaceKingInCheck(int[][] fPieceTypeLocationsOnBoard) {
         int rowClicked = 0;
         int columnClicked = 0;
         int rowTargeted = 0;
         int columnTargeted = 0;
         int rowKing = 0;
         int columnKing = 0;
-        
+
         int[][] tempArray = new int[8][8];
-        
-        for(int i = 0; i < 8; i++){
-            for(int j = 0; j < 8; j++){
+
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
                 tempArray[i][j] = fPieceTypeLocationsOnBoard[i][j];
             }
         }
         System.out.println("temp array created");
         rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
         columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
-        
+
         rowClicked = Board.getRowFromLocation(TeamLewisChessController.getSquareClicked());
         columnClicked = Board.getColumnFromLocation(TeamLewisChessController.getSquareClicked());
-        
+
         // update temporary board with hypothetical move
         tempArray[rowClicked][columnClicked] = tempArray[rowTargeted][columnTargeted];
         tempArray[rowTargeted][columnTargeted] = 0;
         System.out.println("move made");
-        if (Game.getCurrentTeamsTurn() == 0){
-            
+        if (Game.getCurrentTeamsTurn() == 0) {
+
             // find the white king 
-            
             int whiteKing = 6;
-            
-            for(int i = 0; i < 8; i++){
-                for(int j = 0; j < 8; j++){
-                    if (tempArray[i][j] == whiteKing){
+
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (tempArray[i][j] == whiteKing) {
                         rowKing = i;
                         columnKing = j;
-                    }                    
+                    }
                 }
             }
             System.out.println("white king found");
             ///// check area for black Bishop and Queen                 
-            
-           int blackBishop = 10;
-           int blackQueen = 11;
-           
-           int[] bishopRowMove = new int[4];
-           int[] bishopColumnMove = new int[4];
-           
-           bishopRowMove[0] = 1  ; bishopColumnMove[0] = -1;
-           bishopRowMove[1] = 1  ; bishopColumnMove[1] = 1;
-           bishopRowMove[2] = -1 ; bishopColumnMove[2] = -1;
-           bishopRowMove[3] = -1 ; bishopColumnMove[3] = 1;
-           
-           int nextRow = 0;
-           int nextColumn = 0;
-           boolean pieceInTheWay = false;
-          
-           for (int i = 0; i < 4; i++)
-           {
-               pieceInTheWay = false;
-               nextRow = rowKing + bishopRowMove[i];
-               nextColumn = columnKing + bishopColumnMove[i];
-               
-               while(pieceInTheWay == false && nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
-                   if (tempArray[nextRow][nextColumn] != 0){
-                       if(tempArray[nextRow][nextColumn] == blackQueen || tempArray[nextRow][nextColumn] == blackBishop)
+
+            int blackBishop = 10;
+            int blackQueen = 11;
+
+            int[] bishopRowMove = new int[4];
+            int[] bishopColumnMove = new int[4];
+
+            bishopRowMove[0] = 1;
+            bishopColumnMove[0] = -1;
+            bishopRowMove[1] = 1;
+            bishopColumnMove[1] = 1;
+            bishopRowMove[2] = -1;
+            bishopColumnMove[2] = -1;
+            bishopRowMove[3] = -1;
+            bishopColumnMove[3] = 1;
+
+            int nextRow = 0;
+            int nextColumn = 0;
+            boolean pieceInTheWay = false;
+
+            for (int i = 0; i < 4; i++) {
+                pieceInTheWay = false;
+                nextRow = rowKing + bishopRowMove[i];
+                nextColumn = columnKing + bishopColumnMove[i];
+
+                while (pieceInTheWay == false && nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7) {
+                    if (tempArray[nextRow][nextColumn] != 0) {
+                        if (tempArray[nextRow][nextColumn] == blackQueen || tempArray[nextRow][nextColumn] == blackBishop) {
                             return false; // moveDoesNotPlaceKingInCheck
-                        else
+                        } else {
                             pieceInTheWay = true;
-                   }
-                   else{
-                       nextRow += bishopRowMove[i];
-                       nextColumn += bishopColumnMove[i];
-                   }
-               }
-           }
-           System.out.println("black bishop and black queen not found");
-           ///// check area for black Rook and Queen                 
-            
-           int blackRook = 8;
-           
-           int[] rookRowMove = new int[4];
-           int[] rookColumnMove = new int[4];
-           
-           rookRowMove[0] = 1  ; rookColumnMove[0] = 0;
-           rookRowMove[1] = -1 ; rookColumnMove[1] = 0;
-           rookRowMove[2] = 0  ; rookColumnMove[2] = 1;
-           rookRowMove[3] = 0  ; rookColumnMove[3] = -1;
-           
-           for (int i = 0; i < 4; i++)
-           {
-               pieceInTheWay = false;
-               nextRow = rowKing + rookRowMove[i];
-               nextColumn = columnKing + rookColumnMove[i];
-               
-               while(pieceInTheWay == false && nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
-                   if (tempArray[nextRow][nextColumn] != 0){
-                       if(tempArray[nextRow][nextColumn] == blackQueen || tempArray[nextRow][nextColumn] == blackRook)
+                        }
+                    } else {
+                        nextRow += bishopRowMove[i];
+                        nextColumn += bishopColumnMove[i];
+                    }
+                }
+            }
+            System.out.println("black bishop and black queen not found");
+            ///// check area for black Rook and Queen                 
+
+            int blackRook = 8;
+
+            int[] rookRowMove = new int[4];
+            int[] rookColumnMove = new int[4];
+
+            rookRowMove[0] = 1;
+            rookColumnMove[0] = 0;
+            rookRowMove[1] = -1;
+            rookColumnMove[1] = 0;
+            rookRowMove[2] = 0;
+            rookColumnMove[2] = 1;
+            rookRowMove[3] = 0;
+            rookColumnMove[3] = -1;
+
+            for (int i = 0; i < 4; i++) {
+                pieceInTheWay = false;
+                nextRow = rowKing + rookRowMove[i];
+                nextColumn = columnKing + rookColumnMove[i];
+
+                while (pieceInTheWay == false && nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7) {
+                    if (tempArray[nextRow][nextColumn] != 0) {
+                        if (tempArray[nextRow][nextColumn] == blackQueen || tempArray[nextRow][nextColumn] == blackRook) {
                             return false; // moveDoesNotPlaceKingInCheck
-                        else
+                        } else {
                             pieceInTheWay = true;
-                   }
-                   else{
-                       nextRow += rookRowMove[i];
-                       nextColumn += rookColumnMove[i];
-                   }
-               }
-           }
-           System.out.println("black rook and black queen not found");
-           
+                        }
+                    } else {
+                        nextRow += rookRowMove[i];
+                        nextColumn += rookColumnMove[i];
+                    }
+                }
+            }
+            System.out.println("black rook and black queen not found");
+
             ///// check area for blackknight
-            
             int blackKnight = 9;
-            
+
             int[] rowKnight = new int[8];
-            int[] columnKnight= new int[8];
-            
-            rowKnight[0]= -1  ; columnKnight[0]=2;
-            rowKnight[1]= -2  ; columnKnight[1]=1;      
-            rowKnight[2]= -2  ; columnKnight[2]=-1;
-            rowKnight[3]= -1  ; columnKnight[3]=-2;
-            rowKnight[4]= 1   ; columnKnight[4]=-2;
-            rowKnight[5]= 2   ; columnKnight[5]=-1;
-            rowKnight[6]= 2   ; columnKnight[6]=1;
-            rowKnight[7]= 1   ; columnKnight[7]=2;
-            
-           for(int i = 0; i <= 7 ;i++){
-               
-               nextRow = rowKing + rowKnight[i];
-               nextColumn = columnKing + columnKnight[i];
-                
-               if(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
-                   if(tempArray [nextRow][nextColumn] == blackKnight)
-                       return false; // moveDoesNotPlaceKingInCheck
-               }          
-           }               
-           System.out.println("black knight not found");
-           // check area for black pawn
-           
-           int blackPawn = 7;
-           
-           int[] rowPawn = new int[2];
-           int[] columnPawn= new int[2];
-            
-           rowPawn[0]= -1 ; columnPawn[0] = 1;
-           rowPawn[1]= -1 ; columnPawn[1] = -1;      
-            
-           for(int i = 0; i < 2 ;i++){
-               
-              nextRow = rowKing + rowPawn[i];
-              nextColumn = columnKing + columnPawn[i];
-              
-               if(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
-                    if(tempArray[nextRow][nextColumn] == blackPawn)
+            int[] columnKnight = new int[8];
+
+            rowKnight[0] = -1;
+            columnKnight[0] = 2;
+            rowKnight[1] = -2;
+            columnKnight[1] = 1;
+            rowKnight[2] = -2;
+            columnKnight[2] = -1;
+            rowKnight[3] = -1;
+            columnKnight[3] = -2;
+            rowKnight[4] = 1;
+            columnKnight[4] = -2;
+            rowKnight[5] = 2;
+            columnKnight[5] = -1;
+            rowKnight[6] = 2;
+            columnKnight[6] = 1;
+            rowKnight[7] = 1;
+            columnKnight[7] = 2;
+
+            for (int i = 0; i <= 7; i++) {
+
+                nextRow = rowKing + rowKnight[i];
+                nextColumn = columnKing + columnKnight[i];
+
+                if (nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7) {
+                    if (tempArray[nextRow][nextColumn] == blackKnight) {
+                        return false; // moveDoesNotPlaceKingInCheck
+                    }
+                }
+            }
+            System.out.println("black knight not found");
+            // check area for black pawn
+
+            int blackPawn = 7;
+
+            int[] rowPawn = new int[2];
+            int[] columnPawn = new int[2];
+
+            rowPawn[0] = -1;
+            columnPawn[0] = 1;
+            rowPawn[1] = -1;
+            columnPawn[1] = -1;
+
+            for (int i = 0; i < 2; i++) {
+
+                nextRow = rowKing + rowPawn[i];
+                nextColumn = columnKing + columnPawn[i];
+
+                if (tempArray[nextRow][nextColumn] == blackPawn) {
                     return false; // moveDoesNotPlaceKingInCheck
-               }
-           }
-           System.out.println("black pawn not found");
-        }
-        
-        else { // black's turn
-     
+                }
+            }
+            System.out.println("black pawn not found");
+        } else { // black's turn
+
             //find the black king
-            
             int blackKing = 12;
-            
-            for(int i = 0; i < 8; i++){
-                for(int j = 0; j < 8; j++){
-                    if (tempArray[i][j] == blackKing){
+
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (tempArray[i][j] == blackKing) {
                         rowKing = i;
                         columnKing = j;
-                    }                    
+                    }
                 }
             }
             System.out.println("black king found");
             ///// check area for white Bishop and Queen                 
-            
-           int whiteBishop = 4;
-           int whiteQueen = 5;
-           
-           int[] bishopRowMove = new int[4];
-           int[] bishopColumnMove = new int[4];
-           
-           bishopRowMove[0] = 1  ; bishopColumnMove[0] = -1;
-           bishopRowMove[1] = 1  ; bishopColumnMove[1] = 1;
-           bishopRowMove[2] = -1 ; bishopColumnMove[2] = -1;
-           bishopRowMove[3] = -1 ; bishopColumnMove[3] = 1;
-           
-           int nextRow = 0;
-           int nextColumn = 0;
-           boolean pieceInTheWay = false;
-          
-           for (int i = 0; i < 4; i++)
-           {
-               pieceInTheWay = false;
-               nextRow = rowKing + bishopRowMove[i];
-               nextColumn = columnKing + bishopColumnMove[i];
-               
-               while(pieceInTheWay == false && nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
-                   if (tempArray[nextRow][nextColumn] != 0){
-                       if(tempArray[nextRow][nextColumn] == whiteQueen || tempArray[nextRow][nextColumn] == whiteBishop)
+
+            int whiteBishop = 4;
+            int whiteQueen = 5;
+
+            int[] bishopRowMove = new int[4];
+            int[] bishopColumnMove = new int[4];
+
+            bishopRowMove[0] = 1;
+            bishopColumnMove[0] = -1;
+            bishopRowMove[1] = 1;
+            bishopColumnMove[1] = 1;
+            bishopRowMove[2] = -1;
+            bishopColumnMove[2] = -1;
+            bishopRowMove[3] = -1;
+            bishopColumnMove[3] = 1;
+
+            int nextRow = 0;
+            int nextColumn = 0;
+            boolean pieceInTheWay = false;
+
+            for (int i = 0; i < 4; i++) {
+                pieceInTheWay = false;
+                nextRow = rowKing + bishopRowMove[i];
+                nextColumn = columnKing + bishopColumnMove[i];
+
+                while (pieceInTheWay == false && nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7) {
+                    if (tempArray[nextRow][nextColumn] != 0) {
+                        if (tempArray[nextRow][nextColumn] == whiteQueen || tempArray[nextRow][nextColumn] == whiteBishop) {
                             return false; // moveDoesNotPlaceKingInCheck
-                        else
+                        } else {
                             pieceInTheWay = true;
-                   }
-                   else{
-                       nextRow += bishopRowMove[i];
-                       nextColumn += bishopColumnMove[i];
-                   }
-               }
-           }
-           System.out.println("white bishop and queen not found");
-           ///// check area for Rook and Queen (white)                
-            
-           int whiteRook = 2;
-           
-           int[] rookRowMove = new int[4];
-           int[] rookColumnMove = new int[4];
-           
-           rookRowMove[0] = 1  ; rookColumnMove[0] = 0;
-           rookRowMove[1] = 0  ; rookColumnMove[1] = 1;
-           rookRowMove[2] = -1 ; rookColumnMove[2] = 0;
-           rookRowMove[3] = 0  ; rookColumnMove[3] = -1;
-           
-           for (int i = 0; i < 4; i++)
-           {
-               pieceInTheWay = false;
-               nextRow = rowKing + rookRowMove[i];
-               nextColumn = columnKing + rookColumnMove[i];
-               
-               while(pieceInTheWay == false && nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
-                   if (tempArray[nextRow][nextColumn] != 0){
-                       if(tempArray[nextRow][nextColumn] == whiteQueen || tempArray[nextRow][nextColumn] == whiteRook)
-                            return false; // moveDoesNotPlaceKingInCheck
-                        else
-                            pieceInTheWay = true;
-                   }
-                   else{
-                       nextRow += rookRowMove[i];
-                       nextColumn += rookColumnMove[i];
-                   }
-               }
-           }
-           System.out.println("white rook and queen not found");
-           ///// check area for whiteknight
-            
-           int whiteKnight = 3;
-            
-           int[] rowKnight = new int[8];
-           int[] columnKnight= new int[8];
-            
-           rowKnight[0] = -1 ; columnKnight[0] = 2;
-           rowKnight[1] = -2 ; columnKnight[1] = 1;      
-           rowKnight[2] = -2 ; columnKnight[2] = -1;
-           rowKnight[3] = -1 ; columnKnight[3] = -2;
-           rowKnight[4] = 1  ; columnKnight[4] = -2;
-           rowKnight[5] = 2  ; columnKnight[5] = -1;
-           rowKnight[6] = 2  ; columnKnight[6] = 1;
-           rowKnight[7] = 1  ; columnKnight[7] = 2;
-           
-           for(int i = 0; i <= 7; i++){
-              
-              nextRow = rowKing + rowKnight[i];
-              nextColumn = columnKing + columnKnight[i];
-              
-              if(nextRow >= 0 && nextRow <= 7){
-                    if(nextColumn >= 0 && nextColumn <= 7){ 
-                        if(tempArray[nextRow][nextColumn] == whiteKnight)
-                             return false; // moveDoesNotPlaceKingInCheck
+                        }
+                    } else {
+                        nextRow += bishopRowMove[i];
+                        nextColumn += bishopColumnMove[i];
                     }
-                }          
-           }
-           System.out.println("white knight not found");
+                }
+            }
+            System.out.println("white bishop and queen not found");
+            ///// check area for Rook and Queen (white)                
+
+            int whiteRook = 2;
+
+            int[] rookRowMove = new int[4];
+            int[] rookColumnMove = new int[4];
+
+            rookRowMove[0] = 1;
+            rookColumnMove[0] = 0;
+            rookRowMove[1] = 0;
+            rookColumnMove[1] = 1;
+            rookRowMove[2] = -1;
+            rookColumnMove[2] = 0;
+            rookRowMove[3] = 0;
+            rookColumnMove[3] = -1;
+
+            for (int i = 0; i < 4; i++) {
+                pieceInTheWay = false;
+                nextRow = rowKing + rookRowMove[i];
+                nextColumn = columnKing + rookColumnMove[i];
+
+                while (pieceInTheWay == false && nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7) {
+                    if (tempArray[nextRow][nextColumn] != 0) {
+                        if (tempArray[nextRow][nextColumn] == whiteQueen || tempArray[nextRow][nextColumn] == whiteRook) {
+                            return false; // moveDoesNotPlaceKingInCheck
+                        } else {
+                            pieceInTheWay = true;
+                        }
+                    } else {
+                        nextRow += rookRowMove[i];
+                        nextColumn += rookColumnMove[i];
+                    }
+                }
+            }
+            System.out.println("white rook and queen not found");
+            ///// check area for whiteknight
+
+            int whiteKnight = 3;
+
+            int[] rowKnight = new int[8];
+            int[] columnKnight = new int[8];
+
+            rowKnight[0] = -1;
+            columnKnight[0] = 2;
+            rowKnight[1] = -2;
+            columnKnight[1] = 1;
+            rowKnight[2] = -2;
+            columnKnight[2] = -1;
+            rowKnight[3] = -1;
+            columnKnight[3] = -2;
+            rowKnight[4] = 1;
+            columnKnight[4] = -2;
+            rowKnight[5] = 2;
+            columnKnight[5] = -1;
+            rowKnight[6] = 2;
+            columnKnight[6] = 1;
+            rowKnight[7] = 1;
+            columnKnight[7] = 2;
+
+            for (int i = 0; i <= 7; i++) {
+
+                nextRow = rowKing + rowKnight[i];
+                nextColumn = columnKing + columnKnight[i];
+
+                if (nextRow >= 0 && nextRow <= 7) {
+                    if (nextColumn >= 0 && nextColumn <= 7) {
+                        if (tempArray[nextRow][nextColumn] == whiteKnight) {
+                            return false; // moveDoesNotPlaceKingInCheck
+                        }
+                    }
+                }
+            }
+            System.out.println("white knight not found");
             // check area for white pawn
-            
+
             int whitePawn = 1;
-            
+
             int[] rowPawn = new int[2];
-            int[] columnPawn= new int[2];
-            
-            rowPawn[0]= 1; columnPawn[0]= 1;
-            rowPawn[1]= 1; columnPawn[1]= -1;      
-            
-            for(int i = 0; i < 2 ;i++){
-                
-              nextRow = rowKing + rowPawn[i];
-              nextColumn = columnKing + columnPawn[i];
-              
-              if(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
-                    if(tempArray[nextRow][nextColumn] == whitePawn)
-                  return false; // moveDoesNotPlaceKingInCheck
-              }
-           }
+            int[] columnPawn = new int[2];
+
+            rowPawn[0] = 1;
+            columnPawn[0] = 1;
+            rowPawn[1] = 1;
+            columnPawn[1] = -1;
+
+            for (int i = 0; i < 2; i++) {
+
+                nextRow = rowKing + rowPawn[i];
+                nextColumn = columnKing + columnPawn[i];
+
+                if (tempArray[nextRow][nextColumn] == whitePawn) {
+                    return false; // moveDoesNotPlaceKingInCheck
+                }
+            }
             System.out.println("white pawn not found");
         }
         // moveDoesNotPlaceKingInCheck
         return true;
     }
-    
+
     public Queen(int fLocation, int fTeam) {
         super(fLocation, fTeam);
     }
