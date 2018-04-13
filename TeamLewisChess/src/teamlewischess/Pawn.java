@@ -121,11 +121,30 @@ public class Pawn extends Piece {
                 rowPawnMove[2] = -1; columnPawnMove[2] = 0;
                 rowPawnMove[3] = -2; columnPawnMove[3] = 0; // currently an unrestricted move
 
-                for(int i = 0; i < 4; i++){
-                    if(rowTargeted + rowPawnMove[i] >= 0 && rowTargeted + rowPawnMove[i] <= 7 && columnTargeted + columnPawnMove[i] >= 0 && columnTargeted + columnPawnMove[i] <= 7)
-                        if(rowTargeted + rowPawnMove[i] == rowClicked && columnTargeted + columnPawnMove[i] == columnClicked){
+               if (rowTargeted == 6) {
+                    for (int i = 0; i < 4; i++) {
+                        if (rowTargeted + rowPawnMove[i] >= 0
+                                && rowTargeted + rowPawnMove[i] <= 7
+                                && columnTargeted + columnPawnMove[i] >= 0
+                                && columnTargeted + columnPawnMove[i] <= 7) {
+                            if (rowTargeted + rowPawnMove[i] == rowClicked
+                                    && columnTargeted + columnPawnMove[i] == columnClicked) {
                                 return true;
                             }
+                        }
+                    }
+                } else {
+                    for (int i = 0; i < 3; i++) {
+                        if (rowTargeted + rowPawnMove[i] >= 0
+                                && rowTargeted + rowPawnMove[i] <= 7
+                                && columnTargeted + columnPawnMove[i] >= 0
+                                && columnTargeted + columnPawnMove[i] <= 7) {
+                            if (rowTargeted + rowPawnMove[i] == rowClicked
+                                    && columnTargeted + columnPawnMove[i] == columnClicked) {
+                                return true;
+                            }
+                        }
+                    }
                 }
             }
             else if(Game.getCurrentTeamsTurn() != 0){
@@ -135,12 +154,33 @@ public class Pawn extends Piece {
                 rowPawnMove[2] = 1; columnPawnMove[2] = 0;
                 rowPawnMove[3] = 2; columnPawnMove[3] = 0; // currently an unrestricted move
 
-                for(int i = 0; i < 4; i++){
-                    if(rowTargeted + rowPawnMove[i] >= 0 && rowTargeted + rowPawnMove[i] <= 7 && columnTargeted + columnPawnMove[i] >= 0 && columnTargeted + columnPawnMove[i] <= 7)
-                        if(rowTargeted + rowPawnMove[i] == rowClicked)
-                            if(columnTargeted + columnPawnMove[i] == columnClicked){
-                                return true;
+                if (rowTargeted == 1) {
+                    for (int i = 0; i < 4; i++) {
+                        if ((rowTargeted + rowPawnMove[i]) >= 0 && (rowTargeted + rowPawnMove[i]) <= 7 && (columnTargeted + columnPawnMove[i]) >= 0
+                                && (columnTargeted + columnPawnMove[i]) <= 7) {
+                            if ((rowTargeted + rowPawnMove[i]) == rowClicked) {
+                                if (columnTargeted + columnPawnMove[i] == columnClicked) {
+                                    return true;
+                                }
                             }
+                        }
+                    }
+                } else if (rowTargeted > 1) {
+                    for (int i = 0; i < 3; i++) {
+                        System.out.println("i = " + i + ", rowTargeted = " + rowTargeted + ", rowClicked " + rowClicked);
+                        System.out.println("rowPawnMove[" + i + "] = " + rowPawnMove[i]);
+                        System.out.println("columnPawnMove[" + i + "]" + columnPawnMove[i]);
+                        if (rowTargeted + rowPawnMove[i] >= 1// 0 
+                                && rowTargeted + rowPawnMove[i] <= 7
+                                && columnTargeted + columnPawnMove[i] >= 0
+                                && columnTargeted + columnPawnMove[i] <= 7) {
+                            if ((rowTargeted + rowPawnMove[i]) == rowClicked) {
+                                if (columnTargeted + columnPawnMove[i] == columnClicked) {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
