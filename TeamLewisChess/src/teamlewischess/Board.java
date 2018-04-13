@@ -1700,7 +1700,7 @@ public class Board {
             //Preserving currentTeamsTurn and restoring at the end of this if control structure, as we are
             //looking a move ahead to see if black, who is in check now, can get out of check on his turn.
             Game.setCurrentTeamsTurn(1);
-            
+                        
             boolean validMoveFound = false;
             boolean allMovesHaveBeenChecked = false;
             
@@ -1983,11 +1983,14 @@ public class Board {
         //reached again.
         //If neither player is in check, check to make sure a valid move still exists.
         //Else, it is stalemate.
-        if (Game.getGameStatus() == 0 && wK.isInCheck(pieceTypeLocationsOnBoard) == false && bK.isInCheck(pieceTypeLocationsOnBoard) == false)
+        if (Game.getGameStatus() == 0 /*&& wK.isInCheck(pieceTypeLocationsOnBoard) == false*/ && bK.isInCheck(pieceTypeLocationsOnBoard) == false)
         {
-            //Preserving currentTeamsTurn and restoring at the end of this if control structure.
-            int currentTeamsTurnTemp = Game.getCurrentTeamsTurn();
+            //Preserving currentTeamsTurn and restoring at the end of this if control structure, as we are
+            //looking a move ahead to see if black, who is in check now, can get out of check on his turn.
+            int tempCurrentTeamsTurn = Game.getCurrentTeamsTurn();
             
+            Game.setCurrentTeamsTurn(1);
+                        
             boolean validMoveFound = false;
             boolean allMovesHaveBeenChecked = false;
             
@@ -2000,10 +2003,8 @@ public class Board {
                 while (validMoveFound == false && column <= 7)
                 {
                     switch (pieceTypeLocationsOnBoard[row][column]) {
-                        case 1:
+                        case 7:
                             Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
-                            Game.setCurrentTeamsTurn(0);
-                            
                             for (int i = 0; i <= 7; i++)
                             {
                                 for (int j = 0; j <= 7; j++)
@@ -2016,11 +2017,10 @@ public class Board {
                                     }
                                 }
                             }
-                            break;
-                        case 2:
-                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
-                            Game.setCurrentTeamsTurn(0);
                             
+                            break;
+                        case 8:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
                             for (int i = 0; i <= 7; i++)
                             {
                                 for (int j = 0; j <= 7; j++)
@@ -2033,11 +2033,10 @@ public class Board {
                                     }
                                 }
                             }
-                            break;
-                        case 3:
-                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
-                            Game.setCurrentTeamsTurn(0);
                             
+                            break;
+                        case 9:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
                             for (int i = 0; i <= 7; i++)
                             {
                                 for (int j = 0; j <= 7; j++)
@@ -2052,10 +2051,8 @@ public class Board {
                             }
                             
                             break;
-                        case 4:
+                        case 10:
                             Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
-                            Game.setCurrentTeamsTurn(0);
-                            
                             for (int i = 0; i <= 7; i++)
                             {
                                 for (int j = 0; j <= 7; j++)
@@ -2070,10 +2067,8 @@ public class Board {
                             }
                             
                             break;
-                        case 5:
+                        case 11:
                             Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
-                            Game.setCurrentTeamsTurn(0);
-                            
                             for (int i = 0; i <= 7; i++)
                             {
                                 for (int j = 0; j <= 7; j++)
@@ -2088,125 +2083,15 @@ public class Board {
                             }
                             
                             break;
-                        case 6:
-                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
-                            Game.setCurrentTeamsTurn(0);
-                            
-                            for (int i = 0; i <= 7; i++)
-                            {
-                                for (int j = 0; j <= 7; j++)
-                                {
-                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
-                                    
-                                    if (King.isValidMove(pieceTypeLocationsOnBoard, white))
-                                    {
-                                        validMoveFound = true;
-                                    }
-                                }
-                            }
-                            
-                            break;
-                        case 7:
-                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
-                            Game.setCurrentTeamsTurn(1);
-                            
-                            for (int i = 0; i <= 7; i++)
-                            {
-                                for (int j = 0; j <= 7; j++)
-                                {
-                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
-                                    
-                                    if (Pawn.isValidMove(pieceTypeLocationsOnBoard, black))
-                                    {
-                                        validMoveFound = true;
-                                    }
-                                }
-                            }
-                            
-                            break;
-                        case 8:
-                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
-                            Game.setCurrentTeamsTurn(1);
-                            
-                            for (int i = 0; i <= 7; i++)
-                            {
-                                for (int j = 0; j <= 7; j++)
-                                {
-                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
-                                    
-                                    if (Rook.isValidMove(pieceTypeLocationsOnBoard, black))
-                                    {
-                                        validMoveFound = true;
-                                    }
-                                }
-                            }
-                            
-                            break;
-                        case 9:
-                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
-                            Game.setCurrentTeamsTurn(1);
-                            
-                            for (int i = 0; i <= 7; i++)
-                            {
-                                for (int j = 0; j <= 7; j++)
-                                {
-                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
-                                    
-                                    if (Knight.isValidMove(pieceTypeLocationsOnBoard, black))
-                                    {
-                                        validMoveFound = true;
-                                    }
-                                }
-                            }
-                            
-                            break;
-                        case 10:
-                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
-                            Game.setCurrentTeamsTurn(1);
-                            
-                            for (int i = 0; i <= 7; i++)
-                            {
-                                for (int j = 0; j <= 7; j++)
-                                {
-                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
-                                    
-                                    if (Bishop.isValidMove(pieceTypeLocationsOnBoard, black))
-                                    {
-                                        validMoveFound = true;
-                                    }
-                                }
-                            }
-                            
-                            break;
-                        case 11:
-                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
-                            Game.setCurrentTeamsTurn(1);
-                            
-                            for (int i = 0; i <= 7; i++)
-                            {
-                                for (int j = 0; j <= 7; j++)
-                                {
-                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
-                                    
-                                    if (Queen.isValidMove(pieceTypeLocationsOnBoard, black))
-                                    {
-                                        validMoveFound = true;
-                                    }
-                                }
-                            }
-                            
-                            break;
                         case 12:
                             Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
-                            Game.setCurrentTeamsTurn(1);
-                            
                             for (int i = 0; i <= 7; i++)
                             {
                                 for (int j = 0; j <= 7; j++)
                                 {
                                     TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
                                     
-                                    if (King.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    if (King.isValidMove(pieceTypeLocationsOnBoard, black)) //Send in same team's turn for king.
                                     {
                                         validMoveFound = true;
                                     }
@@ -2231,7 +2116,151 @@ public class Board {
             }
             
             //Restoring currentTeamsTurn.
-            Game.setCurrentTeamsTurn(currentTeamsTurnTemp);
+            Game.setCurrentTeamsTurn(tempCurrentTeamsTurn);
+            
+            if (allMovesHaveBeenChecked == true && validMoveFound == false)
+            {
+                Game.setGameStatus(3);
+            }
+        } else if (Game.getCurrentTeamsTurn() == 1 && wK.isInCheck(pieceTypeLocationsOnBoard) == false) {
+            //Preserving currentTeamsTurn and restoring at the end of this if control structure, as we are
+            //looking a move ahead to see if white, who is in check now, can get out of check on his turn.
+            int tempCurrentTeamsTurn = Game.getCurrentTeamsTurn();
+            
+            Game.setCurrentTeamsTurn(0);
+            
+            boolean validMoveFound = false;
+            boolean allMovesHaveBeenChecked = false;
+            
+            int row = 0;
+            
+            while (validMoveFound == false && row <= 7)
+            {
+                int column = 0;
+                
+                while (validMoveFound == false && column <= 7)
+                {
+                    switch (pieceTypeLocationsOnBoard[row][column]) {
+                        case 1:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Pawn.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 2:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Rook.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 3:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Knight.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 4:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Bishop.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 5:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (Queen.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        case 6:
+                            Game.setTargetedSquare(getLocationFromRowAndColumn(row, column));
+                            
+                            for (int i = 0; i <= 7; i++)
+                            {
+                                for (int j = 0; j <= 7; j++)
+                                {
+                                    TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
+                                    
+                                    if (King.isValidMove(pieceTypeLocationsOnBoard, white)) //Send in same Team's turn for king.
+                                    {
+                                        validMoveFound = true;
+                                    }
+                                }
+                            }
+                            
+                            break;
+                        default:
+                            
+                            break;
+                    }
+                    
+                    column += 1;
+                }
+                
+                row += 1;
+                
+                if (row == 8)
+                {
+                    allMovesHaveBeenChecked = true;
+                }
+            }
+            
+            //Restoring currentTeamsTurn.
+            Game.setCurrentTeamsTurn(tempCurrentTeamsTurn);
             
             if (allMovesHaveBeenChecked == true && validMoveFound == false)
             {

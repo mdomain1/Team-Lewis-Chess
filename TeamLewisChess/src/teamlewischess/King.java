@@ -15,9 +15,309 @@ public class King extends Piece {
         return false;
     }
     
-    public boolean isInCheck(int[][] fPieceTypeLocationsOnBoard)
+    //Just looks at current position to see if the king who didn't call this method is in check.
+    public boolean isInCheck(final int[][] fPieceTypeLocationsOnBoard)
     {
-        return false;
+        int rowKing = 0;
+        int columnKing = 0;
+        
+        if (Game.getCurrentTeamsTurn() == 1){
+            
+            // find the white king 
+            
+            int whiteKing = 6;
+            
+            for(int i = 0; i < 8; i++){
+                for(int j = 0; j < 8; j++){
+                    if (fPieceTypeLocationsOnBoard[i][j] == whiteKing){
+                        rowKing = i;
+                        columnKing = j;
+                    }                    
+                }
+            }
+            System.out.println("white king found");
+            ///// check area for black Bishop and Queen                 
+            
+           int blackBishop = 10;
+           int blackQueen = 11;
+           
+           int[] bishopRowMove = new int[4];
+           int[] bishopColumnMove = new int[4];
+           
+           bishopRowMove[0] = 1  ; bishopColumnMove[0] = -1;
+           bishopRowMove[1] = 1  ; bishopColumnMove[1] = 1;
+           bishopRowMove[2] = -1 ; bishopColumnMove[2] = -1;
+           bishopRowMove[3] = -1 ; bishopColumnMove[3] = 1;
+           
+           int nextRow = 0;
+           int nextColumn = 0;
+           boolean pieceInTheWay = false;
+          
+           for (int i = 0; i < 4; i++)
+           {
+               pieceInTheWay = false;
+               nextRow = rowKing + bishopRowMove[i];
+               nextColumn = columnKing + bishopColumnMove[i];
+               
+               while(pieceInTheWay == false && nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                   if (fPieceTypeLocationsOnBoard[nextRow][nextColumn] != 0){
+                       if(fPieceTypeLocationsOnBoard[nextRow][nextColumn] == blackQueen || fPieceTypeLocationsOnBoard[nextRow][nextColumn] == blackBishop)
+                       {
+                            System.out.println("isInCheck method: Returned true: Black bishop or queen places white king in check.");
+                            return true; //isInCheck
+                       } else {
+                            pieceInTheWay = true;
+                       }
+                   }
+                   else{
+                       nextRow += bishopRowMove[i];
+                       nextColumn += bishopColumnMove[i];
+                   }
+               }
+           }
+           System.out.println("black bishop and black queen not found");
+           ///// check area for black Rook and Queen                 
+            
+           int blackRook = 8;
+           
+           int[] rookRowMove = new int[4];
+           int[] rookColumnMove = new int[4];
+           
+           rookRowMove[0] = 1  ; rookColumnMove[0] = 0;
+           rookRowMove[1] = -1 ; rookColumnMove[1] = 0;
+           rookRowMove[2] = 0  ; rookColumnMove[2] = 1;
+           rookRowMove[3] = 0  ; rookColumnMove[3] = -1;
+           
+           for (int i = 0; i < 4; i++)
+           {
+               pieceInTheWay = false;
+               nextRow = rowKing + rookRowMove[i];
+               nextColumn = columnKing + rookColumnMove[i];
+               
+               while(pieceInTheWay == false && nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                   if (fPieceTypeLocationsOnBoard[nextRow][nextColumn] != 0){
+                       if(fPieceTypeLocationsOnBoard[nextRow][nextColumn] == blackQueen || fPieceTypeLocationsOnBoard[nextRow][nextColumn] == blackRook)
+                       {
+                            System.out.println("isInCheck method: Returned true: Black rook or queen places white king in check.");
+                            return true; //isInCheck
+                       } else {
+                            pieceInTheWay = true;
+                       }
+                   }
+                   else{
+                       nextRow += rookRowMove[i];
+                       nextColumn += rookColumnMove[i];
+                   }
+               }
+           }
+           System.out.println("black rook and black queen not found");
+           
+            ///// check area for blackknight
+            
+            int blackKnight = 9;
+            
+            int[] rowKnight = new int[8];
+            int[] columnKnight= new int[8];
+            
+            rowKnight[0]= -1  ; columnKnight[0]=2;
+            rowKnight[1]= -2  ; columnKnight[1]=1;      
+            rowKnight[2]= -2  ; columnKnight[2]=-1;
+            rowKnight[3]= -1  ; columnKnight[3]=-2;
+            rowKnight[4]= 1   ; columnKnight[4]=-2;
+            rowKnight[5]= 2   ; columnKnight[5]=-1;
+            rowKnight[6]= 2   ; columnKnight[6]=1;
+            rowKnight[7]= 1   ; columnKnight[7]=2;
+            
+           for(int i = 0; i <= 7 ;i++){
+               
+               nextRow = rowKing + rowKnight[i];
+               nextColumn = columnKing + columnKnight[i];
+                
+               if(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                   if(fPieceTypeLocationsOnBoard[nextRow][nextColumn] == blackKnight)
+                   {
+                            System.out.println("isInCheck method: Returned true: Black knight places white king in check.");
+                            return true; //isInCheck
+                   }
+               }          
+           }               
+           System.out.println("black knight not found");
+           // check area for black pawn
+           
+           int blackPawn = 7;
+           
+           int[] rowPawn = new int[2];
+           int[] columnPawn= new int[2];
+            
+           rowPawn[0]= -1 ; columnPawn[0] = 1;
+           rowPawn[1]= -1 ; columnPawn[1] = -1;      
+            
+           for(int i = 0; i < 2 ;i++){
+               
+              nextRow = rowKing + rowPawn[i];
+              nextColumn = columnKing + columnPawn[i];
+              
+               if(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                    if(fPieceTypeLocationsOnBoard[nextRow][nextColumn] == blackPawn)
+                    {
+                        System.out.println("isInCheck method: Returned true: Black pawn places white king in check.");
+                        return true; //isInCheck
+                    }
+               }
+           }
+           System.out.println("black pawn not found");
+        }
+        
+        else { //Check if the black king is in check.
+     
+            //find the black king
+            
+            int blackKing = 12;
+            
+            for(int i = 0; i < 8; i++){
+                for(int j = 0; j < 8; j++){
+                    if (fPieceTypeLocationsOnBoard[i][j] == blackKing){
+                        rowKing = i;
+                        columnKing = j;
+                    }                    
+                }
+            }
+            System.out.println("black king found");
+            ///// check area for white Bishop and Queen                 
+            
+           int whiteBishop = 4;
+           int whiteQueen = 5;
+           
+           int[] bishopRowMove = new int[4];
+           int[] bishopColumnMove = new int[4];
+           
+           bishopRowMove[0] = 1  ; bishopColumnMove[0] = -1;
+           bishopRowMove[1] = 1  ; bishopColumnMove[1] = 1;
+           bishopRowMove[2] = -1 ; bishopColumnMove[2] = -1;
+           bishopRowMove[3] = -1 ; bishopColumnMove[3] = 1;
+           
+           int nextRow = 0;
+           int nextColumn = 0;
+           boolean pieceInTheWay = false;
+          
+           for (int i = 0; i < 4; i++)
+           {
+               pieceInTheWay = false;
+               nextRow = rowKing + bishopRowMove[i];
+               nextColumn = columnKing + bishopColumnMove[i];
+               
+               while(pieceInTheWay == false && nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                   if (fPieceTypeLocationsOnBoard[nextRow][nextColumn] != 0){
+                       if(fPieceTypeLocationsOnBoard[nextRow][nextColumn] == whiteQueen || fPieceTypeLocationsOnBoard[nextRow][nextColumn] == whiteBishop)
+                       {
+                            System.out.println("isInCheck method: Returned true: White bishop or queen places black king in check.");
+                            return true; //isInCheck
+                       } else {
+                            pieceInTheWay = true;
+                       }
+                   }
+                   else{
+                       nextRow += bishopRowMove[i];
+                       nextColumn += bishopColumnMove[i];
+                   }
+               }
+           }
+           System.out.println("white bishop and queen not found");
+           ///// check area for Rook and Queen (white)                
+            
+           int whiteRook = 2;
+           
+           int[] rookRowMove = new int[4];
+           int[] rookColumnMove = new int[4];
+           
+           rookRowMove[0] = 1  ; rookColumnMove[0] = 0;
+           rookRowMove[1] = 0  ; rookColumnMove[1] = 1;
+           rookRowMove[2] = -1 ; rookColumnMove[2] = 0;
+           rookRowMove[3] = 0  ; rookColumnMove[3] = -1;
+           
+           for (int i = 0; i < 4; i++)
+           {
+               pieceInTheWay = false;
+               nextRow = rowKing + rookRowMove[i];
+               nextColumn = columnKing + rookColumnMove[i];
+               
+               while(pieceInTheWay == false && nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                   if (fPieceTypeLocationsOnBoard[nextRow][nextColumn] != 0){
+                       if(fPieceTypeLocationsOnBoard[nextRow][nextColumn] == whiteQueen || fPieceTypeLocationsOnBoard[nextRow][nextColumn] == whiteRook)
+                       {
+                            System.out.println("isInCheck method: Returned true: White rook or queen places black king in check.");
+                            return true; //isInCheck
+                       } else {
+                            pieceInTheWay = true;
+                       }
+                   }
+                   else{
+                       nextRow += rookRowMove[i];
+                       nextColumn += rookColumnMove[i];
+                   }
+               }
+           }
+           System.out.println("white rook and queen not found");
+           ///// check area for whiteknight
+            
+           int whiteKnight = 3;
+            
+           int[] rowKnight = new int[8];
+           int[] columnKnight= new int[8];
+            
+           rowKnight[0] = -1 ; columnKnight[0] = 2;
+           rowKnight[1] = -2 ; columnKnight[1] = 1;      
+           rowKnight[2] = -2 ; columnKnight[2] = -1;
+           rowKnight[3] = -1 ; columnKnight[3] = -2;
+           rowKnight[4] = 1  ; columnKnight[4] = -2;
+           rowKnight[5] = 2  ; columnKnight[5] = -1;
+           rowKnight[6] = 2  ; columnKnight[6] = 1;
+           rowKnight[7] = 1  ; columnKnight[7] = 2;
+           
+           for(int i = 0; i <= 7; i++){
+              
+              nextRow = rowKing + rowKnight[i];
+              nextColumn = columnKing + columnKnight[i];
+              
+              if(nextRow >= 0 && nextRow <= 7){
+                    if(nextColumn >= 0 && nextColumn <= 7){ 
+                        if(fPieceTypeLocationsOnBoard[nextRow][nextColumn] == whiteKnight)
+                        {
+                            System.out.println("isInCheck method: Returned true: White knight places black king in check.");
+                            return true; //isInCheck
+                        }
+                    }
+                }          
+           }
+           System.out.println("white knight not found");
+            // check area for white pawn
+            
+            int whitePawn = 1;
+            
+            int[] rowPawn = new int[2];
+            int[] columnPawn= new int[2];
+            
+            rowPawn[0]= 1; columnPawn[0]= 1;
+            rowPawn[1]= 1; columnPawn[1]= -1;      
+            
+            for(int i = 0; i < 2 ;i++){
+                
+              nextRow = rowKing + rowPawn[i];
+              nextColumn = columnKing + columnPawn[i];
+              
+              if(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                if(fPieceTypeLocationsOnBoard[nextRow][nextColumn] == whitePawn)
+                {
+                    System.out.println("isInCheck method: Returned true: White pawn places black king in check.");
+                    return true; //isInCheck
+                }
+              }
+            }
+            System.out.println("white pawn not found");
+        }
+
+        System.out.println("isInCheck method: Returned false.");
+        return false; //The king is not in check.
     }
     
     static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam)
@@ -99,7 +399,7 @@ public class King extends Piece {
     
     static private boolean moveDoesNotPlaceKingInCheck(int[][] fPieceTypeLocationsOnBoard)
     {
-                int rowClicked = 0;
+        int rowClicked = 0;
         int columnClicked = 0;
         int rowTargeted = 0;
         int columnTargeted = 0;
