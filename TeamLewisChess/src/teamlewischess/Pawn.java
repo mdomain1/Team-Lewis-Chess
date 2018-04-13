@@ -14,14 +14,14 @@ public class Pawn extends Piece {
     static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam)
     {
         System.out.println("Pawn withinRange of PieceMobility: " + 
-                 Pawn.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
+                 Pawn.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard,fTeam));
          System.out.println("noPieceBlocksPathToSquare: " + 
-                 Pawn.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
+                 Pawn.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard,fTeam));
          System.out.println("moveDoesNotPlaceKingInCheck:  " + 
                 Pawn.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
          
-        if(Pawn.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
-            if(Pawn.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
+        if(Pawn.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard,fTeam)){
+            if(Pawn.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard,fTeam)){
                 if(Pawn.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
                     return true;
                 }
@@ -30,7 +30,7 @@ public class Pawn extends Piece {
         return false;
     }
     
-    static private boolean withinRangeOfPieceMobility(int[][] fPieceTypeLocationsOnBoard)
+    static private boolean withinRangeOfPieceMobility(int[][] fPieceTypeLocationsOnBoard, Team fTeam)
     {
         int rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
         int columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
@@ -123,6 +123,7 @@ public class Pawn extends Piece {
 
                if (rowTargeted == 6) {
                     for (int i = 0; i < 4; i++) {
+                       
                         if (rowTargeted + rowPawnMove[i] >= 0
                                 && rowTargeted + rowPawnMove[i] <= 7
                                 && columnTargeted + columnPawnMove[i] >= 0
@@ -188,7 +189,7 @@ public class Pawn extends Piece {
         return false;
     }
     
-    static private boolean noPieceBlocksPathToSquare(int[][] fPieceTypeLocationsOnBoard)
+    static private boolean noPieceBlocksPathToSquare(int[][] fPieceTypeLocationsOnBoard, Team fTeam)
     {
         int rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
         int columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
@@ -300,7 +301,8 @@ public class Pawn extends Piece {
             return false;  
         }
         else { // pawn is a pawn
-            
+           
+            int enPassantSquare = fTeam.squarePawnMovedTwoLastMovedTo;
             int[] rowPawnMove = new int[4];
             int[] columnPawnMove = new int[4];
 
@@ -310,15 +312,27 @@ public class Pawn extends Piece {
                 rowPawnMove[1] = -1; columnPawnMove[1] = -1;
                 rowPawnMove[2] = -1; columnPawnMove[2] = 0;
                 rowPawnMove[3] = -2; columnPawnMove[3] = 0; // currently an unrestricted move
-
+                
                 for(int i = 0; i < 4; i++){
                     if(rowTargeted + rowPawnMove[i] == rowClicked){
-                        if(columnTargeted + columnPawnMove[i] == columnClicked){
-                            if(i == 0 || i == 1){
-                                if(fPieceTypeLocationsOnBoard[rowClicked][columnClicked] == 0 || fPieceTypeLocationsOnBoard[rowClicked][columnClicked] >= 1 && fPieceTypeLocationsOnBoard[rowClicked][columnClicked] <= 6)
-                                    return false;
+                        if (columnTargeted + columnPawnMove[i] == columnClicked) {
+                            if (i == 0 || i == 1) {
+                                if( fTeam.pawnMovedTwoSpacesLastMove==true) {
+                                if (fPieceTypeLocationsOnBoard[rowClicked][columnClicked] == 0) {
+                                    System.out.println("fTeam.pawnMovedTwoSapcesLastMove = " + fTeam.pawnMovedTwoSpacesLastMove);
+                                    if (rowTargeted == 3 && fTeam.pawnMovedTwoSpacesLastMove
+                                            && enPassantSquare == (rowTargeted * 8) + columnClicked) {
+                                        System.out.println("enPassant true");
+
+                                        return true;
+                                    }
+                                }
+                                } else if ( fPieceTypeLocationsOnBoard[rowClicked][columnClicked] >= 1
+                                    && fPieceTypeLocationsOnBoard[rowClicked][columnClicked] <= 6) {
+                                return false;
                             }
-                            else if(i == 2 || i == 3){
+
+                        } else if(i == 2 || i == 3){
                                 if(fPieceTypeLocationsOnBoard[rowClicked][columnClicked] != 0)
                                     return false;
                             }                                 
@@ -336,10 +350,23 @@ public class Pawn extends Piece {
                 for(int i = 0; i < 4; i++){
                     if(rowTargeted + rowPawnMove[i] == rowClicked){
                         if(columnTargeted + columnPawnMove[i] == columnClicked){
-                            if(i == 0 || i == 1){
-                                if(fPieceTypeLocationsOnBoard[rowClicked][columnClicked] == 0 || fPieceTypeLocationsOnBoard[rowClicked][columnClicked] >= 7 && fPieceTypeLocationsOnBoard[rowClicked][columnClicked] <= 12)
-                                    return false;
+                            if (i == 0 || i == 1) {
+                                if( fTeam.pawnMovedTwoSpacesLastMove==true) {
+                                if (fPieceTypeLocationsOnBoard[rowClicked][columnClicked] == 0) {
+                                    System.out.println("fTeam.pawnMovedTwoSapcesLastMove = " + fTeam.pawnMovedTwoSpacesLastMove);
+
+                                    if (rowTargeted == 4 && fTeam.pawnMovedTwoSpacesLastMove
+                                            && enPassantSquare == (rowTargeted * 8) + columnClicked) {
+                                        System.out.println("enPassant true"); 
+                                        return true;
+                                    }
+                                }
+                                } else if ( fPieceTypeLocationsOnBoard[rowClicked][columnClicked] >= 7
+                                    && fPieceTypeLocationsOnBoard[rowClicked][columnClicked] <= 12) {
+                                return false;
                             }
+                            }
+
                             else if(i == 2 || i == 3){
                                 if(fPieceTypeLocationsOnBoard[rowClicked][columnClicked] != 0)
                                     return false; // noPieceBlocksPathToSquare

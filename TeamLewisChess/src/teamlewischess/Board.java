@@ -1673,8 +1673,10 @@ public class Board {
         int targetedColumn = getColumnFromLocation(Game.getTargetedSquare());
         
         if (columnClicked != targetedColumn && pieceTypeLocationsOnBoard[rowClicked][columnClicked] == 0) {
-            if (pieceTypeLocationsOnBoard[targetedRow][targetedColumn] == 1 || pieceTypeLocationsOnBoard[targetedRow][targetedColumn] == 7) {
-                return true;
+            if (pieceTypeLocationsOnBoard[targetedRow][targetedColumn] == 1 || 
+                pieceTypeLocationsOnBoard[targetedRow][targetedColumn] == 7) {
+                System.out.println("This is an enPassantMove");
+                return true;  
             }
         }
         
