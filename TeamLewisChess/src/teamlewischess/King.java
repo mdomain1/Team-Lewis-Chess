@@ -6,13 +6,100 @@ package teamlewischess;
 public class King extends Piece {
     static public boolean hasMoved;
     
-    private boolean canCastle(int[][] fPieceTypeLocationsOnBoard)
+    private static boolean canCastle(int[][] fPieceTypeLocationsOnBoard, Team fTeam)
     {
-        //Note: Have to make sure that the rook that the king is castling with is an original rook
-        //and not a pawn promoted to a rook.
+        System.out.println("canCastle called.");
         
-        //Just to satisfy program and to be updated with algorithm:
-        return false;
+        //Must check that king does not start in check, move through check, nor land in check, and also that no piece exists on
+        //those squares between the king and rook.
+        if (TeamLewisChessController.getSquareClicked() == 62 && fTeam.R_2_hasMoved == false && fTeam.kingHasMoved == false
+        && fPieceTypeLocationsOnBoard[7][5] == 0 && fPieceTypeLocationsOnBoard[7][6] == 0) {
+        //White castling kingside.
+            Game.setTargetedSquare(1); //must be restored
+            TeamLewisChessController.setSquareClicked(2); //must be restored
+            
+            if (moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)) {
+                Game.setTargetedSquare(60); //restoring
+                TeamLewisChessController.setSquareClicked(61);  //must be restored
+                
+                if (moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)) {
+                    TeamLewisChessController.setSquareClicked(62); //restoring and checking last square
+
+                    if (moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)) {
+                        return true;
+                    }
+                }
+            }
+            
+            Game.setTargetedSquare(60); //restoring
+            TeamLewisChessController.setSquareClicked(62); //restoring
+        } else if (TeamLewisChessController.getSquareClicked() == 58 && fTeam.R_1_hasMoved == false && fTeam.kingHasMoved == false
+        && fPieceTypeLocationsOnBoard[7][3] == 0 && fPieceTypeLocationsOnBoard[7][2] == 0 && fPieceTypeLocationsOnBoard[7][1] == 0) {
+        //White castling queenside.
+            Game.setTargetedSquare(5); //must be restored
+            TeamLewisChessController.setSquareClicked(6); //must be restored
+            
+            if (moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)) {
+                Game.setTargetedSquare(60); //restoring
+                TeamLewisChessController.setSquareClicked(59); //must be restored
+                
+                if (moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)) {
+                    TeamLewisChessController.setSquareClicked(58); //restoring and checking last square
+
+                    if (moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)) {
+                        return true;
+                    }
+                }
+            }
+            
+            Game.setTargetedSquare(60); //restoring
+            TeamLewisChessController.setSquareClicked(58); //restoring
+        } else if (TeamLewisChessController.getSquareClicked() == 6 && fTeam.R_2_hasMoved == false && fTeam.kingHasMoved == false
+        && fPieceTypeLocationsOnBoard[0][5] == 0 && fPieceTypeLocationsOnBoard[0][6] == 0) {
+        //Black castling kingside.
+            Game.setTargetedSquare(57); //must be restored
+            TeamLewisChessController.setSquareClicked(58); //must be restored
+            
+            if (moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)) {
+                Game.setTargetedSquare(4); //restoring
+                TeamLewisChessController.setSquareClicked(5); //must be restored
+                
+                if (moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)) {
+                    TeamLewisChessController.setSquareClicked(6); //restoring and checking last square
+
+                    if (moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)) {
+                        return true;
+                    }
+                }
+            }
+            
+            Game.setTargetedSquare(4); //restoring
+            TeamLewisChessController.setSquareClicked(6); //restoring
+        } else if (TeamLewisChessController.getSquareClicked() == 2 && fTeam.R_1_hasMoved == false && fTeam.kingHasMoved == false
+        && fPieceTypeLocationsOnBoard[0][3] == 0 && fPieceTypeLocationsOnBoard[0][2] == 0 && fPieceTypeLocationsOnBoard[0][1] == 0) {
+        //Black castling queenside.
+            Game.setTargetedSquare(61); //must be restored
+            TeamLewisChessController.setSquareClicked(62); //must be restored
+            
+            if (moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)) {
+                Game.setTargetedSquare(4); //restoring
+                TeamLewisChessController.setSquareClicked(3); //must be restored
+                
+                if (moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)) {
+                    TeamLewisChessController.setSquareClicked(2); //restoring and checking last square
+
+                    if (moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)) {
+                        return true;
+                    }
+                }
+            }
+            
+            Game.setTargetedSquare(4); //restoring
+            TeamLewisChessController.setSquareClicked(2); //restoring
+        }
+        
+        //else
+        return false; //King cannot castle.
     }
     
     //Just looks at current position to see if the king who didn't call this method is in check.
@@ -272,7 +359,7 @@ public class King extends Piece {
                             return true; //isInCheck
                         }
                     }
-                }          
+                }
            }
             // check area for white pawn
             
@@ -303,20 +390,27 @@ public class King extends Piece {
     
     static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam)
     {
-        System.out.println("King withinRange of PieceMobility: " + 
-                 King.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
-         System.out.println("noPieceBlocksPathToSquare: " + 
-                 King.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
-         //System.out.println("moveDoesNotPlaceKingInCheck:  " + 
-           //      King.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
-         
-        if(King.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
-            if(King.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
-                if(King.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
-                    return true;
+        int rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
+        int columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
+        
+        int rowClicked = Board.getRowFromLocation(TeamLewisChessController.getSquareClicked());
+        int columnClicked = Board.getColumnFromLocation(TeamLewisChessController.getSquareClicked());
+        
+        //Castling:
+        if (((columnTargeted == columnClicked + 2 || columnTargeted == columnClicked - 2) && (rowTargeted == rowClicked))) {
+            if (canCastle(fPieceTypeLocationsOnBoard, fTeam))
+                return true; //the move is valid; the king is castling
+        } else { //check for a normal king move:
+            if(King.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
+                if(King.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){
+                    if(King.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard)){
+                        return true;
+                    }
                 }
             }
         }
+        
+        //else
         return false;
     }
     
@@ -531,6 +625,35 @@ public class King extends Piece {
                     return false; // moveDoesNotPlaceKingInCheck
                }
            }
+           System.out.println("black pawn not found");
+           
+            ///// check area for black king
+            
+            int blackKing = 12;
+            
+            int[] rowEnemyKing = new int[8];
+            int[] columnEnemyKing = new int[8];
+            
+            rowEnemyKing[0]= -1  ; columnEnemyKing[0]= 0;
+            rowEnemyKing[1]= -1  ; columnEnemyKing[1]= 1;      
+            rowEnemyKing[2]= 0  ; columnEnemyKing[2]= 1;
+            rowEnemyKing[3]= 1  ; columnEnemyKing[3]= 1;
+            rowEnemyKing[4]= 1   ; columnEnemyKing[4]= 0;
+            rowEnemyKing[5]= 1   ; columnEnemyKing[5]= -1;
+            rowEnemyKing[6]= 0   ; columnEnemyKing[6]= -1;
+            rowEnemyKing[7]= -1   ; columnEnemyKing[7]= -1;
+            
+            for(int i = 0; i <= 7; i++){
+                nextRow = rowKing + rowEnemyKing[i];
+                nextColumn = columnKing + columnEnemyKing[i];
+                
+                if(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                    if(tempArray [nextRow][nextColumn] == blackKing)
+                        return false; // moveDoesNotPlaceKingInCheck
+                }
+            }
+            
+           System.out.println("black king not found");
         }
         
         else { // black's turn
@@ -662,8 +785,39 @@ public class King extends Piece {
                   return false; // moveDoesNotPlaceKingInCheck
               }
            }
+            System.out.println("white pawn not found");
+        
+            ///// check area for white king
+            
+            int whiteKing = 6;
+            
+            int[] rowEnemyKing = new int[8];
+            int[] columnEnemyKing = new int[8];
+            
+            rowEnemyKing[0]= -1  ; columnEnemyKing[0]= 0;
+            rowEnemyKing[1]= -1  ; columnEnemyKing[1]= 1;      
+            rowEnemyKing[2]= 0  ; columnEnemyKing[2]= 1;
+            rowEnemyKing[3]= 1  ; columnEnemyKing[3]= 1;
+            rowEnemyKing[4]= 1   ; columnEnemyKing[4]= 0;
+            rowEnemyKing[5]= 1   ; columnEnemyKing[5]= -1;
+            rowEnemyKing[6]= 0   ; columnEnemyKing[6]= -1;
+            rowEnemyKing[7]= -1   ; columnEnemyKing[7]= -1;
+            
+            for(int i = 0; i <= 7; i++){
+                nextRow = rowKing + rowEnemyKing[i];
+                nextColumn = columnKing + columnEnemyKing[i];
+                
+                if(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
+                    if(tempArray [nextRow][nextColumn] == whiteKing)
+                        return false; // moveDoesNotPlaceKingInCheck
+                }
+            }
+            
+           System.out.println("white king not found");
+            
+            // moveDoesNotPlaceKingInCheck
         }
-        // moveDoesNotPlaceKingInCheck
+        
         return true;
     }
     
