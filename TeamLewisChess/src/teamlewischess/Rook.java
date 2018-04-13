@@ -74,18 +74,13 @@ public class Rook extends Piece {
         int team = Game.getCurrentTeamsTurn();
         int r = rindx;
         int c = cindx;
-                    System.out.println("\nUP");
+                    
                     if (rindx - 1 >= MIN_ROW) {  // up
                         for (r = rindx - 1, c = cindx; r >= MIN_ROW; r--) {
                             if(slide) {
                             square = r * SIZE + c;
 
                             if (fPieceTypeLocationsOnBoard[r][c] != 0) {
-                                if (fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
-                                    System.out.println("5. there is a white piece on this square " + square);
-                                } else if (fPieceTypeLocationsOnBoard[r][c] > 7) {
-                                    System.out.println("5. There is black piece at this square = " + square);
-                                }
                                 slide = false;
                             }
                             if (team == 0 && fPieceTypeLocationsOnBoard[r][c] > 0 && fPieceTypeLocationsOnBoard[r][c] < 7) {
@@ -114,10 +109,6 @@ public class Rook extends Piece {
                             }
                         }                            
                     }
-
-                    moveUP.forEach((mv) -> {
-                        System.out.println("moveUP " + mv);
-                    });
 
                     slide = true;
                     System.out.println("\nDOWN");
@@ -517,7 +508,7 @@ public class Rook extends Piece {
                 tempArray[i][j] = fPieceTypeLocationsOnBoard[i][j];
             }
         }
-        System.out.println("temp array created");
+
         rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
         columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
         
@@ -527,7 +518,7 @@ public class Rook extends Piece {
         // update temporary board with hypothetical move
         tempArray[rowClicked][columnClicked] = tempArray[rowTargeted][columnTargeted];
         tempArray[rowTargeted][columnTargeted] = 0;
-        System.out.println("move made");
+
         if (Game.getCurrentTeamsTurn() == 0){
             
             // find the white king 
@@ -542,7 +533,7 @@ public class Rook extends Piece {
                     }                    
                 }
             }
-            System.out.println("white king found");
+          
             ///// check area for black Bishop and Queen                 
             
            int blackBishop = 10;
@@ -579,7 +570,7 @@ public class Rook extends Piece {
                    }
                }
            }
-           System.out.println("black bishop and black queen not found");
+
            ///// check area for black Rook and Queen                 
             
            int blackRook = 8;
@@ -611,7 +602,7 @@ public class Rook extends Piece {
                    }
                }
            }
-           System.out.println("black rook and black queen not found");
+
            
             ///// check area for blackknight
             
@@ -639,7 +630,7 @@ public class Rook extends Piece {
                        return false; // moveDoesNotPlaceKingInCheck
                }          
            }               
-           System.out.println("black knight not found");
+
            // check area for black pawn
            
            int blackPawn = 7;
@@ -658,7 +649,7 @@ public class Rook extends Piece {
               if(tempArray[nextRow][nextColumn] == blackPawn)
                     return false; // moveDoesNotPlaceKingInCheck
            }
-           System.out.println("black pawn not found");
+
         }
         
         else { // black's turn
@@ -675,7 +666,7 @@ public class Rook extends Piece {
                     }                    
                 }
             }
-            System.out.println("black king found");
+
             ///// check area for white Bishop and Queen                 
             
            int whiteBishop = 4;
@@ -712,7 +703,7 @@ public class Rook extends Piece {
                    }
                }
            }
-           System.out.println("white bishop and queen not found");
+
            ///// check area for Rook and Queen (white)                
             
            int whiteRook = 2;
@@ -744,7 +735,7 @@ public class Rook extends Piece {
                    }
                }
            }
-           System.out.println("white rook and queen not found");
+
            ///// check area for whiteknight
             
            int whiteKnight = 3;
@@ -773,7 +764,7 @@ public class Rook extends Piece {
                     }
                 }          
            }
-           System.out.println("white knight not found");
+
             // check area for white pawn
             
             int whitePawn = 1;
@@ -792,7 +783,7 @@ public class Rook extends Piece {
               if(tempArray[nextRow][nextColumn] == whitePawn)
                   return false; // moveDoesNotPlaceKingInCheck
            }
-            System.out.println("white pawn not found");
+
         }
         // moveDoesNotPlaceKingInCheck
         return true;

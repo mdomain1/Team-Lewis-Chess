@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Box?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="472.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="teamlewischess.PromotionWindowController">
+   <children>
+      <Box depth="100" height="100" layoutX="61.0" layoutY="61.0" width="100" />
+      <Box depth="100" height="100" layoutX="176.0" layoutY="60.0" width="100" />
+      <Box depth="100" height="100" layoutX="409.0" layoutY="61.0" width="100" />
+      <Box depth="100" height="100" layoutX="294.0" layoutY="61.0" width="100" />
+      <ImageView id="Knight_ImageView" fx:id="Knight_ImageView" fitHeight="97.0" fitWidth="93.0" layoutX="363.0" layoutY="15.0" onMouseEntered="#Knight_ImageView_OnMouseEntered" onMouseExited="#Knight_ImageView_OnMouseExited" onMousePressed="#Knight_ImageView_OnMousePressed" onMouseReleased="#Knight_ImageView_OnMouseReleased" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/whiteknight.png" />
+         </image>
+      </ImageView>
+      <ImageView id="Bishop_ImageView" fx:id="Bishop_ImageView" fitHeight="97.0" fitWidth="93.0" layoutX="248.0" layoutY="15.0" onMouseEntered="#Bishop_ImageView_OnMouseEntered" onMouseExited="#Bishop_ImageView_OnMouseExited" onMousePressed="#Bishop_ImageView_OnMousePressed" onMouseReleased="#Bishop_ImageView_OnMouseReleased" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/whitebishop.png" />
+         </image>
+      </ImageView>
+      <ImageView id="Queen_ImageView" fx:id="Queen_ImageView" fitHeight="97.0" fitWidth="93.0" layoutX="15.0" layoutY="15.0" onMouseEntered="#Queen_ImageView_OnMouseEntered" onMouseExited="#Queen_ImageView_OnMouseExited" onMousePressed="#Queen_ImageView_OnMousePressed" onMouseReleased="#Queen_ImageView_OnMouseReleased" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/whitequeen.png" />
+         </image>
+      </ImageView>
+      <ImageView id="Rook_ImageView" fx:id="Rook_ImageView" fitHeight="97.0" fitWidth="93.0" layoutX="130.0" layoutY="15.0" onMouseEntered="#Rook_ImageView_OnMouseEntered" onMouseExited="#Rook_ImageView_OnMouseExited" onMousePressed="#Rook_ImageView_OnMousePressed" onMouseReleased="#Rook_ImageView_OnMouseReleased" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/whiterook.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

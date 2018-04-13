@@ -34,8 +34,7 @@ public class King extends Piece {
                         columnKing = j;
                     }                    
                 }
-            }
-            System.out.println("white king found");
+            }            
             ///// check area for black Bishop and Queen                 
             
            int blackBishop = 10;
@@ -63,7 +62,6 @@ public class King extends Piece {
                    if (fPieceTypeLocationsOnBoard[nextRow][nextColumn] != 0){
                        if(fPieceTypeLocationsOnBoard[nextRow][nextColumn] == blackQueen || fPieceTypeLocationsOnBoard[nextRow][nextColumn] == blackBishop)
                        {
-                            System.out.println("isInCheck method: Returned true: Black bishop or queen places white king in check.");
                             return true; //isInCheck
                        } else {
                             pieceInTheWay = true;
@@ -75,7 +73,6 @@ public class King extends Piece {
                    }
                }
            }
-           System.out.println("black bishop and black queen not found");
            ///// check area for black Rook and Queen                 
             
            int blackRook = 8;
@@ -98,7 +95,6 @@ public class King extends Piece {
                    if (fPieceTypeLocationsOnBoard[nextRow][nextColumn] != 0){
                        if(fPieceTypeLocationsOnBoard[nextRow][nextColumn] == blackQueen || fPieceTypeLocationsOnBoard[nextRow][nextColumn] == blackRook)
                        {
-                            System.out.println("isInCheck method: Returned true: Black rook or queen places white king in check.");
                             return true; //isInCheck
                        } else {
                             pieceInTheWay = true;
@@ -110,7 +106,6 @@ public class King extends Piece {
                    }
                }
            }
-           System.out.println("black rook and black queen not found");
            
             ///// check area for blackknight
             
@@ -136,12 +131,10 @@ public class King extends Piece {
                if(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
                    if(fPieceTypeLocationsOnBoard[nextRow][nextColumn] == blackKnight)
                    {
-                            System.out.println("isInCheck method: Returned true: Black knight places white king in check.");
-                            return true; //isInCheck
+                           return true; //isInCheck
                    }
                }          
            }               
-           System.out.println("black knight not found");
            // check area for black pawn
            
            int blackPawn = 7;
@@ -160,12 +153,10 @@ public class King extends Piece {
                if(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
                     if(fPieceTypeLocationsOnBoard[nextRow][nextColumn] == blackPawn)
                     {
-                        System.out.println("isInCheck method: Returned true: Black pawn places white king in check.");
                         return true; //isInCheck
                     }
                }
            }
-           System.out.println("black pawn not found");
         }
         
         else { //Check if the black king is in check.
@@ -182,7 +173,6 @@ public class King extends Piece {
                     }                    
                 }
             }
-            System.out.println("black king found");
             ///// check area for white Bishop and Queen                 
             
            int whiteBishop = 4;
@@ -210,7 +200,6 @@ public class King extends Piece {
                    if (fPieceTypeLocationsOnBoard[nextRow][nextColumn] != 0){
                        if(fPieceTypeLocationsOnBoard[nextRow][nextColumn] == whiteQueen || fPieceTypeLocationsOnBoard[nextRow][nextColumn] == whiteBishop)
                        {
-                            System.out.println("isInCheck method: Returned true: White bishop or queen places black king in check.");
                             return true; //isInCheck
                        } else {
                             pieceInTheWay = true;
@@ -222,7 +211,6 @@ public class King extends Piece {
                    }
                }
            }
-           System.out.println("white bishop and queen not found");
            ///// check area for Rook and Queen (white)                
             
            int whiteRook = 2;
@@ -245,7 +233,6 @@ public class King extends Piece {
                    if (fPieceTypeLocationsOnBoard[nextRow][nextColumn] != 0){
                        if(fPieceTypeLocationsOnBoard[nextRow][nextColumn] == whiteQueen || fPieceTypeLocationsOnBoard[nextRow][nextColumn] == whiteRook)
                        {
-                            System.out.println("isInCheck method: Returned true: White rook or queen places black king in check.");
                             return true; //isInCheck
                        } else {
                             pieceInTheWay = true;
@@ -257,7 +244,6 @@ public class King extends Piece {
                    }
                }
            }
-           System.out.println("white rook and queen not found");
            ///// check area for whiteknight
             
            int whiteKnight = 3;
@@ -283,13 +269,11 @@ public class King extends Piece {
                     if(nextColumn >= 0 && nextColumn <= 7){ 
                         if(fPieceTypeLocationsOnBoard[nextRow][nextColumn] == whiteKnight)
                         {
-                            System.out.println("isInCheck method: Returned true: White knight places black king in check.");
                             return true; //isInCheck
                         }
                     }
                 }          
            }
-           System.out.println("white knight not found");
             // check area for white pawn
             
             int whitePawn = 1;
@@ -308,15 +292,12 @@ public class King extends Piece {
               if(nextRow >= 0 && nextRow <= 7 && nextColumn >= 0 && nextColumn <= 7){
                 if(fPieceTypeLocationsOnBoard[nextRow][nextColumn] == whitePawn)
                 {
-                    System.out.println("isInCheck method: Returned true: White pawn places black king in check.");
                     return true; //isInCheck
                 }
               }
             }
-            System.out.println("white pawn not found");
         }
 
-        System.out.println("isInCheck method: Returned false.");
         return false; //The king is not in check.
     }
     
@@ -413,7 +394,6 @@ public class King extends Piece {
                 tempArray[i][j] = fPieceTypeLocationsOnBoard[i][j];
             }
         }
-        System.out.println("temp array created");
         rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
         columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
         
@@ -423,7 +403,6 @@ public class King extends Piece {
         // update temporary board with hypothetical move
         tempArray[rowClicked][columnClicked] = tempArray[rowTargeted][columnTargeted];
         tempArray[rowTargeted][columnTargeted] = 0;
-        System.out.println("move made");
         if (Game.getCurrentTeamsTurn() == 0){
             
             // find the white king 
@@ -438,7 +417,6 @@ public class King extends Piece {
                     }                    
                 }
             }
-            System.out.println("white king found");
             ///// check area for black Bishop and Queen                 
             
            int blackBishop = 10;
@@ -475,7 +453,6 @@ public class King extends Piece {
                    }
                }
            }
-           System.out.println("black bishop and black queen not found");
            ///// check area for black Rook and Queen                 
             
            int blackRook = 8;
@@ -507,7 +484,6 @@ public class King extends Piece {
                    }
                }
            }
-           System.out.println("black rook and black queen not found");
            
             ///// check area for blackknight
             
@@ -535,7 +511,6 @@ public class King extends Piece {
                        return false; // moveDoesNotPlaceKingInCheck
                }          
            }               
-           System.out.println("black knight not found");
            // check area for black pawn
            
            int blackPawn = 7;
@@ -556,7 +531,6 @@ public class King extends Piece {
                     return false; // moveDoesNotPlaceKingInCheck
                }
            }
-           System.out.println("black pawn not found");
         }
         
         else { // black's turn
@@ -573,7 +547,6 @@ public class King extends Piece {
                     }                    
                 }
             }
-            System.out.println("black king found");
             ///// check area for white Bishop and Queen                 
             
            int whiteBishop = 4;
@@ -610,7 +583,6 @@ public class King extends Piece {
                    }
                }
            }
-           System.out.println("white bishop and queen not found");
            ///// check area for Rook and Queen (white)                
             
            int whiteRook = 2;
@@ -642,7 +614,6 @@ public class King extends Piece {
                    }
                }
            }
-           System.out.println("white rook and queen not found");
            ///// check area for whiteknight
             
            int whiteKnight = 3;
@@ -671,7 +642,6 @@ public class King extends Piece {
                     }
                 }          
            }
-           System.out.println("white knight not found");
             // check area for white pawn
             
             int whitePawn = 1;
@@ -692,7 +662,6 @@ public class King extends Piece {
                   return false; // moveDoesNotPlaceKingInCheck
               }
            }
-            System.out.println("white pawn not found");
         }
         // moveDoesNotPlaceKingInCheck
         return true;

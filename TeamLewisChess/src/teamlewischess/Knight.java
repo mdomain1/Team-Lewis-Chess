@@ -143,7 +143,7 @@ public class Knight extends Piece {
                 tempArray[i][j] = fPieceTypeLocationsOnBoard[i][j];
             }
         }
-        System.out.println("temp array created");
+        
         rowTargeted = Board.getRowFromLocation(Game.getTargetedSquare());
         columnTargeted = Board.getColumnFromLocation(Game.getTargetedSquare());
         
@@ -153,7 +153,7 @@ public class Knight extends Piece {
         // update temporary board with hypothetical move
         tempArray[rowClicked][columnClicked] = tempArray[rowTargeted][columnTargeted];
         tempArray[rowTargeted][columnTargeted] = 0;
-        System.out.println("move made");
+        
         if (Game.getCurrentTeamsTurn() == 0){
             
             // find the white king 
@@ -168,7 +168,7 @@ public class Knight extends Piece {
                     }                    
                 }
             }
-            System.out.println("white king found");
+            
             ///// check area for black Bishop and Queen                 
             
            int blackBishop = 10;
@@ -205,7 +205,7 @@ public class Knight extends Piece {
                    }
                }
            }
-           System.out.println("black bishop and black queen not found");
+           
            ///// check area for black Rook and Queen                 
             
            int blackRook = 8;
@@ -237,7 +237,7 @@ public class Knight extends Piece {
                    }
                }
            }
-           System.out.println("black rook and black queen not found");
+           
            
             ///// check area for blackknight
             
@@ -265,7 +265,7 @@ public class Knight extends Piece {
                        return false; // moveDoesNotPlaceKingInCheck
                }          
            }               
-           System.out.println("black knight not found");
+          
            // check area for black pawn
            
            int blackPawn = 7;
@@ -286,7 +286,7 @@ public class Knight extends Piece {
                     return false; // moveDoesNotPlaceKingInCheck
                }
            }
-           System.out.println("black pawn not found");
+           
         }
         
         else { // black's turn
@@ -303,7 +303,7 @@ public class Knight extends Piece {
                     }                    
                 }
             }
-            System.out.println("black king found");
+            
             ///// check area for white Bishop and Queen                 
             
            int whiteBishop = 4;
@@ -340,7 +340,7 @@ public class Knight extends Piece {
                    }
                }
            }
-           System.out.println("white bishop and queen not found");
+           
            ///// check area for Rook and Queen (white)                
             
            int whiteRook = 2;
@@ -372,7 +372,7 @@ public class Knight extends Piece {
                    }
                }
            }
-           System.out.println("white rook and queen not found");
+          
            ///// check area for whiteknight
             
            int whiteKnight = 3;
@@ -401,7 +401,7 @@ public class Knight extends Piece {
                     }
                 }          
            }
-           System.out.println("white knight not found");
+           
             // check area for white pawn
             
             int whitePawn = 1;
@@ -422,7 +422,7 @@ public class Knight extends Piece {
                   return false; // moveDoesNotPlaceKingInCheck
               }
            }
-            System.out.println("white pawn not found");
+            
         }
         // moveDoesNotPlaceKingInCheck
         return true;
