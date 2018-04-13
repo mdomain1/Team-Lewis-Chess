@@ -145,15 +145,21 @@ public class Board {
         bP_7.setCaptured(false);
         bP_8.setCaptured(false);
         
-        white.isCheckmated = false;
+        //Team class for white pieces
         white.numOfMovesNoCaptureOrPawnMoves = 0;
         white.pawnMovedTwoSpacesLastMove = false;
         white.squarePawnMovedTwoLastMovedTo = -1;
+        white.kingHasMoved = false;
+        white.R_1_hasMoved = false; //White/black rook that starts on square 56/0
+        white.R_2_hasMoved = false; //White/black rook that starts on square 63/7
         
-        black.isCheckmated = false;
+        //Team class for black pieces
         black.numOfMovesNoCaptureOrPawnMoves = 0;
         black.pawnMovedTwoSpacesLastMove = false;
         black.squarePawnMovedTwoLastMovedTo = -1;
+        black.kingHasMoved = false;
+        black.R_1_hasMoved = false; //White/black rook that starts on square 56/0
+        black.R_2_hasMoved = false; //White/black rook that starts on square 63/7
         
         wK.setHasMoved(false);
         wR_1.setHasMoved(false);
@@ -354,13 +360,21 @@ public class Board {
         return false;
     }
     /**
+     * Note: In this method, normally the opposite team is sent into the isValidMove method,
+     * but the Team who's turn is the currently selected piece, the piece that the isValidMove
+     * is being called for, is sent in for the king, when checking the king's isValidMove,
+     * as the king needs its Team's variables to determine if he can castle. Further, the only
+     * other place this matters is for the pawn to check for en passant, in which the pawn
+     * needs to know the other Team's variables. Therefore, passing in Team is redundant for
+     * all other pieces.
      * 
      * @return boolean if piece on targeted square can move to square clicked
      */
     public boolean pieceOnTargetedSquareCanMoveToSquareClicked()
     {
         if (wK.getLocation() == Game.getTargetedSquare()) {
-            return King.isValidMove(pieceTypeLocationsOnBoard, black);
+            return King.isValidMove(pieceTypeLocationsOnBoard, white); //White king needs white's Team variables
+                                                                       //to check for castling.
         } else if (wQ.getLocation() == Game.getTargetedSquare()) {
             return Queen.isValidMove(pieceTypeLocationsOnBoard, black);
         } else if (wR_1.getLocation() == Game.getTargetedSquare()) {
@@ -472,7 +486,8 @@ public class Board {
                 return Knight.isValidMove(pieceTypeLocationsOnBoard, black);
             }
         } else if (bK.getLocation() == Game.getTargetedSquare()) {
-            return King.isValidMove(pieceTypeLocationsOnBoard, white);
+            return King.isValidMove(pieceTypeLocationsOnBoard, black); //Black king needs black's Team variables
+                                                                       //to check for castling.
         } else if (bQ.getLocation() == Game.getTargetedSquare()) {
             return Queen.isValidMove(pieceTypeLocationsOnBoard, white);
         } else if (bR_1.getLocation() == Game.getTargetedSquare()) {
@@ -630,6 +645,8 @@ public class Board {
                 
                 wK.setHasMoved(true);
                 wR_2.setHasMoved(true);
+                white.kingHasMoved = true;
+                white.R_2_hasMoved = true;
                 
                 wK.setLocation(62);
                 wR_2.setLocation(61);
@@ -647,6 +664,8 @@ public class Board {
                 
                 wK.setHasMoved(true);
                 wR_1.setHasMoved(true);
+                white.kingHasMoved = true;
+                white.R_1_hasMoved = true;
                 
                 wK.setLocation(58);
                 wR_1.setLocation(59);
@@ -664,6 +683,8 @@ public class Board {
                 
                 bK.setHasMoved(true);
                 bR_2.setHasMoved(true);
+                black.kingHasMoved = true;
+                black.R_2_hasMoved = true;
                 
                 bK.setLocation(6);
                 bR_2.setLocation(5);
@@ -681,6 +702,8 @@ public class Board {
                 
                 bK.setHasMoved(true);
                 bR_1.setHasMoved(true);
+                black.kingHasMoved = true;
+                black.R_1_hasMoved = true;
                 
                 bK.setLocation(2);
                 bR_1.setLocation(3);
@@ -1156,14 +1179,17 @@ public class Board {
             if (wK.getLocation() == Game.getTargetedSquare()) {
                 wK.setLocation(TeamLewisChessController.getSquareClicked());
                 wK.setHasMoved(true);
+                white.kingHasMoved = true;
             } else if (wQ.getLocation() == Game.getTargetedSquare()) {
                 wQ.setLocation(TeamLewisChessController.getSquareClicked());
             } else if (wR_1.getLocation() == Game.getTargetedSquare()) {
                 wR_1.setLocation(TeamLewisChessController.getSquareClicked());
                 wR_1.setHasMoved(true);
+                white.R_1_hasMoved = true;
             } else if (wR_2.getLocation() == Game.getTargetedSquare()) {
                 wR_2.setLocation(TeamLewisChessController.getSquareClicked());
                 wR_2.setHasMoved(true);
+                white.R_2_hasMoved = true;
             } else if (wB_1.getLocation() == Game.getTargetedSquare()) {
                 wB_1.setLocation(TeamLewisChessController.getSquareClicked());
             } else if (wB_2.getLocation() == Game.getTargetedSquare()) {
@@ -1327,14 +1353,17 @@ public class Board {
             } else if (bK.getLocation() == Game.getTargetedSquare()) {
                 bK.setLocation(TeamLewisChessController.getSquareClicked());
                 bK.setHasMoved(true);
+                black.kingHasMoved = true;
             } else if (bQ.getLocation() == Game.getTargetedSquare()) {
                 bQ.setLocation(TeamLewisChessController.getSquareClicked());
             } else if (bR_1.getLocation() == Game.getTargetedSquare()) {
                 bR_1.setLocation(TeamLewisChessController.getSquareClicked());
                 bR_1.setHasMoved(true);
+                black.R_1_hasMoved = true;
             } else if (bR_2.getLocation() == Game.getTargetedSquare()) {
                 bR_2.setLocation(TeamLewisChessController.getSquareClicked());
                 bR_2.setHasMoved(true);
+                black.R_2_hasMoved = true;
             } else if (bB_1.getLocation() == Game.getTargetedSquare()) {
                 bB_1.setLocation(TeamLewisChessController.getSquareClicked());
             } else if (bB_2.getLocation() == Game.getTargetedSquare()) {
@@ -1692,7 +1721,7 @@ public class Board {
                                 {
                                     TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
                                     
-                                    if (Pawn.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    if (Pawn.isValidMove(pieceTypeLocationsOnBoard, white))
                                     {
                                         validMoveFound = true;
                                     }
@@ -1708,7 +1737,7 @@ public class Board {
                                 {
                                     TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
                                     
-                                    if (Rook.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    if (Rook.isValidMove(pieceTypeLocationsOnBoard, white))
                                     {
                                         validMoveFound = true;
                                     }
@@ -1724,7 +1753,7 @@ public class Board {
                                 {
                                     TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
                                     
-                                    if (Knight.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    if (Knight.isValidMove(pieceTypeLocationsOnBoard, white))
                                     {
                                         validMoveFound = true;
                                     }
@@ -1740,7 +1769,7 @@ public class Board {
                                 {
                                     TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
                                     
-                                    if (Bishop.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    if (Bishop.isValidMove(pieceTypeLocationsOnBoard, white))
                                     {
                                         validMoveFound = true;
                                     }
@@ -1756,7 +1785,7 @@ public class Board {
                                 {
                                     TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
                                     
-                                    if (Queen.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    if (Queen.isValidMove(pieceTypeLocationsOnBoard, white))
                                     {
                                         validMoveFound = true;
                                     }
@@ -1772,7 +1801,7 @@ public class Board {
                                 {
                                     TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
                                     
-                                    if (King.isValidMove(pieceTypeLocationsOnBoard, black))
+                                    if (King.isValidMove(pieceTypeLocationsOnBoard, black)) //Send in same team's turn for king.
                                     {
                                         validMoveFound = true;
                                     }
@@ -1829,7 +1858,7 @@ public class Board {
                                 {
                                     TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
                                     
-                                    if (Pawn.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    if (Pawn.isValidMove(pieceTypeLocationsOnBoard, black))
                                     {
                                         validMoveFound = true;
                                     }
@@ -1846,7 +1875,7 @@ public class Board {
                                 {
                                     TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
                                     
-                                    if (Rook.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    if (Rook.isValidMove(pieceTypeLocationsOnBoard, black))
                                     {
                                         validMoveFound = true;
                                     }
@@ -1863,7 +1892,7 @@ public class Board {
                                 {
                                     TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
                                     
-                                    if (Knight.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    if (Knight.isValidMove(pieceTypeLocationsOnBoard, black))
                                     {
                                         validMoveFound = true;
                                     }
@@ -1880,7 +1909,7 @@ public class Board {
                                 {
                                     TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
                                     
-                                    if (Bishop.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    if (Bishop.isValidMove(pieceTypeLocationsOnBoard, black))
                                     {
                                         validMoveFound = true;
                                     }
@@ -1897,7 +1926,7 @@ public class Board {
                                 {
                                     TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
                                     
-                                    if (Queen.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    if (Queen.isValidMove(pieceTypeLocationsOnBoard, black))
                                     {
                                         validMoveFound = true;
                                     }
@@ -1914,7 +1943,7 @@ public class Board {
                                 {
                                     TeamLewisChessController.setSquareClicked(getLocationFromRowAndColumn(i, j));
                                     
-                                    if (King.isValidMove(pieceTypeLocationsOnBoard, white))
+                                    if (King.isValidMove(pieceTypeLocationsOnBoard, white)) //Send in same Team's turn for king.
                                     {
                                         validMoveFound = true;
                                     }
