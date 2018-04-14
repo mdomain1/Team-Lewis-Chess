@@ -1,9 +1,5 @@
 package teamlewischess;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @see Piece
  */
@@ -16,12 +12,12 @@ public class Knight extends Piece {
      * @return 
      */
     static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam) {
-         System.out.println("Knight withinRange of PieceMobility: " + 
-                 Knight.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
-         System.out.println("noPieceBlocksPathToSquare: " + 
-                 Knight.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
-         System.out.println("moveDoesNotPlaceKingInCheck:  " + 
-                 Knight.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
+//         System.out.println("Knight withinRange of PieceMobility: " + 
+//                 Knight.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
+//         System.out.println("noPieceBlocksPathToSquare: " + 
+//                 Knight.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
+//         System.out.println("moveDoesNotPlaceKingInCheck:  " + 
+//                 Knight.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
                  
         if(Knight.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
             

@@ -1554,7 +1554,7 @@ public class Board {
         }
         
         //Step 4
-        //updateGameStatus();
+        updateGameStatus();
     }
     
     /**
@@ -1937,7 +1937,8 @@ public class Board {
         //reached again.
         //If neither player is in check, check to make sure a valid move still exists.
         //Else, it is stalemate.
-        if (Game.getGameStatus() == 0 /*&& wK.isInCheck(pieceTypeLocationsOnBoard) == false*/ && bK.isInCheck(pieceTypeLocationsOnBoard) == false)
+        if (Game.getGameStatus() == 0 && Game.getCurrentTeamsTurn() == 0/*&& wK.isInCheck(pieceTypeLocationsOnBoard) == false*/
+        && bK.isInCheck(pieceTypeLocationsOnBoard) == false)
         {
             //Preserving currentTeamsTurn and restoring at the end of this if control structure, as we are
             //looking a move ahead to see if black, who is in check now, can get out of check on his turn.
@@ -2216,7 +2217,7 @@ public class Board {
             //Restoring currentTeamsTurn.
             Game.setCurrentTeamsTurn(tempCurrentTeamsTurn);
             
-            if (allMovesHaveBeenChecked == true && validMoveFound == false)
+            if (allMovesHaveBeenChecked == true && validMoveFound == false && wK.isInCheck(pieceTypeLocationsOnBoard) == false)
             {
                 Game.setGameStatus(3);
             }

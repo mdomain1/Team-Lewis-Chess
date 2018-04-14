@@ -7,12 +7,12 @@ package teamlewischess;
 public class Bishop extends Piece {
     static public boolean isValidMove(int[][] fPieceTypeLocationsOnBoard, Team fTeam)
     {
-        System.out.println("Bishop withinRange of PieceMobility: " + 
-                 Bishop.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
-         System.out.println("noPieceBlocksPathToSquare: " + 
-                 Bishop.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
-         System.out.println("moveDoesNotPlaceKingInCheck:  " + 
-                 Bishop.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
+//        System.out.println("Bishop withinRange of PieceMobility: " + 
+//                 Bishop.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard));
+//         System.out.println("noPieceBlocksPathToSquare: " + 
+//                 Bishop.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard));
+//         System.out.println("moveDoesNotPlaceKingInCheck:  " + 
+//                 Bishop.moveDoesNotPlaceKingInCheck(fPieceTypeLocationsOnBoard));
          
         if(Bishop.withinRangeOfPieceMobility(fPieceTypeLocationsOnBoard)){
             if(Bishop.noPieceBlocksPathToSquare(fPieceTypeLocationsOnBoard)){

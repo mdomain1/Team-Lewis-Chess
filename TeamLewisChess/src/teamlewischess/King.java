@@ -13,7 +13,7 @@ public class King extends Piece {
         //Must check that king does not start in check, move through check, nor land in check, and also that no piece exists on
         //those squares between the king and rook.
         if (TeamLewisChessController.getSquareClicked() == 62 && fTeam.R_2_hasMoved == false && fTeam.kingHasMoved == false
-        && fPieceTypeLocationsOnBoard[7][5] == 0 && fPieceTypeLocationsOnBoard[7][6] == 0) {
+        && fPieceTypeLocationsOnBoard[7][5] == 0 && fPieceTypeLocationsOnBoard[7][6] == 0 && fPieceTypeLocationsOnBoard[7][7] == 2) {
         //White castling kingside.
             Game.setTargetedSquare(1); //must be restored
             TeamLewisChessController.setSquareClicked(2); //must be restored
@@ -34,7 +34,8 @@ public class King extends Piece {
             Game.setTargetedSquare(60); //restoring
             TeamLewisChessController.setSquareClicked(62); //restoring
         } else if (TeamLewisChessController.getSquareClicked() == 58 && fTeam.R_1_hasMoved == false && fTeam.kingHasMoved == false
-        && fPieceTypeLocationsOnBoard[7][3] == 0 && fPieceTypeLocationsOnBoard[7][2] == 0 && fPieceTypeLocationsOnBoard[7][1] == 0) {
+        && fPieceTypeLocationsOnBoard[7][3] == 0 && fPieceTypeLocationsOnBoard[7][2] == 0 && fPieceTypeLocationsOnBoard[7][1] == 0
+        && fPieceTypeLocationsOnBoard[7][0] == 2) {
         //White castling queenside.
             Game.setTargetedSquare(5); //must be restored
             TeamLewisChessController.setSquareClicked(6); //must be restored
@@ -55,7 +56,7 @@ public class King extends Piece {
             Game.setTargetedSquare(60); //restoring
             TeamLewisChessController.setSquareClicked(58); //restoring
         } else if (TeamLewisChessController.getSquareClicked() == 6 && fTeam.R_2_hasMoved == false && fTeam.kingHasMoved == false
-        && fPieceTypeLocationsOnBoard[0][5] == 0 && fPieceTypeLocationsOnBoard[0][6] == 0) {
+        && fPieceTypeLocationsOnBoard[0][5] == 0 && fPieceTypeLocationsOnBoard[0][6] == 0 && fPieceTypeLocationsOnBoard[0][7] == 8) {
         //Black castling kingside.
             Game.setTargetedSquare(57); //must be restored
             TeamLewisChessController.setSquareClicked(58); //must be restored
@@ -76,7 +77,8 @@ public class King extends Piece {
             Game.setTargetedSquare(4); //restoring
             TeamLewisChessController.setSquareClicked(6); //restoring
         } else if (TeamLewisChessController.getSquareClicked() == 2 && fTeam.R_1_hasMoved == false && fTeam.kingHasMoved == false
-        && fPieceTypeLocationsOnBoard[0][3] == 0 && fPieceTypeLocationsOnBoard[0][2] == 0 && fPieceTypeLocationsOnBoard[0][1] == 0) {
+        && fPieceTypeLocationsOnBoard[0][3] == 0 && fPieceTypeLocationsOnBoard[0][2] == 0 && fPieceTypeLocationsOnBoard[0][1] == 0
+        && fPieceTypeLocationsOnBoard[0][0] == 8) {
         //Black castling queenside.
             Game.setTargetedSquare(61); //must be restored
             TeamLewisChessController.setSquareClicked(62); //must be restored
