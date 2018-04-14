@@ -848,7 +848,7 @@ public class Board {
         }
         //Step 3
         else //is a normal move where, if a piece is being captured, that piece is always
-             //one the squareClicked.
+             //on the squareClicked.
         {
             //Step 3-A. Update current Team's numOfMovesNoCaptureOrPawnMoves
             if (wP_1.getLocation() == Game.getTargetedSquare()) {
@@ -956,102 +956,54 @@ public class Board {
             //Step 3-B. If the piece moved was a pawn moving two spaces forward, update
             //the current team's pawnMovedTwoSpacesLastMove variabe to true and set the
             //squarePawnMovedTwoLastMovedTo to the squareClicked.
-            if (wP_1.getLocation() == Game.getTargetedSquare()) {
-                if (wP_1.promoted() == false && targetedRow == rowClicked + 2)
-                {
-                    white.pawnMovedTwoSpacesLastMove = true;
-                    white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
-                } 
-            } else if (wP_2.getLocation() == Game.getTargetedSquare()) {
-                if (wP_2.promoted() == false && targetedRow == rowClicked + 2)
-                {
-                    white.pawnMovedTwoSpacesLastMove = true;
-                    white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
-                }
-            } else if (wP_3.getLocation() == Game.getTargetedSquare()) {
-                if (wP_3.promoted() == false && targetedRow == rowClicked + 2)
-                {
-                    white.pawnMovedTwoSpacesLastMove = true;
-                    white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
-                }
-            } else if (wP_4.getLocation() == Game.getTargetedSquare()) {
-                if (wP_4.promoted() == false && targetedRow == rowClicked + 2)
-                {
-                    white.pawnMovedTwoSpacesLastMove = true;
-                    white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
-                }
-            } else if (wP_5.getLocation() == Game.getTargetedSquare()) {
-                if (wP_5.promoted() == false && targetedRow == rowClicked + 2)
-                {
-                    white.pawnMovedTwoSpacesLastMove = true;
-                    white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
-                }
-            } else if (wP_6.getLocation() == Game.getTargetedSquare()) {
-                if (wP_6.promoted() == false && targetedRow == rowClicked + 2)
-                {
-                    white.pawnMovedTwoSpacesLastMove = true;
-                    white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
-                }
-            } else if (wP_7.getLocation() == Game.getTargetedSquare()) {
-                if (wP_7.promoted() == false && targetedRow == rowClicked + 2)
-                {
-                    white.pawnMovedTwoSpacesLastMove = true;
-                    white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
-                }
-            } else if (wP_8.getLocation() == Game.getTargetedSquare()) {
-                if (wP_8.promoted() == false && targetedRow == rowClicked + 2)
-                {
-                    white.pawnMovedTwoSpacesLastMove = true;
-                    white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
-                }
-            } else if (bP_1.getLocation() == Game.getTargetedSquare()) {
-                if (bP_1.promoted() == false && targetedRow == rowClicked - 2)
-                {
-                    black.pawnMovedTwoSpacesLastMove = true;
-                    black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
-                }
-            } else if (bP_2.getLocation() == Game.getTargetedSquare()) {
-                if (bP_2.promoted() == false && targetedRow == rowClicked - 2)
-                {
-                    black.pawnMovedTwoSpacesLastMove = true;
-                    black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
-                }
-            } else if (bP_3.getLocation() == Game.getTargetedSquare()) {
-                if (bP_3.promoted() == false && targetedRow == rowClicked - 2)
-                {
-                    black.pawnMovedTwoSpacesLastMove = true;
-                    black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
-                }
-            } else if (bP_4.getLocation() == Game.getTargetedSquare()) {
-                if (bP_4.promoted() == false && targetedRow == rowClicked - 2)
-                {
-                    black.pawnMovedTwoSpacesLastMove = true;
-                    black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
-                }
-            } else if (bP_5.getLocation() == Game.getTargetedSquare()) {
-                if (bP_5.promoted() == false && targetedRow == rowClicked - 2)
-                {
-                    black.pawnMovedTwoSpacesLastMove = true;
-                    black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
-                }
-            } else if (bP_6.getLocation() == Game.getTargetedSquare()) {
-                if (bP_6.promoted() == false && targetedRow == rowClicked - 2)
-                {
-                    black.pawnMovedTwoSpacesLastMove = true;
-                    black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
-                }
-            } else if (bP_7.getLocation() == Game.getTargetedSquare()) {
-                if (bP_7.promoted() == false && targetedRow == rowClicked - 2)
-                {
-                    black.pawnMovedTwoSpacesLastMove = true;
-                    black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
-                }
-            } else if (bP_8.getLocation() == Game.getTargetedSquare()) {
-                if (bP_8.promoted() == false && targetedRow == rowClicked - 2)
-                {
-                    black.pawnMovedTwoSpacesLastMove = true;
-                    black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
-                }
+            if (wP_1.getLocation() == Game.getTargetedSquare() && wP_1.promoted() == false && targetedRow == rowClicked + 2) {
+                white.pawnMovedTwoSpacesLastMove = true;
+                white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+            } else if (wP_2.getLocation() == Game.getTargetedSquare() && wP_2.promoted() == false && targetedRow == rowClicked + 2) {
+                white.pawnMovedTwoSpacesLastMove = true;
+                white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+            } else if (wP_3.getLocation() == Game.getTargetedSquare() && wP_3.promoted() == false && targetedRow == rowClicked + 2) {
+                white.pawnMovedTwoSpacesLastMove = true;
+                white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+            } else if (wP_4.getLocation() == Game.getTargetedSquare() && wP_4.promoted() == false && targetedRow == rowClicked + 2) {
+                white.pawnMovedTwoSpacesLastMove = true;
+                white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+            } else if (wP_5.getLocation() == Game.getTargetedSquare() && wP_5.promoted() == false && targetedRow == rowClicked + 2) {
+                white.pawnMovedTwoSpacesLastMove = true;
+                white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+            } else if (wP_6.getLocation() == Game.getTargetedSquare() && wP_6.promoted() == false && targetedRow == rowClicked + 2) {
+                white.pawnMovedTwoSpacesLastMove = true;
+                white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+            } else if (wP_7.getLocation() == Game.getTargetedSquare() && wP_7.promoted() == false && targetedRow == rowClicked + 2) {
+                white.pawnMovedTwoSpacesLastMove = true;
+                white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+            } else if (wP_8.getLocation() == Game.getTargetedSquare() && wP_8.promoted() == false && targetedRow == rowClicked + 2) {
+                white.pawnMovedTwoSpacesLastMove = true;
+                white.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+            } else if (bP_1.getLocation() == Game.getTargetedSquare() && bP_1.promoted() == false && targetedRow == rowClicked - 2) {
+                black.pawnMovedTwoSpacesLastMove = true;
+                black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+            } else if (bP_2.getLocation() == Game.getTargetedSquare() && bP_2.promoted() == false && targetedRow == rowClicked - 2) {
+                black.pawnMovedTwoSpacesLastMove = true;
+                black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+            } else if (bP_3.getLocation() == Game.getTargetedSquare() && bP_3.promoted() == false && targetedRow == rowClicked - 2) {
+                black.pawnMovedTwoSpacesLastMove = true;
+                black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+            } else if (bP_4.getLocation() == Game.getTargetedSquare() && bP_4.promoted() == false && targetedRow == rowClicked - 2) {
+                black.pawnMovedTwoSpacesLastMove = true;
+                black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+            } else if (bP_5.getLocation() == Game.getTargetedSquare() && bP_5.promoted() == false && targetedRow == rowClicked - 2) {
+                black.pawnMovedTwoSpacesLastMove = true;
+                black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+            } else if (bP_6.getLocation() == Game.getTargetedSquare() && bP_6.promoted() == false && targetedRow == rowClicked - 2) {
+                black.pawnMovedTwoSpacesLastMove = true;
+                black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+            } else if (bP_7.getLocation() == Game.getTargetedSquare() && bP_7.promoted() == false && targetedRow == rowClicked - 2) {
+                black.pawnMovedTwoSpacesLastMove = true;
+                black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
+            } else if (bP_8.getLocation() == Game.getTargetedSquare() && bP_8.promoted() == false && targetedRow == rowClicked - 2) {
+                black.pawnMovedTwoSpacesLastMove = true;
+                black.squarePawnMovedTwoLastMovedTo = TeamLewisChessController.getSquareClicked();
             } else if (Game.getCurrentTeamsTurn() == 0) {
                 white.pawnMovedTwoSpacesLastMove = false;
                 white.squarePawnMovedTwoLastMovedTo = -1;
