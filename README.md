@@ -9,3 +9,4 @@ Project members are (for Instructor's reference or other):
   Leana
   Isaiah
   
+You may view all documents needed to understand this program at isaiahgregov.blogspot.com. The documents that you can find here are the Algorithm Doc, the Tasks Doc, and the UML Diagram.
