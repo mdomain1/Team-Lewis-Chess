@@ -9,4 +9,4 @@ Project members are (for Instructor's reference or other):
   Leana
   Isaiah
   
-You may view all documents needed to understand this program at isaiahgregov.blogspot.com. The documents that you can find here are the Algorithm Doc, the Tasks Doc, and the UML Diagram. My Computer Science blog is located here, and my blog on this project is the blog that was submitted on April 22, 2018 (if I write a new blog, you may have to go through the history to find it.). ~Isaiah
+You may view all documents needed to understand this program at isaiahgregov.blogspot.com. The documents that you can find here are the Algorithm Doc, the Tasks Doc, and the UML Diagram. My Computer Science blog is located here, and my blog on this project is the blog that was published on April 22, 2018 (if I write a new blog, you may have to go through the history to find it.). ~Isaiah
