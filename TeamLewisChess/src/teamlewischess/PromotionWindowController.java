@@ -121,22 +121,22 @@ public class PromotionWindowController {
         Image imageOne;
         
         if (Game.getCurrentTeamsTurn() == 0) {            
-            imageOne = new Image("/teamlewischess/images/whiteKnight.png");
+            imageOne = new Image("/teamlewischess/images/whiteknight.png");
             Knight_ImageView.setImage(imageOne);
-            imageOne = new Image("/teamlewischess/images/whiteBishop.png");
+            imageOne = new Image("/teamlewischess/images/whitebishop.png");
             Bishop_ImageView.setImage(imageOne);
-            imageOne = new Image("/teamlewischess/images/whiteQueen.png");
+            imageOne = new Image("/teamlewischess/images/whitequeen.png");
             Queen_ImageView.setImage(imageOne);
-            imageOne = new Image("/teamlewischess/images/whiteRook.png");
+            imageOne = new Image("/teamlewischess/images/whiterook.png");
             Rook_ImageView.setImage(imageOne);
         } else {
-            imageOne = new Image("/teamlewischess/images/blackKnight.png");
+            imageOne = new Image("/teamlewischess/images/blackknight.png");
             Knight_ImageView.setImage(imageOne);
-            imageOne = new Image("/teamlewischess/images/blackBishop.png");
+            imageOne = new Image("/teamlewischess/images/blackbishop.png");
             Bishop_ImageView.setImage(imageOne);
-            imageOne = new Image("/teamlewischess/images/blackQueen.png");
+            imageOne = new Image("/teamlewischess/images/blackqueen.png");
             Queen_ImageView.setImage(imageOne);
-            imageOne = new Image("/teamlewischess/images/blackRook.png");
+            imageOne = new Image("/teamlewischess/images/blackrook.png");
             Rook_ImageView.setImage(imageOne);
         }
     }
